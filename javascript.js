@@ -1,61 +1,85 @@
-    const email = 'thanhpham0907@hatonet.com';
-    document.getElementById('mailtoLink').setAttribute('href', 'mailto:' + email);
-    document.getElementById('emailSide').textContent = email;
-    document.getElementById('emailText').textContent = email;
-    document.getElementById('year').textContent = new Date().getFullYear();
+const email = 'thanhpham0907@hatonet.com';
+document.getElementById('mailtoLink').setAttribute('href', 'mailto:' + email);
+document.getElementById('emailSide').textContent = email;
+document.getElementById('emailText').textContent = email;
+document.getElementById('year').textContent = new Date().getFullYear();
 
-    function copyEmail(){
-      navigator.clipboard?.writeText(email).then(()=> {
+function copyEmail() {
+    navigator.clipboard?.writeText(email).then(() => {
         alert('Copied: ' + email);
-      }).catch(()=> {
+    }).catch(() => {
         prompt('Copy email:', email);
-      });
-    }
+    });
+}
 
-    function handleSend(e){
-      e.preventDefault();
-      const name = document.getElementById('name').value.trim();
-      const from = document.getElementById('email').value.trim();
-      const subject = document.getElementById('subject').value.trim() || 'Yêu cầu phiên dịch';
-      const message = document.getElementById('message').value.trim();
-      if(!name || !from || !message){
+function handleSend(e) {
+    e.preventDefault();
+    const name = document.getElementById('name').value.trim();
+    const from = document.getElementById('email').value.trim();
+    const subject = document.getElementById('subject').value.trim() || 'Yêu cầu phiên dịch';
+    const message = document.getElementById('message').value.trim();
+    if (!name || !from || !message) {
         alert('Please fill in Name, Email and Message.');
         return;
-      }
-      const body = encodeURIComponent(
+    }
+    const body = encodeURIComponent(
         'Tên: ' + name + '\\n' +
         'Email: ' + from + '\\n' +
         '---\\n' + message
-      );
-      window.location.href = 'mailto:' + encodeURIComponent(email) + '?subject=' + encodeURIComponent(subject) + '&body=' + body;
-    }
+    );
+    window.location.href = 'mailto:' + encodeURIComponent(email) + '?subject=' + encodeURIComponent(subject) + '&body=' + body;
+}
 
-    function toggleTheme(){
-      const root = document.documentElement;
-      if(root.style.getPropertyValue('--bg') === ''){
-        root.style.setProperty('--bg','#f6f7fb');
-        root.style.setProperty('--card','#ffffff');
-        root.style.setProperty('--muted','#555');
-        root.style.color = '#111';
-      } else {
-        root.style.removeProperty('--bg');
-        root.style.removeProperty('--card');
-        root.style.removeProperty('--muted');
-        root.style.color = '#e6eef6';
-      }
-      document.body.style.transition='filter .3s';
-      document.body.style.filter='invert(.05)';
-      setTimeout(()=> document.body.style.filter='none',300);
-    }
+// --- XỬ LÝ DARK/LIGHT MODE ---
 
-    window.addEventListener('load', ()=> {
-      document.querySelectorAll('.fade-up').forEach((el,i)=>{
-        el.style.animationDelay = (i*80 + 80) + 'ms';
-      });
+// Hàm khởi tạo Theme khi tải trang
+function initTheme() {
+    const savedTheme = localStorage.getItem('theme');
+    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+    // Ưu tiên localStorage, nếu không có thì theo hệ thống, mặc định là 'dark' (vì code gốc là dark)
+    if (savedTheme === 'light') {
+        document.documentElement.setAttribute('data-theme', 'light');
+    } else {
+        document.documentElement.setAttribute('data-theme', 'dark');
+    }
+}
+
+// Hàm chuyển đổi Theme (Gắn vào nút bấm)
+function toggleTheme() {
+    const root = document.documentElement;
+    const currentTheme = root.getAttribute('data-theme');
+    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+
+    // 1. Set attribute để CSS nhận diện
+    root.setAttribute('data-theme', newTheme);
+
+    // 2. Lưu vào localStorage
+    localStorage.setItem('theme', newTheme);
+
+    // 3. Hiệu ứng chuyển đổi icon (Optional)
+    const btn = document.querySelector('.icon-btn[onclick="toggleTheme()"]');
+    if (btn) btn.innerHTML = newTheme === 'light' ? '🌙' : '☀️';
+}
+
+// Gọi hàm khởi tạo ngay khi load
+initTheme();
+
+// Cập nhật lại icon nút bấm cho đúng trạng thái ban đầu
+window.addEventListener('load', () => {
+    const currentTheme = document.documentElement.getAttribute('data-theme');
+    const btn = document.querySelector('.icon-btn[onclick="toggleTheme()"]');
+    // Nếu đang là light thì hiện trăng (để bấm về tối), ngược lại hiện mặt trời
+    if (btn) btn.innerHTML = currentTheme === 'light' ? '🌙' : '☀️';
+
+    // Giữ nguyên logic fade-up cũ của bạn
+    document.querySelectorAll('.fade-up').forEach((el, i) => {
+        el.style.animationDelay = (i * 80 + 80) + 'ms';
     });
+});
 
-    const resources = {
-      vi: {
+const resources = {
+    vi: {
         site_name: "Thành Phạm",
         tagline: "Phiên dịch • Biên dịch (Việt ↔ Trung) — Hội nghị • Thương mại • Livestream • Hợp đồng",
         exp: "Kinh nghiệm: 6+ năm",
@@ -117,8 +141,8 @@
         promise: "Cam kết:",
         promise_desc: "Bảo mật thông tin — Chuẩn xác thuật ngữ — Trách nhiệm với tiến độ",
         footer_role: "Phiên dịch viên"
-      },
-      en: {
+    },
+    en: {
         site_name: "Thanh Pham",
         tagline: "Interpreter • Translator (VN ↔ CN) — Conference • Business • Livestream • Contracts",
         exp: "Exp: 6+ Years",
@@ -180,8 +204,8 @@
         promise: "Commitment:",
         promise_desc: "Confidentiality — Accuracy — Accountability",
         footer_role: "Interpreter"
-      },
-      ja: {
+    },
+    ja: {
         site_name: "タン・ファム",
         tagline: "通訳 • 翻訳 (ベトナム語 ↔ 中国語) — 会議 • 商談 • ライブ配信 • 契約書",
         exp: "経験: 6年以上",
@@ -243,24 +267,23 @@
         promise: "お約束:",
         promise_desc: "情報保護 — 正確性 — 責任感",
         footer_role: "通訳者"
-      }
-    };
-
-    function changeLanguage(lang) {
-      const elements = document.querySelectorAll('[data-i18n]');
-      elements.forEach(el => {
-        const key = el.getAttribute('data-i18n');
-        if(resources[lang] && resources[lang][key]) {
-           el.innerHTML = resources[lang][key];
-        }
-      });
-      const inputs = document.querySelectorAll('[data-i18n-ph]');
-      inputs.forEach(el => {
-        const key = el.getAttribute('data-i18n-ph');
-        if(resources[lang] && resources[lang][key]) {
-          el.placeholder = resources[lang][key];
-        }
-      });
-      document.documentElement.lang = lang;
     }
- 
+};
+
+function changeLanguage(lang) {
+    const elements = document.querySelectorAll('[data-i18n]');
+    elements.forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (resources[lang] && resources[lang][key]) {
+            el.innerHTML = resources[lang][key];
+        }
+    });
+    const inputs = document.querySelectorAll('[data-i18n-ph]');
+    inputs.forEach(el => {
+        const key = el.getAttribute('data-i18n-ph');
+        if (resources[lang] && resources[lang][key]) {
+            el.placeholder = resources[lang][key];
+        }
+    });
+    document.documentElement.lang = lang;
+}
