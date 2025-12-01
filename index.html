@@ -1,11 +1,358 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Thanh Pham — Phiên dịch viên chuyên nghiệp</title>
+  <meta name="description" content="Thanh Pham — Phiên dịch viên chuyên nghiệp (Việt - Trung). Phiên dịch hội nghị, thương mại, livestream, biên dịch hợp đồng." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='86' font-size='90'>💬</text></svg>">
+
+  <style>
+    :root{
+      --bg:#0f1724;
+      --card:#0b1220;
+      --muted:#9aa4b2;
+      --accent:#8be9c9;
+      --glass: rgba(255,255,255,0.04);
+      --glass-2: rgba(255,255,255,0.02);
+      --max-w:1100px;
+      --radius:14px;
+      --shadow: 0 6px 18px rgba(2,6,23,0.6);
+      color-scheme: dark;
+      color: #e6eef6;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      background:
+        radial-gradient(800px 400px at 10% 10%, rgba(139,233,201,0.06), transparent 6%),
+        linear-gradient(180deg,#071026 0%, #041022 100%);
+      min-height:100vh;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.5;
+      padding:32px 20px;
+      display:flex;
+      justify-content:center;
+    }
+
+    .wrap{
+      width:100%;
+      max-width:var(--max-w);
+      display:grid;
+      grid-template-columns: 1fr 360px;
+      gap:28px;
+      align-items:start;
+    }
+
+    header.site-card{
+      grid-column:1/3;
+      background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-radius:var(--radius);
+      padding:28px;
+      box-shadow:var(--shadow);
+      display:flex;
+      gap:20px;
+      align-items:center;
+    }
+    .avatar{
+      width:96px;height:96px;border-radius:14px;flex:0 0 96px;
+      background:linear-gradient(135deg,#0ea5a3,#7c3aed);
+      display:flex;align-items:center;justify-content:center;font-size:36px;
+      color:white;font-weight:700;
+      box-shadow:0 6px 20px rgba(12,22,40,0.6);
+    }
+    .hero h1{margin:0;font-size:22px;letter-spacing:0.2px}
+    .hero p{margin:6px 0 0;color:var(--muted);font-size:14px}
+
+    .hero-meta{display:flex;gap:12px;margin-top:12px;flex-wrap:wrap}
+    .chip{background:var(--glass);padding:6px 10px;border-radius:999px;font-size:13px;color:var(--muted)}
+
+    main{
+      background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
+      border-radius:var(--radius);
+      padding:22px;
+      box-shadow:var(--shadow);
+    }
+
+    .section{margin-bottom:20px}
+    h2{font-size:16px;margin:0 0 10px}
+    p.lead{color:var(--muted);margin:0 0 12px}
+
+    .skills{display:flex;gap:8px;flex-wrap:wrap}
+    .skill{background:var(--glass-2);padding:8px 10px;border-radius:8px;font-size:13px;color:var(--muted)}
+
+    .projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+    .card{background:linear-gradient(180deg, rgba(255,255,255,0.015), rgba(255,255,255,0.01));padding:12px;border-radius:12px;border:1px solid rgba(255,255,255,0.02)}
+    .card h3{margin:0;font-size:14px}
+    .card p{margin:8px 0 0;color:var(--muted);font-size:13px}
+
+    aside.side{
+      position:relative;
+      background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-radius:var(--radius);
+      padding:18px;
+      height:fit-content;
+      box-shadow:var(--shadow);
+    }
+    .contact-row{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+    .contact-row button{background:transparent;border:1px solid rgba(255,255,255,0.04);padding:8px;border-radius:10px;color:var(--muted);cursor:pointer}
+    .fb{display:block;padding:10px;border-radius:10px;background:linear-gradient(90deg,#4267B2,#3751A3);color:white;text-decoration:none;text-align:center;margin-top:8px}
+
+    footer{grid-column:1/3;text-align:center;margin-top:14px;color:var(--muted);font-size:13px}
+
+    /* contact form */
+    form input, form textarea{
+      width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.03);
+      background:transparent;color:inherit;font-size:14px;margin-bottom:8px;
+    }
+    form button.send{
+      background:linear-gradient(90deg,var(--accent),#5eead4);
+      color:#022; border:none;padding:10px 14px;font-weight:600;border-radius:10px;cursor:pointer;
+    }
+    .mini{font-size:13px;color:var(--muted)}
+
+    /* responsive */
+    @media (max-width:980px){
+      .wrap{grid-template-columns:1fr; padding-bottom:40px}
+      header.site-card{flex-direction:row;gap:14px}
+      aside.side{order:3}
+    }
+
+    /* small ui */
+    .top-right{margin-left:auto;display:flex;gap:8px;align-items:center}
+    .icon-btn{background:transparent;border:1px solid rgba(255,255,255,0.03);padding:8px;border-radius:10px;color:var(--muted);cursor:pointer}
+    .tagline{font-size:13px;color:var(--muted)}
+
+    /* subtle animations */
+    .fade-up{transform:translateY(6px);opacity:0;animation:fadeUp 600ms ease forwards}
+    @keyframes fadeUp{to{transform:none;opacity:1}}
+
+  </style>
 </head>
 <body>
-    <h1>Thanhpv</h1>
+  <div class="wrap" role="document">
+    <header class="site-card fade-up" style="animation-delay:100ms">
+      <div class="avatar" aria-hidden="true">TP</div>
+      <div class="hero">
+        <h1>Thanh Pham</h1>
+        <p class="tagline">Phiên dịch • Biên dịch (Việt ↔ Trung) — Hội nghị • Thương mại • Livestream • Hợp đồng</p>
+
+        <div class="hero-meta">
+          <div class="chip">Kinh nghiệm: 6+ năm</div>
+          <div class="chip">Sẵn sàng: Di chuyển / Làm gấp</div>
+          <div class="chip">Phong cách: Chính xác — Tự nhiên — Bảo mật</div>
+        </div>
+
+        <div style="margin-top:12px" class="mini">
+          <!-- EDIT HERE: change email if you already have one -->
+          <strong>Email:</strong> <span id="emailText">thanhpham0907@hatonet.com</span>
+          &nbsp; <button class="icon-btn" onclick="copyEmail()" title="Copy email">Copy</button>
+        </div>
+      </div>
+
+      <div class="top-right">
+        <button class="icon-btn" onclick="toggleTheme()" title="Toggle theme">🌓</button>
+        <a class="icon-btn" href="https://www.facebook.com/pham.thanh.454731/?viewas=100000686899395" target="_blank" rel="noopener">Facebook</a>
+      </div>
+    </header>
+
+    <main class="fade-up" style="animation-delay:180ms">
+      <section class="section about">
+        <h2>Giới thiệu</h2>
+        <p class="lead">
+          Tôi là <strong>Thanh Pham</strong>, phiên dịch viên chuyên nghiệp chuyên xử lý các dự án hội nghị, đàm phán thương mại, livestream và biên dịch tài liệu pháp lý/ kỹ thuật. Tôi cung cấp dịch vụ chính xác, giữ nguyên sắc thái văn bản gốc và đảm bảo tính bảo mật cho khách hàng.
+        </p>
+      </section>
+
+      <section class="section services">
+        <h2>Dịch vụ chính</h2>
+        <div style="display:flex;gap:10px;flex-wrap:wrap">
+          <div class="card" style="flex:1;min-width:220px">
+            <h3>Phiên dịch trực tiếp / online</h3>
+            <p>Hội thảo, cuộc họp, đàm phán, dẫn đoàn, hỗ trợ giao dịch thương mại.</p>
+          </div>
+          <div class="card" style="flex:1;min-width:220px">
+            <h3>Biên dịch tài liệu</h3>
+            <p>Hợp đồng, báo cáo kỹ thuật, tài liệu marketing, prospectus.</p>
+          </div>
+          <div class="card" style="flex:1;min-width:220px">
+            <h3>Livestream & Subtitle</h3>
+            <p>Phiên dịch trực tiếp cho livestream, dịch phụ đề video/ quảng cáo.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section skills">
+        <h2>Kỹ năng nổi bật</h2>
+        <div class="skills">
+          <div class="skill">Phiên dịch hội nghị</div>
+          <div class="skill">Dịch thương mại & hợp đồng</div>
+          <div class="skill">Livestream / Simultaneous</div>
+          <div class="skill">Dịch kỹ thuật</div>
+          <div class="skill">Nắm bắt sắc thái văn hóa</div>
+          <div class="skill">Bảo mật & NDA</div>
+        </div>
+      </section>
+
+      <section class="section projects">
+        <h2>Dự án tiêu biểu</h2>
+        <div class="projects-grid">
+          <div class="card">
+            <h3>Phiên dịch đàm phán thương mại — Công ty A</h3>
+            <p>Hỗ trợ đàm phán trực tiếp, góp phần giúp hoàn tất hợp đồng trị giá 250k USD.</p>
+          </div>
+          <div class="card">
+            <h3>Biên dịch hợp đồng kỹ thuật — Công ty B</h3>
+            <p>Biên dịch hợp đồng mua bán thiết bị chuyên ngành, đảm bảo tính pháp lý và chính xác thuật ngữ.</p>
+          </div>
+          <div class="card">
+            <h3>Livestream bán hàng — Kênh C</h3>
+            <p>Phiên dịch trực tiếp, điều phối diễn giả, tăng chuyển đổi khách hàng.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section testimonials">
+        <h2>Phản hồi khách hàng</h2>
+        <div class="card">
+          <p>“Dịch rất sát nghĩa, hỗ trợ chuyên nghiệp trong suốt quá trình đàm phán.” — <strong>Khách hàng X</strong></p>
+        </div>
+      </section>
+
+      <section class="section pricing">
+        <h2>Bảng giá tham khảo</h2>
+        <div class="card">
+          <p class="mini"><strong>Phiên dịch trực tiếp:</strong> 500.000 - 1.500.000 VNĐ / giờ (tùy nội dung & địa điểm)</p>
+          <p class="mini"><strong>Phiên dịch nguyên ngày:</strong> 4.000.000 - 12.000.000 VNĐ / ngày</p>
+          <p class="mini"><strong>Biên dịch tài liệu:</strong> 50.000 - 150.000 VNĐ / trang (tùy chuyên ngành)</p>
+          <p class="mini">Giá có thể điều chỉnh theo mức độ chuyên môn, thời gian gấp và yêu cầu bảo mật.</p>
+        </div>
+      </section>
+
+      <section class="section contact">
+        <h2>Liên hệ</h2>
+        <p class="lead">Gửi yêu cầu dự án hoặc đặt lịch phiên dịch — tôi sẽ phản hồi nhanh chóng.</p>
+
+        <form id="contactForm" onsubmit="handleSend(event)" novalidate>
+          <input type="text" id="name" placeholder="Họ và tên *" required />
+          <input type="email" id="email" placeholder="Email của bạn *" required />
+          <input type="text" id="subject" placeholder="Tiêu đề" />
+          <textarea id="message" rows="5" placeholder="Nội dung (mô tả ngắn dự án, ngôn ngữ, thời gian, địa điểm) *" required></textarea>
+          <div style="display:flex;gap:8px;align-items:center">
+            <button type="submit" class="send">Gửi liên hệ</button>
+            <div class="mini" id="formInfo">Hoặc email trực tiếp: <a href="#" id="mailtoLink">thanhpham0907@hatonet.com</a></div>
+          </div>
+        </form>
+
+      </section>
+
+    </main>
+
+    <aside class="side fade-up" style="animation-delay:240ms" aria-label="Thông tin liên hệ">
+      <h2>Thông tin nhanh</h2>
+      <div class="contact-row">
+        <strong>Họ tên</strong>
+        <div class="mini" style="margin-left:auto">Thanh Pham</div>
+      </div>
+      <div class="contact-row">
+        <strong>Email</strong>
+        <div style="margin-left:auto" class="mini"><span id="emailSide">thanhpham0907@hatonet.com</span></div>
+      </div>
+      <div class="contact-row">
+        <strong>Khu vực</strong>
+        <div style="margin-left:auto" class="mini">Ho Chi Minh / Toàn quốc</div>
+      </div>
+
+      <div style="margin-top:12px">
+        <a class="fb" href="https://www.facebook.com/pham.thanh.454731/?viewas=100000686899395" target="_blank" rel="noopener">Xem hồ sơ Facebook</a>
+      </div>
+
+      <div style="margin-top:14px">
+        <button class="icon-btn" onclick="copyEmail()">Sao chép email</button>
+        <a href="mailto:thanhpham0907@hatonet.com" class="icon-btn" style="margin-left:8px">Gửi email</a>
+      </div>
+
+      <hr style="margin:14px 0;border:none;border-top:1px solid rgba(255,255,255,0.02)">
+
+      <div class="mini">
+        <strong>Ngôn ngữ làm việc:</strong>
+        <div style="margin-top:8px">
+          <span class="skill">Tiếng Việt (Bản ngữ)</span>
+          <span class="skill">Tiếng Trung (Thành thạo)</span>
+          <span class="skill">Tiếng Anh (Giao tiếp chuyên ngành)</span>
+        </div>
+      </div>
+
+      <div style="margin-top:14px" class="mini">
+        <strong>Cam kết:</strong>
+        <p style="margin:8px 0 0;color:var(--muted)">Bảo mật thông tin — Chuẩn xác thuật ngữ — Trách nhiệm với tiến độ</p>
+      </div>
+    </aside>
+
+    <footer>
+      © <span id="year"></span> Thanh Pham — Phiên dịch viên. Design · Minimal · Contact via email.
+    </footer>
+  </div>
+
+  <script>
+    // small helpers
+    const email = 'thanhpham0907@hatonet.com'; // EDIT if needed
+    document.getElementById('mailToLink')?.setAttribute('href', 'mailto:' + email);
+    document.getElementById('mailtoLink').setAttribute('href', 'mailto:' + email);
+    document.getElementById('emailSide').textContent = email;
+    document.getElementById('emailText').textContent = email;
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    function copyEmail(){
+      navigator.clipboard?.writeText(email).then(()=> {
+        alert('Đã copy email: ' + email);
+      }).catch(()=> {
+        prompt('Copy email thủ công:', email);
+      });
+    }
+
+    function toggleTheme(){
+      // simple color invert (light/dark)
+      const root = document.documentElement;
+      if(root.style.getPropertyValue('--bg') === ''){
+        // set a light theme
+        root.style.setProperty('--bg','#f6f7fb');
+      }
+      // simple visual effect: flash
+      document.body.style.transition='filter .3s';
+      document.body.style.filter='brightness(.96)';
+      setTimeout(()=> document.body.style.filter='none',300);
+      alert('Chức năng: theme toggle (tùy chỉnh thêm trong CSS).');
+    }
+
+    // contact form: open mailto with prefilled data (no backend)
+    function handleSend(e){
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const from = document.getElementById('email').value.trim();
+      const subject = document.getElementById('subject').value.trim() || 'Yêu cầu phiên dịch';
+      const message = document.getElementById('message').value.trim();
+      if(!name || !from || !message){
+        alert('Vui lòng điền tên, email và nội dung tin nhắn.');
+        return;
+      }
+      const body = encodeURIComponent(
+        'Tên: ' + name + '\\n' +
+        'Email: ' + from + '\\n' +
+        '---\\n' + message
+      );
+      // open mail client
+      window.location.href = 'mailto:' + encodeURIComponent(email) + '?subject=' + encodeURIComponent(subject) + '&body=' + body;
+    }
+
+    // simple fade in
+    window.addEventListener('load', ()=> {
+      document.querySelectorAll('.fade-up').forEach((el,i)=>{
+        el.style.animationDelay = (i*80 + 80) + 'ms';
+      });
+    });
+  </script>
 </body>
 </html>
