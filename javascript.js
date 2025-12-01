@@ -140,7 +140,17 @@ const resources = {
         lang_3: "Tiếng Anh (Giao tiếp chuyên ngành)",
         promise: "Cam kết:",
         promise_desc: "Bảo mật thông tin — Chuẩn xác thuật ngữ — Trách nhiệm với tiến độ",
-        footer_role: "Phiên dịch viên"
+        footer_role: "Phiên dịch viên",
+        timeline_title: "Hành trình & Kinh nghiệm",
+        tl_1_year: "2018 - Nay",
+        tl_1_title: "Phiên dịch viên Tự do (Freelance)",
+        tl_1_desc: "Hợp tác với các doanh nghiệp đa quốc gia, chuyên dịch hội nghị và đàm phán thương mại.",
+        tl_2_year: "2016 - 2018",
+        tl_2_title: "Chuyên viên Đối ngoại - Công ty XYZ",
+        tl_2_desc: "Phụ trách biên phiên dịch cho Ban giám đốc, xử lý hợp đồng xuất nhập khẩu.",
+        tl_3_year: "2012 - 2016",
+        tl_3_title: "Cử nhân Ngôn ngữ Trung - ĐH Sư Phạm/ KHXH&NV",
+        tl_3_desc: "Tốt nghiệp loại Giỏi. Tham gia chương trình trao đổi sinh viên 1 năm.",
     },
     en: {
         site_name: "Thanh Pham",
@@ -203,7 +213,17 @@ const resources = {
         lang_3: "English (Professional Working)",
         promise: "Commitment:",
         promise_desc: "Confidentiality — Accuracy — Accountability",
-        footer_role: "Interpreter"
+        footer_role: "Interpreter",
+        timeline_title: "Career Timeline",
+        tl_1_year: "2018 - Present",
+        tl_1_title: "Freelance Interpreter",
+        tl_1_desc: "Partnering with multinational corporations, specializing in conference interpreting and trade negotiations.",
+        tl_2_year: "2016 - 2018",
+        tl_2_title: "External Relations Specialist - XYZ Corp",
+        tl_2_desc: "Interpreting for BOD, handling import/export contracts and Chinese market relations.",
+        tl_3_year: "2012 - 2016",
+        tl_3_title: "BA in Chinese Language - University",
+        tl_3_desc: "Graduated with Distinction. Participated in a 1-year exchange program in Shanghai.",
     },
     ja: {
         site_name: "タン・ファム",
@@ -266,7 +286,17 @@ const resources = {
         lang_3: "英語 (業務レベル)",
         promise: "お約束:",
         promise_desc: "情報保護 — 正確性 — 責任感",
-        footer_role: "通訳者"
+        footer_role: "通訳者",
+        timeline_title: "経歴・歩み",
+        tl_1_year: "2018 - 現在",
+        tl_1_title: "フリーランス通訳者",
+        tl_1_desc: "多国籍企業と提携し、会議通訳や商談通訳を専門としています。",
+        tl_2_year: "2016 - 2018",
+        tl_2_title: "渉外担当 - XYZ社",
+        tl_2_desc: "取締役会の通訳、輸出入契約および中国市場との関係構築を担当。",
+        tl_3_year: "2012 - 2016",
+        tl_3_title: "中国語学士号 - 大学",
+        tl_3_desc: "優秀な成績で卒業。上海での1年間の交換留学プログラムに参加。",
     }
 };
 

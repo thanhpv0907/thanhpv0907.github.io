@@ -466,3 +466,87 @@ select.lang-switch option {
 [data-theme="light"] .avatar {
     box-shadow: 0 8px 24px rgba(13, 148, 136, 0.3);
 }
+
+/* --- TIMELINE STYLES --- */
+.timeline-list {
+    position: relative;
+    padding-left: 20px;
+    border-left: 2px solid var(--glass);
+    /* Đường kẻ dọc */
+    margin-left: 10px;
+    margin-top: 15px;
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 28px;
+}
+
+.timeline-item:last-child {
+    margin-bottom: 0;
+}
+
+/* Chấm tròn mốc thời gian */
+.tl-marker {
+    position: absolute;
+    left: -26px;
+    /* Căn chỉnh chấm tròn vào giữa đường kẻ */
+    top: 5px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 12px var(--accent);
+    /* Hiệu ứng phát sáng */
+    z-index: 1;
+}
+
+.tl-content {
+    background: var(--glass-2);
+    /* Nền mờ nhẹ cho nội dung */
+    padding: 12px 16px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    transition: transform 0.2s;
+}
+
+.tl-content:hover {
+    transform: translateX(4px);
+    /* Hiệu ứng hover nhẹ */
+    background: var(--glass);
+}
+
+.tl-year {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.timeline-item h3 {
+    margin: 0 0 4px 0;
+    font-size: 15px;
+    font-weight: 600;
+    color: inherit;
+}
+
+.timeline-item p {
+    margin: 0;
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.5;
+}
+
+/* Light mode adjustments (Nếu có dùng Light mode) */
+[data-theme="light"] .timeline-list {
+    border-left-color: var(--border-color);
+}
+
+[data-theme="light"] .tl-content {
+    background: rgba(255, 255, 255, 0.6);
+    border-color: var(--border-color);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+}
