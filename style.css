@@ -469,63 +469,110 @@ select.lang-switch option {
 
 /* --- TIMELINE STYLES --- */
 .timeline-list {
-  position: relative;
-  padding-left: 20px;
-  border-left: 2px solid var(--glass);
-  margin-left: 8px; /* Căn sát lề trái hơn chút */
+    position: relative;
+    padding-left: 20px;
+    border-left: 2px solid var(--glass);
+    margin-left: 8px;
+    /* Căn sát lề trái hơn chút */
 }
 
 .timeline-item {
-  position: relative;
-  margin-bottom: 24px;
+    position: relative;
+    margin-bottom: 24px;
 }
-.timeline-item:last-child { margin-bottom: 0; }
+
+.timeline-item:last-child {
+    margin-bottom: 0;
+}
 
 .tl-marker {
-  position: absolute;
-  left: -26px; /* Căn chỉnh chấm tròn */
-  top: 6px;
-  width: 10px; 
-  height: 10px;
-  border-radius: 50%;
-  background: var(--accent);
-  box-shadow: 0 0 10px var(--accent);
-  z-index: 1;
+    position: absolute;
+    left: -26px;
+    /* Căn chỉnh chấm tròn */
+    top: 6px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 10px var(--accent);
+    z-index: 1;
 }
 
 /* Style cho thẻ chứa nội dung timeline trong sidebar */
 .tl-content {
-  /* Bỏ background box đi để nhìn thoáng hơn trong cột hẹp, hoặc giữ lại tùy ý */
-  /* background: var(--glass-2); */ 
-  padding: 0 0 0 4px; /* Không padding, chỉ đẩy chữ sang phải xíu */
-  border: none;       /* Bỏ viền */
+    /* Bỏ background box đi để nhìn thoáng hơn trong cột hẹp, hoặc giữ lại tùy ý */
+    /* background: var(--glass-2); */
+    padding: 0 0 0 4px;
+    /* Không padding, chỉ đẩy chữ sang phải xíu */
+    border: none;
+    /* Bỏ viền */
 }
 
 .tl-year {
-  display: block; /* Xuống dòng để tiết kiệm diện tích ngang */
-  font-size: 11px;
-  font-weight: 700;
-  color: var(--accent);
-  margin-bottom: 2px;
-  opacity: 0.9;
+    display: block;
+    /* Xuống dòng để tiết kiệm diện tích ngang */
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 2px;
+    opacity: 0.9;
 }
 
 .timeline-item h3 {
-  margin: 0 0 4px 0;
-  font-size: 14px; /* Giảm size tiêu đề */
-  font-weight: 600;
-  color: inherit;
-  line-height: 1.3;
+    margin: 0 0 4px 0;
+    font-size: 14px;
+    /* Giảm size tiêu đề */
+    font-weight: 600;
+    color: inherit;
+    line-height: 1.3;
 }
 
 .timeline-item p {
-  margin: 0;
-  font-size: 13px;
-  color: var(--muted);
-  line-height: 1.4;
+    margin: 0;
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.4;
 }
 
 /* Điều chỉnh lại màu đường kẻ khi ở Light Mode */
 [data-theme="light"] .timeline-list {
-  border-left-color: var(--border-color);
+    border-left-color: var(--border-color);
+}
+
+/* --- RESPONSIVE UTILS --- */
+.desktop-only {
+    display: block;
+}
+
+.mobile-only {
+    display: none;
+}
+
+@media (max-width: 980px) {
+    .desktop-only {
+        display: none;
+    }
+
+    .mobile-only {
+        display: block;
+    }
+
+    /* Tùy chỉnh Timeline bản mobile cho đẹp hơn */
+    .mobile-only .timeline-list {
+        margin-left: 10px;
+        border-left: 2px solid var(--accent);
+        /* Làm nổi bật đường kẻ trên mobile */
+    }
+
+    .mobile-only .tl-content {
+        background: var(--glass);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        padding: 15px;
+    }
+
+    .mobile-only .tl-marker {
+        background: var(--bg);
+        /* Tạo hiệu ứng lỗ tròn */
+        border: 2px solid var(--accent);
+    }
 }
