@@ -1,46 +1,51 @@
 <!doctype html>
 <html lang="vi">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Thanh Pham — Phiên dịch viên chuyên nghiệp</title>
   <meta name="description" content="Thanh Pham — Phiên dịch viên chuyên nghiệp (Việt - Trung)." />
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='86' font-size='90'>💬</text></svg>">
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='86' font-size='90'>💬</text></svg>">
   <link rel="stylesheet" href="./style.css">
 
 </head>
+
 <body>
+  <div class="select-lang">
+    <select class="lang-switch" onchange="changeLanguage(this.value)">
+      <option value="vi">🇻🇳 Tiếng Việt</option>
+      <option value="en">🇺🇸 English</option>
+      <option value="ja">🇯🇵 日本語</option>
+    </select>
+
+    <div class="top-right">
+      <button class="icon-btn" onclick="toggleTheme()" title="Toggle theme">🌓</button>
+    </div>
+  </div>
   <div class="wrap" role="document">
     <header class="site-card fade-up" style="animation-delay:100ms">
-      <img src="https://notebooklm.google.com/_/static/branding/v5/light_mode/icon.svg" alt="">
-      <!-- <div class="avatar" aria-hidden="true">TP</div> -->
-      <div class="hero">
-        <!-- ĐÃ SỬA: Thêm data-i18n="site_name" -->
-        <h1 data-i18n="site_name">Thành Phạm</h1>
-        
-        <p class="tagline" data-i18n="tagline">Phiên dịch • Biên dịch (Việt ↔ Trung) — Hội nghị • Thương mại • Livestream • Hợp đồng</p>
+      <div class="header">
+        <img class="avatar" src="./images/avatar.jpeg" alt="">
+        <div class="hero">
+          <!-- ĐÃ SỬA: Thêm data-i18n="site_name" -->
+          <h1 data-i18n="site_name">Thành Phạm</h1>
 
-        <div class="hero-meta">
-          <div class="chip" data-i18n="exp">Kinh nghiệm: 6+ năm</div>
-          <div class="chip" data-i18n="avail">Sẵn sàng: Di chuyển / Làm gấp</div>
-          <div class="chip" data-i18n="style">Phong cách: Chính xác — Tự nhiên — Bảo mật</div>
+          <p class="tagline" data-i18n="tagline">Phiên dịch • Biên dịch (Việt ↔ Trung) — Hội nghị • Thương mại •
+            Livestream • Hợp đồng</p>
+
+          <div class="hero-meta">
+            <div class="chip" data-i18n="exp">Kinh nghiệm: 6+ năm</div>
+            <div class="chip" data-i18n="avail">Sẵn sàng: Di chuyển / Làm gấp</div>
+            <div class="chip" data-i18n="style">Phong cách: Chính xác — Tự nhiên — Bảo mật</div>
+          </div>
+
+          <div style="margin-top:12px" class="mini">
+            <strong>Email:</strong> <span id="emailText">thanhpham0907@hatonet.com</span>
+            &nbsp; <button class="icon-btn" onclick="copyEmail()" title="Copy email" data-i18n="copy">Copy</button>
+          </div>
         </div>
-
-        <div style="margin-top:12px" class="mini">
-          <strong>Email:</strong> <span id="emailText">thanhpham0907@hatonet.com</span>
-          &nbsp; <button class="icon-btn" onclick="copyEmail()" title="Copy email" data-i18n="copy">Copy</button>
-        </div>
-      </div>
-
-      <div class="top-right">
-        <select class="lang-switch" onchange="changeLanguage(this.value)">
-          <option value="vi">🇻🇳 Tiếng Việt</option>
-          <option value="en">🇺🇸 English</option>
-          <option value="ja">🇯🇵 日本語</option>
-        </select>
-        
-        <button class="icon-btn" onclick="toggleTheme()" title="Toggle theme">🌓</button>
-        <a class="icon-btn" href="https://www.facebook.com/pham.thanh.454731/?viewas=100000686899395" target="_blank" rel="noopener">Faceook</a>
       </div>
     </header>
 
@@ -48,7 +53,9 @@
       <section class="section about">
         <h2 data-i18n="about_title">Giới thiệu</h2>
         <p class="lead" data-i18n="about_desc">
-          Tôi là <strong>Thanh Pham</strong>, phiên dịch viên chuyên nghiệp chuyên xử lý các dự án hội nghị, đàm phán thương mại, livestream và biên dịch tài liệu pháp lý/ kỹ thuật. Tôi cung cấp dịch vụ chính xác, giữ nguyên sắc thái văn bản gốc và đảm bảo tính bảo mật cho khách hàng.
+          Tôi là <strong>Thanh Pham</strong>, phiên dịch viên chuyên nghiệp chuyên xử lý các dự án hội nghị, đàm phán
+          thương mại, livestream và biên dịch tài liệu pháp lý/ kỹ thuật. Tôi cung cấp dịch vụ chính xác, giữ nguyên sắc
+          thái văn bản gốc và đảm bảo tính bảo mật cho khách hàng.
         </p>
       </section>
 
@@ -91,7 +98,8 @@
           </div>
           <div class="card">
             <h3 data-i18n="pj_2_title">Biên dịch hợp đồng kỹ thuật — Công ty B</h3>
-            <p data-i18n="pj_2_desc">Biên dịch hợp đồng mua bán thiết bị chuyên ngành, đảm bảo tính pháp lý và chính xác thuật ngữ.</p>
+            <p data-i18n="pj_2_desc">Biên dịch hợp đồng mua bán thiết bị chuyên ngành, đảm bảo tính pháp lý và chính xác
+              thuật ngữ.</p>
           </div>
           <div class="card">
             <h3 data-i18n="pj_3_title">Livestream bán hàng — Kênh C</h3>
@@ -103,32 +111,41 @@
       <section class="section testimonials">
         <h2 data-i18n="testi_title">Phản hồi khách hàng</h2>
         <div class="card">
-          <p data-i18n="testi_content">“Dịch rất sát nghĩa, hỗ trợ chuyên nghiệp trong suốt quá trình đàm phán.” — <strong>Khách hàng X</strong></p>
+          <p data-i18n="testi_content">“Dịch rất sát nghĩa, hỗ trợ chuyên nghiệp trong suốt quá trình đàm phán.” —
+            <strong>Khách hàng X</strong>
+          </p>
         </div>
       </section>
 
       <section class="section pricing">
         <h2 data-i18n="price_title">Bảng giá tham khảo</h2>
         <div class="card">
-          <p class="mini"><strong data-i18n="price_1_label">Phiên dịch trực tiếp:</strong> <span data-i18n="price_1_val">500.000 - 1.500.000 VNĐ / giờ (tùy nội dung & địa điểm)</span></p>
-          <p class="mini"><strong data-i18n="price_2_label">Phiên dịch nguyên ngày:</strong> <span data-i18n="price_2_val">4.000.000 - 12.000.000 VNĐ / ngày</span></p>
-          <p class="mini"><strong data-i18n="price_3_label">Biên dịch tài liệu:</strong> <span data-i18n="price_3_val">50.000 - 150.000 VNĐ / trang (tùy chuyên ngành)</span></p>
-          <p class="mini" data-i18n="price_note">Giá có thể điều chỉnh theo mức độ chuyên môn, thời gian gấp và yêu cầu bảo mật.</p>
+          <p class="mini"><strong data-i18n="price_1_label">Phiên dịch trực tiếp:</strong> <span
+              data-i18n="price_1_val">500.000 - 1.500.000 VNĐ / giờ (tùy nội dung & địa điểm)</span></p>
+          <p class="mini"><strong data-i18n="price_2_label">Phiên dịch nguyên ngày:</strong> <span
+              data-i18n="price_2_val">4.000.000 - 12.000.000 VNĐ / ngày</span></p>
+          <p class="mini"><strong data-i18n="price_3_label">Biên dịch tài liệu:</strong> <span
+              data-i18n="price_3_val">50.000 - 150.000 VNĐ / trang (tùy chuyên ngành)</span></p>
+          <p class="mini" data-i18n="price_note">Giá có thể điều chỉnh theo mức độ chuyên môn, thời gian gấp và yêu cầu
+            bảo mật.</p>
         </div>
       </section>
 
       <section class="section contact">
         <h2 data-i18n="contact_title">Liên hệ</h2>
-        <p class="lead" data-i18n="contact_desc">Gửi yêu cầu dự án hoặc đặt lịch phiên dịch — tôi sẽ phản hồi nhanh chóng.</p>
+        <p class="lead" data-i18n="contact_desc">Gửi yêu cầu dự án hoặc đặt lịch phiên dịch — tôi sẽ phản hồi nhanh
+          chóng.</p>
 
         <form id="contactForm" onsubmit="handleSend(event)" novalidate>
           <input type="text" id="name" data-i18n-ph="ph_name" placeholder="Họ và tên *" required />
           <input type="email" id="email" data-i18n-ph="ph_email" placeholder="Email của bạn *" required />
           <input type="text" id="subject" data-i18n-ph="ph_subject" placeholder="Tiêu đề" />
-          <textarea id="message" rows="5" data-i18n-ph="ph_message" placeholder="Nội dung (mô tả ngắn dự án, ngôn ngữ, thời gian, địa điểm) *" required></textarea>
+          <textarea id="message" rows="5" data-i18n-ph="ph_message"
+            placeholder="Nội dung (mô tả ngắn dự án, ngôn ngữ, thời gian, địa điểm) *" required></textarea>
           <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
             <button type="submit" class="send" data-i18n="btn_send">Gửi liên hệ</button>
-            <div class="mini" id="formInfo"><span data-i18n="or_email">Hoặc email trực tiếp:</span> <a href="#" id="mailtoLink">thanhpham0907@hatonet.com</a></div>
+            <div class="mini" id="formInfo"><span data-i18n="or_email">Hoặc email trực tiếp:</span> <a href="#"
+                id="mailtoLink">thanhpham0907@hatonet.com</a></div>
           </div>
         </form>
 
@@ -152,12 +169,14 @@
       </div>
 
       <div style="margin-top:12px">
-        <a class="fb" href="https://www.facebook.com/pham.thanh.454731/?viewas=100000686899395" target="_blank" rel="noopener" data-i18n="btn_fb">Xem hồ sơ Facebook</a>
+        <a class="fb" href="https://www.facebook.com/pham.thanh.454731/?viewas=100000686899395" target="_blank"
+          rel="noopener" data-i18n="btn_fb">Xem hồ sơ Facebook</a>
       </div>
 
       <div style="margin-top:14px">
         <button class="icon-btn" onclick="copyEmail()" data-i18n="btn_copy">Sao chép email</button>
-        <a href="mailto:thanhpham0907@hatonet.com" class="icon-btn" style="margin-left:8px" data-i18n="btn_mail">Gửi email</a>
+        <a href="mailto:thanhpham0907@hatonet.com" class="icon-btn" style="margin-left:8px" data-i18n="btn_mail">Gửi
+          email</a>
       </div>
 
       <hr style="margin:14px 0;border:none;border-top:1px solid rgba(255,255,255,0.02)">
@@ -173,15 +192,18 @@
 
       <div style="margin-top:14px" class="mini">
         <strong data-i18n="promise">Cam kết:</strong>
-        <p style="margin:8px 0 0;color:var(--muted)" data-i18n="promise_desc">Bảo mật thông tin — Chuẩn xác thuật ngữ — Trách nhiệm với tiến độ</p>
+        <p style="margin:8px 0 0;color:var(--muted)" data-i18n="promise_desc">Bảo mật thông tin — Chuẩn xác thuật ngữ —
+          Trách nhiệm với tiến độ</p>
       </div>
     </aside>
 
     <footer>
-      © <span id="year"></span> Thanh Pham — <span data-i18n="footer_role">Phiên dịch viên</span>. Design · Minimal · Contact via email.
+      © <span id="year"></span> Thanh Pham — <span data-i18n="footer_role">Phiên dịch viên</span>. Design · Minimal ·
+      Contact via email.
     </footer>
   </div>
   <script src="./javascript.js"></script>
 
 </body>
+
 </html>

@@ -1,3 +1,4 @@
+
     :root{
       --bg:#0f1724;
       --card:#0b1220;
@@ -46,8 +47,13 @@
       gap:20px;
       align-items:center;
     }
+    .header{
+        display: flex;
+        gap: 28px;
+        
+    }
     .avatar{
-      width:96px;height:96px;border-radius:14px;flex:0 0 96px;
+      height:250px;border-radius:14px;flex:0 0 96px;
       background:linear-gradient(135deg,#0ea5a3,#2f135f);
       display:flex;align-items:center;justify-content:center;font-size:36px;
       color:white;font-weight:700;
@@ -117,6 +123,10 @@
       background: #0f1724; 
       color: #e6eef6;
     }
+    .select-lang{
+        position: absolute;
+        right: 250px;
+    }
 
     @media (max-width:980px){
       .wrap{grid-template-columns:1fr; padding-bottom:40px}
@@ -129,7 +139,7 @@
     }
 
     .top-right{margin-left:auto;display:flex;gap:8px;align-items:center}
-    .icon-btn{background:transparent;border:1px solid rgba(255,255,255,0.03);padding:8px;border-radius:10px;color:var(--muted);cursor:pointer}
+    .icon-btn{background:transparent;width: 130px; border:1px solid rgba(255,255,255,0.03);padding:8px;border-radius:10px;color:var(--muted);cursor:pointer}
     .tagline{font-size:13px;color:var(--muted)}
     .fade-up{transform:translateY(6px);opacity:0;animation:fadeUp 600ms ease forwards}
     @keyframes fadeUp{to{transform:none;opacity:1}}
