@@ -310,88 +310,135 @@ select.lang-switch option {
     }
 }
 
-/* --- RESPONSIVE FIXES --- */
+/* --- RESPONSIVE FIXES (Thay thế toàn bộ phần media query cũ) --- */
 
-/* Tablet (dưới 980px) */
+/* 1. TABLET (Dưới 980px) */
 @media (max-width: 980px) {
-    .wrap {
-        grid-template-columns: 1fr;
-        /* Chuyển về 1 cột */
-        padding-bottom: 40px;
-    }
+  .wrap {
+    grid-template-columns: 1fr; /* Chuyển về 1 cột */
+    gap: 20px;
+  }
+  
+  /* Reset lại grid-column để không bị lỗi layout */
+  header.site-card,
+  .site-nav,
+  footer {
+    grid-column: auto; /* Để nó tự động theo dòng chảy 1 cột */
+  }
 
-    aside.side {
-        order: 3;
-        /* Đẩy sidebar xuống dưới cùng */
-    }
-
-    header.site-card {
-        grid-column: 1;
-    }
-
-    footer {
-        grid-column: 1;
-    }
+  aside.side {
+    order: 3; /* Đẩy sidebar xuống dưới cùng */
+  }
 }
 
-/* Mobile (dưới 600px) */
+/* 2. MOBILE (Dưới 600px) */
 @media (max-width: 600px) {
-    body {
-        padding: 15px;
-        /* Giảm padding body */
-    }
+  body {
+    padding: 10px 12px; /* Giảm padding body để rộng chỗ hơn */
+  }
 
-    /* Chuyển thanh ngôn ngữ về layout dàn trải */
-    .select-lang {
-        justify-content: space-between;
-        margin-bottom: 15px;
-    }
+  /* --- SỬA LỖI NAV MENU BỊ VỠ --- */
+  .site-nav {
+    padding: 10px 0; /* Bỏ padding ngang để menu tràn viền */
+    margin-bottom: 15px;
+    border-radius: 8px;
+    justify-content: flex-start; /* Căn trái để scroll */
+    overflow-x: auto; /* Cho phép cuộn ngang nếu menu dài */
+    white-space: nowrap; /* Không cho xuống dòng */
+    
+    /* Ẩn thanh cuộn cho đẹp */
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+  .site-nav::-webkit-scrollbar {
+    display: none; /* Chrome/Safari/Opera */
+  }
 
-    header.site-card {
-        padding: 20px;
-    }
+  .nav-list {
+    flex-wrap: nowrap; /* Bắt buộc nằm trên 1 dòng */
+    gap: 15px;
+    padding: 0 15px; /* Padding trong để chữ đầu không sát mép */
+    width: max-content; /* Chiều rộng bằng nội dung */
+  }
+  
+  .nav-list a {
+    font-size: 13px;
+    white-space: nowrap;
+    padding: 6px 0;
+  }
 
-    .header {
-        flex-direction: column;
-        /* Xếp dọc Avatar và Text */
-        align-items: center;
-        text-align: center;
-        gap: 15px;
-    }
+  /* --- SỬA LỖI HEADER / AVATAR --- */
+  header.site-card {
+    padding: 20px 15px;
+    flex-direction: column; /* Xếp dọc */
+    text-align: center;
+  }
 
-    .avatar {
-        /* Thu nhỏ avatar trên mobile */
-        height: 120px;
-        width: 120px;
-        margin-right: 0;
-        border-radius: 50%;
-        /* Bo tròn cho đẹp trên mobile */
-    }
+  .header {
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    width: 100%;
+  }
 
-    .hero-meta {
-        justify-content: center;
-        /* Căn giữa các chip kỹ năng */
-    }
+  .avatar {
+    width: 100px;
+    height: 100px;
+    font-size: 28px;
+    margin: 0 auto; /* Căn giữa */
+  }
 
-    .hero-meta .chip {
-        font-size: 12px;
-        padding: 4px 8px;
-    }
+  .hero h1 {
+    font-size: 20px;
+  }
 
-    /* Canh chỉnh lại nút Copy email */
-    .hero .mini {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 8px;
-    }
+  .hero-meta {
+    justify-content: center;
+    gap: 8px;
+  }
+  
+  /* Sửa lỗi nút Copy Email bị lệch */
+  .hero .mini {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    margin-top: 15px;
+  }
 
-    /* Đảm bảo bảng giá không bị vỡ */
-    .pricing .mini span {
-        display: block;
-        margin-top: 2px;
-        color: var(--accent);
-    }
+  /* --- SỬA LỖI THANH SELECT LANGUAGE --- */
+  .select-lang {
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    width: 100%;
+  }
+
+  /* --- SỬA LỖI TIMELINE MOBILE --- */
+  .timeline-list {
+    margin-left: 0;
+    padding-left: 15px; /* Giảm khoảng cách lề trái */
+  }
+  
+  .tl-content {
+    padding: 12px; /* Giảm padding nội dung */
+  }
+  
+  .tl-marker {
+    left: -20px; /* Chỉnh lại vị trí chấm tròn cho khớp lề mới */
+  }
+
+  /* --- SỬA LỖI CONTACT FORM --- */
+  .contact button.send {
+    width: 100%; /* Nút gửi to ra cho dễ bấm */
+    margin-bottom: 10px;
+  }
+  
+  #formInfo {
+    justify-content: center;
+    width: 100%;
+    text-align: center;
+  }
 }
 
 /* --- DARK MODE CONFIG (Mặc định - Giữ nguyên gốc) --- */
@@ -579,87 +626,93 @@ select.lang-switch option {
 
 /* --- NAVIGATION BAR --- */
 .site-nav {
-  grid-column: 1 / 3; /* Chiếm toàn bộ chiều ngang */
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
-  border-radius: var(--radius);
-  padding: 14px 20px;
-  margin-bottom: 20px; /* Cách Header một chút */
-  box-shadow: var(--shadow);
-  border: 1px solid rgba(255,255,255,0.02);
-  display: flex;
-  justify-content: center;
+    grid-column: 1 / 3;
+    /* Chiếm toàn bộ chiều ngang */
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+    border-radius: var(--radius);
+    padding: 14px 20px;
+    margin-bottom: 20px;
+    /* Cách Header một chút */
+    box-shadow: var(--shadow);
+    border: 1px solid rgba(255, 255, 255, 0.02);
+    display: flex;
+    justify-content: center;
 }
 
 .nav-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  gap: 24px;
-  flex-wrap: wrap; /* Tự xuống dòng trên mobile */
-  justify-content: center;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    /* Tự xuống dòng trên mobile */
+    justify-content: center;
 }
 
 .nav-list li {
-  display: inline-block;
+    display: inline-block;
 }
 
 .nav-list a {
-  text-decoration: none;
-  color: var(--muted);
-  font-size: 14px;
-  font-weight: 500;
-  transition: all 0.2s ease;
-  padding: 4px 0;
-  position: relative;
+    text-decoration: none;
+    color: var(--muted);
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    padding: 4px 0;
+    position: relative;
 }
 
 .nav-list a:hover {
-  color: var(--accent);
+    color: var(--accent);
 }
 
 /* Hiệu ứng gạch chân khi hover */
 .nav-list a::after {
-  content: '';
-  position: absolute;
-  width: 0;
-  height: 2px;
-  bottom: 0;
-  left: 0;
-  background-color: var(--accent);
-  transition: width 0.3s;
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: var(--accent);
+    transition: width 0.3s;
 }
 
 .nav-list a:hover::after {
-  width: 100%;
+    width: 100%;
 }
 
 /* Kích hoạt cuộn mượt cho toàn trang */
 html {
-  scroll-behavior: smooth;
+    scroll-behavior: smooth;
 }
 
 /* Tạo khoảng cách an toàn khi cuộn tới section (để không bị sát mép trên quá) */
 section[id] {
-  scroll-margin-top: 20px;
+    scroll-margin-top: 20px;
 }
 
 /* Light mode support */
 [data-theme="light"] .site-nav {
-  background: rgba(255, 255, 255, 0.6);
-  border-color: var(--border-color);
-  backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.6);
+    border-color: var(--border-color);
+    backdrop-filter: blur(10px);
 }
 
 /* Mobile Responsive cho Nav */
 @media (max-width: 600px) {
-  .nav-list {
-    gap: 12px 18px; /* Giảm khoảng cách */
-  }
-  .nav-list a {
-    font-size: 13px;
-  }
-  .site-nav {
-    padding: 12px;
-  }
+    .nav-list {
+        gap: 12px 18px;
+        /* Giảm khoảng cách */
+    }
+
+    .nav-list a {
+        font-size: 13px;
+    }
+
+    .site-nav {
+        padding: 12px;
+    }
 }
