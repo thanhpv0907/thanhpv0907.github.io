@@ -333,47 +333,58 @@ select.lang-switch option {
 
 /* 2. MOBILE (Dưới 600px) */
 @media (max-width: 600px) {
-  body {
-    padding: 10px 12px; /* Giảm padding body để rộng chỗ hơn */
+  /* 1. Thiết lập lại khung bao ngoài */
+  .wrap {
+    display: flex;          /* Chuyển sang Flexbox để xếp dọc dễ kiểm soát hơn Grid */
+    flex-direction: column; /* Xếp theo chiều dọc */
+    gap: 20px;              /* Khoảng cách giữa các khối */
+    width: 100%;
   }
 
-  /* --- SỬA LỖI NAV MENU BỊ VỠ --- */
+  /* 2. Sắp xếp thứ tự hiển thị (Order) */
+  /* Nav Bar lên đầu */
   .site-nav {
-    padding: 10px 0; /* Bỏ padding ngang để menu tràn viền */
-    margin-bottom: 15px;
-    border-radius: 8px;
-    justify-content: flex-start; /* Căn trái để scroll */
-    overflow-x: auto; /* Cho phép cuộn ngang nếu menu dài */
-    white-space: nowrap; /* Không cho xuống dòng */
-    
-    /* Ẩn thanh cuộn cho đẹp */
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
-  }
-  .site-nav::-webkit-scrollbar {
-    display: none; /* Chrome/Safari/Opera */
-  }
-
-  .nav-list {
-    flex-wrap: nowrap; /* Bắt buộc nằm trên 1 dòng */
-    gap: 15px;
-    padding: 0 15px; /* Padding trong để chữ đầu không sát mép */
-    width: max-content; /* Chiều rộng bằng nội dung */
+    order: 1;
+    margin-bottom: 0; /* Bỏ margin thừa */
+    /* Cấu hình thanh cuộn ngang cho Menu */
+    justify-content: flex-start;
+    overflow-x: auto;
+    white-space: nowrap;
+    padding: 10px 5px;
   }
   
-  .nav-list a {
-    font-size: 13px;
-    white-space: nowrap;
-    padding: 6px 0;
-  }
-
-  /* --- SỬA LỖI HEADER / AVATAR --- */
+  /* Header Profile (Avatar + Tên) nằm ngay dưới Nav */
   header.site-card {
-    padding: 20px 15px;
-    flex-direction: column; /* Xếp dọc */
+    order: 2;
+    padding: 24px 20px;
+    flex-direction: column; /* Xếp dọc nội dung bên trong */
     text-align: center;
   }
 
+  /* Nội dung chính (Main) nằm thứ 3 */
+  main {
+    order: 3;
+    padding: 20px 15px;
+  }
+
+  /* Thanh bên (Aside) nằm thứ 4 */
+  aside.side {
+    order: 4;
+  }
+
+  /* Footer nằm cuối cùng */
+  footer {
+    order: 5;
+  }
+
+  /* 3. Tinh chỉnh giao diện chi tiết */
+  
+  /* Body: Giảm lề để rộng chỗ hơn */
+  body {
+    padding: 15px 12px;
+  }
+
+  /* Header bên trong: Căn giữa */
   .header {
     flex-direction: column;
     align-items: center;
@@ -381,15 +392,22 @@ select.lang-switch option {
     width: 100%;
   }
 
+  /* Avatar: Bo tròn và thu nhỏ */
   .avatar {
-    width: 100px;
-    height: 100px;
+    width: 120px;
+    height: 120px;
+    border-radius: 50% !important; /* Bắt buộc bo tròn hình tròn */
+    margin: 0 auto;
     font-size: 28px;
-    margin: 0 auto; /* Căn giữa */
+    /* Đảm bảo ảnh không bị méo */
+    object-fit: cover; 
+    flex-shrink: 0;
   }
 
+  /* Tên và Meta */
   .hero h1 {
-    font-size: 20px;
+    font-size: 22px;
+    margin-top: 5px;
   }
 
   .hero-meta {
@@ -397,47 +415,41 @@ select.lang-switch option {
     gap: 8px;
   }
   
-  /* Sửa lỗi nút Copy Email bị lệch */
+  .hero-meta .chip {
+    font-size: 12px;
+    padding: 4px 10px;
+  }
+
+  /* Nút Copy Email */
   .hero .mini {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
     margin-top: 15px;
   }
 
-  /* --- SỬA LỖI THANH SELECT LANGUAGE --- */
+  /* Thanh chọn ngôn ngữ (Nằm trên cùng body, ngoài .wrap) */
   .select-lang {
     flex-direction: row;
     justify-content: space-between;
-    margin-bottom: 10px;
     width: 100%;
-  }
-
-  /* --- SỬA LỖI TIMELINE MOBILE --- */
-  .timeline-list {
-    margin-left: 0;
-    padding-left: 15px; /* Giảm khoảng cách lề trái */
-  }
-  
-  .tl-content {
-    padding: 12px; /* Giảm padding nội dung */
-  }
-  
-  .tl-marker {
-    left: -20px; /* Chỉnh lại vị trí chấm tròn cho khớp lề mới */
-  }
-
-  /* --- SỬA LỖI CONTACT FORM --- */
-  .contact button.send {
-    width: 100%; /* Nút gửi to ra cho dễ bấm */
     margin-bottom: 10px;
+    padding: 0 5px;
   }
   
-  #formInfo {
-    justify-content: center;
-    width: 100%;
-    text-align: center;
+  /* Nav links: Chữ nhỏ lại xíu cho gọn */
+  .nav-list a {
+    font-size: 13px;
+    padding: 8px 12px;
+    background: rgba(255,255,255,0.03); /* Thêm nền nhẹ cho dễ bấm */
+    border-radius: 20px;
+  }
+  
+  /* Timeline Mobile: Căn chỉnh lề */
+  .mobile-only .timeline-list {
+    margin-left: 5px;
+    padding-left: 15px;
   }
 }
 
