@@ -794,18 +794,135 @@ section[id] {
     backdrop-filter: blur(10px);
 }
 
-/* Mobile Responsive cho Nav */
-@media (max-width: 600px) {
-    .nav-list {
-        gap: 12px 18px;
-        /* Giảm khoảng cách */
-    }
+/* --- PC HOVER EFFECTS (Chỉ áp dụng cho màn hình máy tính > 980px) --- */
+@media (min-width: 981px) {
 
-    .nav-list a {
-        font-size: 13px;
-    }
+  /* 1. Hiệu ứng cho các thẻ Card (Dịch vụ, Dự án, Bảng giá) */
+  .card {
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); /* Chuyển động mượt */
+    position: relative;
+    top: 0;
+  }
 
-    .site-nav {
-        padding: 12px;
-    }
+  .card:hover {
+    transform: translateY(-6px); /* Nhấc nhẹ thẻ lên 6px */
+    border-color: var(--accent); /* Viền chuyển màu xanh ngọc */
+    background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02)); /* Nền sáng hơn chút */
+    box-shadow: 0 15px 30px -10px rgba(139, 233, 201, 0.15); /* Đổ bóng màu xanh nhẹ */
+    z-index: 2;
+  }
+
+  /* 2. Hiệu ứng cho các Chip kỹ năng (Skills) */
+  .skill {
+    transition: all 0.2s ease;
+    cursor: default; /* Con trỏ chuột bình thường */
+  }
+
+  .skill:hover {
+    background: var(--accent); /* Nền chuyển sang màu xanh chủ đạo */
+    color: #0b1220;            /* Chữ chuyển sang màu tối để dễ đọc */
+    transform: scale(1.05);    /* Phóng to nhẹ */
+    box-shadow: 0 4px 12px rgba(139, 233, 201, 0.4); /* Phát sáng */
+  }
+
+  /* 3. Hiệu ứng cho Timeline (Desktop Sidebar) */
+  .timeline-item .tl-content {
+    transition: all 0.3s ease;
+  }
+  
+  .timeline-item .tl-marker {
+    transition: all 0.3s ease;
+  }
+
+  .timeline-item:hover .tl-content {
+    /* Khi hover vào dòng thời gian, chữ dịch sang phải */
+    transform: translateX(5px);
+    color: var(--accent); /* Tiêu đề đổi màu */
+  }
+
+  .timeline-item:hover .tl-marker {
+    transform: scale(1.4); /* Chấm tròn to lên */
+    background: #fff;      /* Chấm tròn đổi màu trắng */
+    box-shadow: 0 0 15px var(--accent);
+  }
+
+  /* 4. Hiệu ứng cho Menu điều hướng (Nav) */
+  .nav-list a {
+    position: relative;
+    transition: color 0.3s ease;
+  }
+
+  .nav-list a:hover {
+    color: #fff; /* Chữ sáng lên màu trắng tinh */
+    text-shadow: 0 0 8px rgba(139, 233, 201, 0.6); /* Chữ phát sáng neon */
+  }
+
+  /* 5. Hiệu ứng nút bấm (Button) */
+  button.icon-btn, 
+  button.send {
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  button.icon-btn:hover {
+    background: rgba(255,255,255,0.1);
+    transform: rotate(15deg); /* Xoay nhẹ icon */
+  }
+
+  button.send:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(139, 233, 201, 0.4);
+  }
+}
+
+/* --- LANGUAGE LIST STYLES --- */
+.lang-list {
+  display: flex;
+  flex-direction: column; /* Xếp dọc từng ngôn ngữ */
+  gap: 10px;              /* Khoảng cách giữa các ô */
+  margin-top: 12px;
+}
+
+.lang-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--glass-2); /* Nền mờ nhẹ */
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  transition: all 0.2s ease;
+}
+
+/* Hiệu ứng khi di chuột vào ngôn ngữ */
+.lang-item:hover {
+  background: var(--glass);
+  border-color: var(--accent); /* Viền sáng màu xanh */
+  transform: translateX(4px);  /* Dịch nhẹ sang phải */
+}
+
+.lang-flag {
+  font-size: 20px; /* Kích thước cờ */
+  line-height: 1;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3)); /* Đổ bóng cho cờ nổi lên */
+}
+
+.lang-text {
+  font-size: 13px;
+  font-weight: 500;
+  color: #e6eef6;
+}
+
+/* Light Mode Support */
+[data-theme="light"] .lang-item {
+  background: rgba(255, 255, 255, 0.5);
+  border-color: var(--border-color);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+}
+[data-theme="light"] .lang-text {
+  color: #1e293b;
+}
+.language-color
+{
+    color: var(--accent);
+    font-size: 24px;
 }

@@ -4,10 +4,10 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Thanh Pham — Phiên dịch viên chuyên nghiệp</title>
-  <meta name="description" content="Thanh Pham — Phiên dịch viên chuyên nghiệp (Việt - Trung)." />
+  <title>Thành Phạm's Portfolio</title>
+  <meta name="description" content="Thành Phạm's Portfolio" />
   <link rel="icon"
-    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='86' font-size='90'>💬</text></svg>">
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='85' font-size='90'>✒️</text></svg>">
   <link rel="stylesheet" href="./style.css">
 
 </head>
@@ -41,19 +41,20 @@
         <img class="avatar" src="./images/avatar.jpeg" alt="">
         <div class="hero">
           <!-- ĐÃ SỬA: Thêm data-i18n="site_name" -->
-          <h1 data-i18n="site_name">Thành Phạm</h1>
+          <h1 data-i18n="site_name">Phạm Vi Thành</h1>
 
-          <p class="tagline" data-i18n="tagline">Phiên dịch • Biên dịch (Việt ↔ Trung) — Hội nghị • Thương mại •
-            Livestream • Hợp đồng</p>
+          <p class="tagline" data-i18n="tagline">Phiên dịch • Biên dịch (Việt ↔ Nhật ↔ Anh) </p>
+
+          <p> Hội nghị • Thương mại •Livestream • Hợp đồng</p>
 
           <div class="hero-meta">
-            <div class="chip" data-i18n="exp">Kinh nghiệm: 6+ năm</div>
+            <div class="chip" data-i18n="exp">Kinh nghiệm: 4+ năm</div>
             <div class="chip" data-i18n="avail">Sẵn sàng: Di chuyển / Làm gấp</div>
-            <div class="chip" data-i18n="style">Phong cách: Chính xác — Tự nhiên — Bảo mật</div>
+            <div class="chip" data-i18n="style">Phong cách: Chính xác ・ Tự nhiên ・ Bảo mật</div>
           </div>
 
           <div style="margin-top:12px" class="mini">
-            <strong>Email:</strong> <span id="emailText">thanhpham0907@hatonet.com</span>
+            <strong>Email:</strong> <span id="emailText">thanhpham0907@gmail.com</span>
             &nbsp; <button class="icon-btn" onclick="copyEmail()" title="Copy email" data-i18n="copy">Copy</button>
           </div>
         </div>
@@ -63,11 +64,17 @@
     <main class="fade-up" style="animation-delay:180ms">
       <section id="about" class="section about">
         <h2 data-i18n="about_title">Giới thiệu</h2>
+
+        <!-- NỘI DUNG MỚI -->
         <p class="lead" data-i18n="about_desc">
-          Tôi là <strong>Thanh Pham</strong>, phiên dịch viên chuyên nghiệp chuyên xử lý các dự án hội nghị, đàm phán
-          thương mại, livestream và biên dịch tài liệu pháp lý/ kỹ thuật. Tôi cung cấp dịch vụ chính xác, giữ nguyên sắc
-          thái văn bản gốc và đảm bảo tính bảo mật cho khách hàng.
+          Tôi là <strong>Phạm Vi Thành</strong>, phiên dịch viên chuyên nghiệp Tiếng Nhật – Anh – Việt.
+          Tôi chuyên xử lý các dự án hội nghị, đàm phán thương mại, dịch online (Zoom/Google Meet) và các chủ đề chuyên
+          môn cao như tài liệu pháp lý/kỹ thuật.
+          Với 4 năm kinh nghiệm phiên dịch toàn thời gian trong các lĩnh vực linh kiện điện tử, thiết kế đồ hoạ - mỹ
+          thuật và CNTT, cùng các chứng chỉ cao cấp (JLPT N1, BJT J2, TOEIC 825), tôi cam kết cung cấp dịch vụ chất
+          lượng vượt trội.
         </p>
+
       </section>
 
       <!-- [MOBILE ONLY] TIMELINE: Hiển thị ngay sau Giới thiệu trên điện thoại -->
@@ -101,6 +108,46 @@
         </div>
       </section>
       <!-- END MOBILE TIMELINE -->
+
+      <!-- START: MOBILE LANGUAGES SECTION -->
+      <section class="section mobile-only fade-up" style="animation-delay:220ms">
+        <h2 data-i18n="lang_work" class="language-color-mobile">Ngôn ngữ làm việc</h2>
+
+        <!-- Sử dụng projects-grid để chia cột đều đẹp -->
+        <div class="projects-grid">
+
+          <!-- Card Tiếng Việt -->
+          <div class="card" style="display:flex; align-items:center; gap:15px; padding:15px;">
+            <div style="font-size:32px; line-height:1">🇻🇳</div>
+            <div>
+              <!-- Dùng h3 để giống tiêu đề dự án -->
+              <h3 style="margin:0; font-size:16px; color:var(--accent)">Tiếng Việt</h3>
+              <p style="margin:4px 0 0; font-size:13px; color:var(--muted)" data-i18n="lang_1_detail">Bản ngữ</p>
+            </div>
+          </div>
+
+          <!-- Card Tiếng Nhật -->
+          <div class="card" style="display:flex; align-items:center; gap:15px; padding:15px;">
+            <div style="font-size:32px; line-height:1">🇯🇵</div>
+            <div>
+              <h3 style="margin:0; font-size:16px; color:var(--accent)">Tiếng Nhật</h3>
+              <p style="margin:4px 0 0; font-size:13px; color:var(--muted)" data-i18n="lang_2_detail">JLPT N1 / BJT J2
+              </p>
+            </div>
+          </div>
+
+          <!-- Card Tiếng Anh -->
+          <div class="card" style="display:flex; align-items:center; gap:15px; padding:15px;">
+            <div style="font-size:32px; line-height:1">🇺🇸</div>
+            <div>
+              <h3 style="margin:0; font-size:16px; color:var(--accent)">Tiếng Anh</h3>
+              <p style="margin:4px 0 0; font-size:13px; color:var(--muted)" data-i18n="lang_3_detail">TOEIC 825</p>
+            </div>
+          </div>
+
+        </div>
+      </section>
+      <!-- END: MOBILE LANGUAGES SECTION -->
 
       <section id="services" class="section services">
         <h2 data-i18n="service_title">Dịch vụ chính</h2>
@@ -188,7 +235,7 @@
           <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
             <button type="submit" class="send" data-i18n="btn_send">Gửi liên hệ</button>
             <div class="mini" id="formInfo"><span data-i18n="or_email">Hoặc email trực tiếp:</span> <a href="#"
-                id="mailtoLink">thanhpham0907@hatonet.com</a></div>
+                id="mailtoLink">thanhpham0907@gmail.com</a></div>
           </div>
         </form>
 
@@ -200,11 +247,11 @@
       <h2 data-i18n="info_title">Thông tin nhanh</h2>
       <div class="contact-row">
         <strong data-i18n="info_name">Họ tên</strong>
-        <div class="mini" style="margin-left:auto">Thanh Pham</div>
+        <div class="mini" style="margin-left:auto">Thành Phạm</div>
       </div>
       <div class="contact-row">
         <strong>Email</strong>
-        <div style="margin-left:auto" class="mini"><span id="emailSide">thanhpham0907@hatonet.com</span></div>
+        <div style="margin-left:auto" class="mini"><span id="emailSide">thanhpham0907@gmail.com</span></div>
       </div>
       <div class="contact-row">
         <strong data-i18n="info_loc">Khu vực</strong>
@@ -218,18 +265,37 @@
 
       <div style="margin-top:14px">
         <button class="icon-btn" onclick="copyEmail()" data-i18n="btn_copy">Sao chép email</button>
-        <a href="mailto:thanhpham0907@hatonet.com" class="icon-btn" style="margin-left:8px" data-i18n="btn_mail">Gửi
+        <a href="mailto:thanhpham0907@gmail.com" class="icon-btn" style="margin-left:8px" data-i18n="btn_mail">Gửi
           email</a>
       </div>
 
       <hr style="margin:14px 0;border:none;border-top:1px solid rgba(255,255,255,0.02)">
 
-      <div class="mini">
-        <strong data-i18n="lang_work">Ngôn ngữ làm việc:</strong>
-        <div style="margin-top:8px">
-          <span class="skill" data-i18n="lang_1">Tiếng Việt (Bản ngữ)</span>
-          <span class="skill" data-i18n="lang_2">Tiếng Trung (Thành thạo)</span>
-          <span class="skill" data-i18n="lang_3">Tiếng Anh (Giao tiếp chuyên ngành)</span>
+      <!-- UPDATED: language block should be desktop-only -->
+
+      <div style="margin-top:14px" class="desktop-only">
+        <strong data-i18n="lang_work" class="language-color">Ngôn ngữ làm việc</strong>
+
+        <div class="lang-list">
+
+          <!-- Tiếng Việt -->
+          <div class="lang-item">
+            <div class="lang-flag">🇻🇳</div>
+            <div class="lang-text" data-i18n="lang_1">Tiếng Việt (Bản ngữ)</div>
+          </div>
+
+          <!-- Tiếng Nhật -->
+          <div class="lang-item">
+            <div class="lang-flag">🇯🇵</div>
+            <div class="lang-text" data-i18n="lang_2">Tiếng Nhật (N1 / BJT J2)</div>
+          </div>
+
+          <!-- Tiếng Anh -->
+          <div class="lang-item">
+            <div class="lang-flag">🇺🇸</div>
+            <div class="lang-text" data-i18n="lang_3">Tiếng Anh (TOEIC 825)</div>
+          </div>
+
         </div>
       </div>
 
@@ -288,7 +354,7 @@
     </aside>
 
     <footer>
-      © <span id="year"></span> Thanh Pham — <span data-i18n="footer_role">Phiên dịch viên</span>. Design · Minimal ·
+      © <span id="year"></span> Thành Phạm — <span data-i18n="footer_role">Phiên dịch viên</span>. Design · Minimal ·
       Contact via email.
     </footer>
   </div>
