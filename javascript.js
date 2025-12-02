@@ -151,6 +151,13 @@ const resources = {
         tl_3_year: "2012 - 2016",
         tl_3_title: "Cử nhân Ngôn ngữ Trung - ĐH Sư Phạm/ KHXH&NV",
         tl_3_desc: "Tốt nghiệp loại Giỏi. Tham gia chương trình trao đổi sinh viên 1 năm.",
+        nav_about: "Giới thiệu",
+        nav_exp: "Hành trình",
+        nav_services: "Dịch vụ",
+        nav_skills: "Kỹ năng",
+        nav_projects: "Dự án",
+        nav_price: "Bảng giá",
+        nav_contact: "Liên hệ",
     },
     en: {
         site_name: "Thanh Pham",
@@ -224,6 +231,13 @@ const resources = {
         tl_3_year: "2012 - 2016",
         tl_3_title: "BA in Chinese Language - University",
         tl_3_desc: "Graduated with Distinction. Participated in a 1-year exchange program in Shanghai.",
+        nav_about: "About",
+        nav_exp: "Timeline",
+        nav_services: "Services",
+        nav_skills: "Skills",
+        nav_projects: "Projects",
+        nav_price: "Pricing",
+        nav_contact: "Contact",
     },
     ja: {
         site_name: "タン・ファム",
@@ -297,6 +311,13 @@ const resources = {
         tl_3_year: "2012 - 2016",
         tl_3_title: "中国語学士号 - 大学",
         tl_3_desc: "優秀な成績で卒業。上海での1年間の交換留学プログラムに参加。",
+        nav_about: "自己紹介",
+        nav_exp: "経歴",
+        nav_services: "サービス",
+        nav_skills: "スキル",
+        nav_projects: "実績",
+        nav_price: "料金",
+        nav_contact: "連絡先",
     }
 };
 

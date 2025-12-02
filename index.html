@@ -25,6 +25,17 @@
     </div>
   </div>
   <div class="wrap" role="document">
+    <nav class="site-nav fade-up" style="animation-delay:50ms">
+      <ul class="nav-list">
+        <li><a href="#about" data-i18n="nav_about">Giới thiệu</a></li>
+        <li><a href="#timeline" data-i18n="nav_exp">Hành trình</a></li> <!-- Nếu muốn link đến timeline -->
+        <li><a href="#services" data-i18n="nav_services">Dịch vụ</a></li>
+        <li><a href="#skills" data-i18n="nav_skills">Kỹ năng</a></li>
+        <li><a href="#projects" data-i18n="nav_projects">Dự án</a></li>
+        <li><a href="#pricing" data-i18n="nav_price">Bảng giá</a></li>
+        <li><a href="#contact" data-i18n="nav_contact">Liên hệ</a></li>
+      </ul>
+    </nav>
     <header class="site-card fade-up" style="animation-delay:100ms">
       <div class="header">
         <img class="avatar" src="./images/avatar.jpeg" alt="">
@@ -50,7 +61,7 @@
     </header>
 
     <main class="fade-up" style="animation-delay:180ms">
-      <section class="section about">
+      <section id="about" class="section about">
         <h2 data-i18n="about_title">Giới thiệu</h2>
         <p class="lead" data-i18n="about_desc">
           Tôi là <strong>Thanh Pham</strong>, phiên dịch viên chuyên nghiệp chuyên xử lý các dự án hội nghị, đàm phán
@@ -60,7 +71,7 @@
       </section>
 
       <!-- [MOBILE ONLY] TIMELINE: Hiển thị ngay sau Giới thiệu trên điện thoại -->
-      <section class="section timeline mobile-only fade-up" style="animation-delay:200ms">
+      <section id="timeline" class="section timeline mobile-only fade-up" style="animation-delay:200ms">
         <h2 data-i18n="timeline_title">Hành trình & Kinh nghiệm</h2>
         <div class="timeline-list">
           <div class="timeline-item">
@@ -91,7 +102,7 @@
       </section>
       <!-- END MOBILE TIMELINE -->
 
-      <section class="section services">
+      <section id="services" class="section services">
         <h2 data-i18n="service_title">Dịch vụ chính</h2>
         <div style="display:flex;gap:10px;flex-wrap:wrap">
           <div class="card" style="flex:1;min-width:220px">
@@ -109,7 +120,7 @@
         </div>
       </section>
 
-      <section class="section skills">
+      <section id="skills" class="section skills">
         <h2 data-i18n="skill_title">Kỹ năng nổi bật</h2>
         <div class="skills">
           <div class="skill" data-i18n="sk_1">Phiên dịch hội nghị</div>
@@ -121,7 +132,7 @@
         </div>
       </section>
 
-      <section class="section projects">
+      <section id="projects" class="section projects">
         <h2 data-i18n="project_title">Dự án tiêu biểu</h2>
         <div class="projects-grid">
           <div class="card">
@@ -140,7 +151,7 @@
         </div>
       </section>
 
-      <section class="section testimonials">
+      <section id="testimonials" class="section testimonials">
         <h2 data-i18n="testi_title">Phản hồi khách hàng</h2>
         <div class="card">
           <p data-i18n="testi_content">“Dịch rất sát nghĩa, hỗ trợ chuyên nghiệp trong suốt quá trình đàm phán.” —
@@ -149,7 +160,7 @@
         </div>
       </section>
 
-      <section class="section pricing">
+      <section id="pricing" class="section pricing">
         <h2 data-i18n="price_title">Bảng giá tham khảo</h2>
         <div class="card">
           <p class="mini"><strong data-i18n="price_1_label">Phiên dịch trực tiếp:</strong> <span
@@ -163,7 +174,7 @@
         </div>
       </section>
 
-      <section class="section contact">
+      <section id="contact" class="section contact">
         <h2 data-i18n="contact_title">Liên hệ</h2>
         <p class="lead" data-i18n="contact_desc">Gửi yêu cầu dự án hoặc đặt lịch phiên dịch — tôi sẽ phản hồi nhanh
           chóng.</p>
