@@ -135,28 +135,54 @@ main {
     margin-bottom: 20px;
 }
 
+/* --- TYPOGRAPHY UPDATE (Tìm và thay thế phần h2, h3 cũ) --- */
+
+/* 1. Tiêu đề mục lớn (VD: Dịch vụ chính, Kỹ năng...) */
 h2 {
+  font-size: 24px;        /* Tăng từ 16px lên 24px */
+  font-weight: 700;       /* In đậm hơn */
+  margin: 0 0 16px;       /* Tăng khoảng cách dưới để thoáng */
+  color: var(--accent);   /* Đổi sang màu xanh điểm nhấn cho nổi bật */
+  letter-spacing: -0.5px; /* Thu hẹp khoảng cách chữ xíu cho hiện đại */
+  line-height: 1.3;
+}
+
+/* 2. Tiêu đề con trong các Card (VD: Tên dự án, tên dịch vụ...) */
+.card h3,
+.timeline-item h3 {
+  font-size: 17px;        /* Tăng từ 14px lên 17px */
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #e6eef6;         /* Màu trắng sáng */
+}
+
+/* 3. Văn bản thường (Giữ nguyên hoặc tinh chỉnh cho dễ đọc) */
+p, .lead, .mini {
+  font-size: 15px;        /* Đảm bảo chữ thường đủ to */
+  line-height: 1.6;
+}
+
+/* --- LIGHT MODE SUPPORT --- */
+/* Khi chuyển sang giao diện sáng, tiêu đề h2 vẫn giữ màu xanh nhấn hoặc đổi màu tối */
+[data-theme="light"] h2 {
+  color: var(--accent); /* Hoặc đổi thành #0f1724 nếu muốn màu đen đậm */
+}
+[data-theme="light"] .card h3 {
+  color: #0f1724;
+}
+
+/* --- RESPONSIVE MOBILE --- */
+/* Trên điện thoại thì cho nhỏ lại xíu để không bị tốn diện tích */
+@media (max-width: 600px) {
+  h2 {
+    font-size: 20px; /* Mobile: 20px là vừa đẹp */
+    margin-bottom: 12px;
+  }
+  
+  .card h3,
+  .timeline-item h3 {
     font-size: 16px;
-    margin: 0 0 10px;
-}
-
-p.lead {
-    color: var(--muted);
-    margin: 0 0 12px;
-}
-
-.skills {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-}
-
-.skill {
-    background: var(--glass-2);
-    padding: 8px 10px;
-    border-radius: 8px;
-    font-size: 13px;
-    color: var(--muted);
+  }
 }
 
 .projects-grid {
@@ -170,11 +196,6 @@ p.lead {
     padding: 12px;
     border-radius: 12px;
     border: 1px solid rgba(255, 255, 255, 0.02);
-}
-
-.card h3 {
-    margin: 0;
-    font-size: 14px;
 }
 
 .card p {
@@ -448,8 +469,68 @@ select.lang-switch option {
   
   /* Timeline Mobile: Căn chỉnh lề */
   .mobile-only .timeline-list {
-    margin-left: 5px;
-    padding-left: 15px;
+    margin-left: 10px;
+    border-left: 2px solid var(--accent);
+    /* Làm nổi bật đường kẻ trên mobile */
+  }
+
+  .mobile-only .tl-content {
+    background: var(--glass);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 15px;
+  }
+
+  .mobile-only .tl-marker {
+    background: var(--bg);
+    /* Tạo hiệu ứng lỗ tròn */
+    border: 2px solid var(--accent);
+  }
+
+  /* --- SỬA LỖI LỆCH TIMELINE MOBILE (Chèn vào trong @media max-width: 600px) --- */
+
+  /* 1. Cấu hình đường kẻ dọc */
+  .mobile-only .timeline-list {
+    border-left: 2px solid var(--accent); /* Đường kẻ màu xanh rõ nét */
+    padding-left: 30px; /* Tăng khoảng cách từ đường kẻ vào nội dung chữ để thoáng hơn */
+    margin-left: 15px;  /* Cách lề màn hình điện thoại một chút cho đẹp */
+    position: relative;
+  }
+  
+  /* 2. Cấu hình từng mục timeline */
+  .mobile-only .timeline-item {
+    margin-bottom: 24px;
+    position: relative;
+  }
+
+  /* 3. Căn chỉnh chấm tròn cho thẳng hàng */
+  .mobile-only .tl-marker {
+    /* Tính toán vị trí: -(padding-left 30px + đường kẻ 2px + nửa chấm tròn 5px) = -37px */
+    left: -37px; 
+    
+    top: 2px; /* Căn chỉnh chiều dọc để khớp với dòng tiêu đề */
+    width: 12px;
+    height: 12px;
+    
+    /* Trang trí chấm tròn kiểu "đục lỗ" */
+    background: var(--bg); 
+    border: 2px solid var(--accent);
+    box-shadow: 0 0 5px rgba(139, 233, 201, 0.5); /* Phát sáng nhẹ */
+    z-index: 2;
+  }
+
+  /* 4. Điều chỉnh nội dung bên trong */
+  .mobile-only .tl-content {
+    padding: 0; /* Bỏ padding thừa của khung nội dung */
+    background: transparent; /* Bỏ màu nền khung để nhìn sạch sẽ hơn */
+    border: none;
+  }
+  
+  /* Chỉnh màu năm tháng cho nổi bật */
+  .mobile-only .tl-year {
+    color: var(--accent);
+    font-weight: 700;
+    margin-bottom: 4px;
+    display: inline-block;
   }
 }
 
