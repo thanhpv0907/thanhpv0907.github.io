@@ -760,7 +760,6 @@ select.lang-switch option {
 .nav-list a:hover {
     color: var(--accent);
 }
-
 /* Hiệu ứng gạch chân khi hover */
 .nav-list a::after {
     content: '';
@@ -814,15 +813,30 @@ section[id] {
 
   /* 2. Hiệu ứng cho các Chip kỹ năng (Skills) */
   .skill {
-    transition: all 0.2s ease;
-    cursor: default; /* Con trỏ chuột bình thường */
+    background: var(--glass-2);
+    padding: 8px 10px;
+    border-radius: 8px;
+    font-size: 13px;
+    color: var(--muted);
+    
+    /* THÊM CÁC DÒNG SAU ĐỂ ĐỒNG BỘ: */
+    border: 1px solid transparent; /* Tạo viền ẩn trước để khi hover không bị nhảy size */
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); /* Tốc độ và độ mượt giống hệt Card */
+    position: relative; /* Để dùng z-index khi nổi lên */
+    cursor: default;
   }
 
   .skill:hover {
-    background: var(--accent); /* Nền chuyển sang màu xanh chủ đạo */
-    color: #0b1220;            /* Chữ chuyển sang màu tối để dễ đọc */
-    transform: scale(1.05);    /* Phóng to nhẹ */
-    box-shadow: 0 4px 12px rgba(139, 233, 201, 0.4); /* Phát sáng */
+    /* Thay vì để var(--accent), ta chỉ để màu trắng mờ rất nhẹ */
+    background: rgba(255, 255, 255, 0.08);
+    /* Giữ nguyên màu chữ gốc, không đổi sang đen */
+    color: inherit;
+    /* Không phóng to nữa */
+    transform: none;
+    /* Không đổ bóng phát sáng */
+    box-shadow: none;
+    /* Chỉ làm viền sáng lên một chút cho tinh tế */
+    border-color: rgba(255, 255, 255, 0.1);
   }
 
   /* 3. Hiệu ứng cho Timeline (Desktop Sidebar) */
