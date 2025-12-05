@@ -221,6 +221,42 @@
         </div>
       </section>
 
+      <!-- START: MOBILE QUICK INFO (Chỉ hiện trên Mobile, nằm TRƯỚC phần Liên hệ) -->
+      <section class="section mobile-only fade-up">
+        <h2 data-i18n="info_title">Thông tin nhanh</h2>
+        
+        <div class="card">
+          <!-- Hàng 1: Họ tên -->
+          <div style="display:flex; justify-content:space-between; margin-bottom:10px; border-bottom:1px solid rgba(255,255,255,0.05); padding-bottom:8px">
+             <strong data-i18n="info_name">Họ tên</strong>
+             <span class="mini">Phạm Vi Thành</span>
+          </div>
+
+          <!-- Hàng 2: Email -->
+          <div style="display:flex; justify-content:space-between; margin-bottom:10px; border-bottom:1px solid rgba(255,255,255,0.05); padding-bottom:8px">
+             <strong>Email</strong>
+             <!-- Đặt ID khác để tránh trùng lặp ID trong JS -->
+             <span class="mini" id="emailMobile">thanhpham0907@hatonet.com</span>
+          </div>
+
+          <!-- Hàng 3: Khu vực -->
+          <div style="display:flex; justify-content:space-between; margin-bottom:15px">
+             <strong data-i18n="info_loc">Khu vực</strong>
+             <span class="mini" data-i18n="info_loc_val">Ho Chi Minh / Toàn quốc</span>
+          </div>
+
+          <!-- Nút Facebook -->
+          <a class="fb" href="https://www.facebook.com/pham.thanh.454731/?viewas=100000686899395" target="_blank" rel="noopener" data-i18n="btn_fb" style="margin-bottom:12px">Xem hồ sơ Facebook</a>
+          
+          <!-- Nút thao tác Email -->
+          <div style="display:flex; gap:10px">
+            <button class="icon-btn" onclick="copyEmail()" data-i18n="btn_copy" style="flex:1; justify-content:center">Sao chép email</button>
+            <a href="mailto:thanhpham0907@hatonet.com" class="icon-btn" data-i18n="btn_mail" style="flex:1; text-align:center; text-decoration:none">Gửi email</a>
+          </div>
+        </div>
+      </section>
+      <!-- END: MOBILE QUICK INFO -->
+
       <section id="contact" class="section contact">
         <h2 data-i18n="contact_title">Liên hệ</h2>
         <p class="lead" data-i18n="contact_desc">Gửi yêu cầu dự án hoặc đặt lịch phiên dịch — tôi sẽ phản hồi nhanh
@@ -244,34 +280,32 @@
     </main>
 
     <aside class="side fade-up" style="animation-delay:240ms" aria-label="Thông tin liên hệ">
-      <h2 data-i18n="info_title">Thông tin nhanh</h2>
-      <div class="contact-row">
-        <strong data-i18n="info_name">Họ tên</strong>
-        <div class="mini" style="margin-left:auto">Thành Phạm</div>
-      </div>
-      <div class="contact-row">
-        <strong>Email</strong>
-        <div style="margin-left:auto" class="mini"><span id="emailSide">thanhpham0907@gmail.com</span></div>
-      </div>
-      <div class="contact-row">
-        <strong data-i18n="info_loc">Khu vực</strong>
-        <div style="margin-left:auto" class="mini" data-i18n="info_loc_val">Ho Chi Minh / Toàn quốc</div>
-      </div>
+      <div class="desktop-only">
+          <h2 data-i18n="info_title">Thông tin nhanh</h2>
+          <div class="contact-row">
+            <strong data-i18n="info_name">Họ tên</strong>
+            <div class="mini" style="margin-left:auto">Phạm Vi Thành</div>
+          </div>
+          <div class="contact-row">
+            <strong>Email</strong>
+            <div style="margin-left:auto" class="mini"><span id="emailSide">thanhpham0907@hatonet.com</span></div>
+          </div>
+          <div class="contact-row">
+            <strong data-i18n="info_loc">Khu vực</strong>
+            <div style="margin-left:auto" class="mini" data-i18n="info_loc_val">Ho Chi Minh / Toàn quốc</div>
+          </div>
 
-      <div style="margin-top:12px">
-        <a class="fb" href="https://www.facebook.com/pham.thanh.454731/?viewas=100000686899395" target="_blank"
-          rel="noopener" data-i18n="btn_fb">Xem hồ sơ Facebook</a>
+          <div style="margin-top:12px">
+            <a class="fb" href="https://www.facebook.com/pham.thanh.454731/?viewas=100000686899395" target="_blank"
+              rel="noopener" data-i18n="btn_fb">Xem hồ sơ Facebook</a>
+          </div>
+
+          <div style="margin-top:14px">
+            <button class="icon-btn" onclick="copyEmail()" data-i18n="btn_copy">Sao chép email</button>
+            <a href="mailto:thanhpham0907@hatonet.com" class="icon-btn" style="margin-left:8px" data-i18n="btn_mail">Gửi
+              email</a>
+          </div>
       </div>
-
-      <div style="margin-top:14px">
-        <button class="icon-btn" onclick="copyEmail()" data-i18n="btn_copy">Sao chép email</button>
-        <a href="mailto:thanhpham0907@gmail.com" class="icon-btn" style="margin-left:8px" data-i18n="btn_mail">Gửi
-          email</a>
-      </div>
-
-      <hr style="margin:14px 0;border:none;border-top:1px solid rgba(255,255,255,0.02)">
-
-      <!-- UPDATED: language block should be desktop-only -->
 
       <div style="margin-top:14px" class="desktop-only">
         <strong data-i18n="lang_work" class="language-color">Ngôn ngữ làm việc</strong>

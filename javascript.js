@@ -1,7 +1,9 @@
-const email = 'thanhpham0907@gmail.com';
+const email = 'thanhpham0907@hatonet.com';
 document.getElementById('mailtoLink').setAttribute('href', 'mailto:' + email);
 document.getElementById('emailSide').textContent = email;
 document.getElementById('emailText').textContent = email;
+const emailMobile = document.getElementById('emailMobile');
+if (emailMobile) emailMobile.textContent = email;
 document.getElementById('year').textContent = new Date().getFullYear();
 
 function copyEmail() {
