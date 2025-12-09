@@ -28,7 +28,7 @@
     <nav class="site-nav fade-up" style="animation-delay:50ms">
       <ul class="nav-list">
         <li><a href="#about" data-i18n="nav_about">Giới thiệu</a></li>
-        <li><a href="#timeline" data-i18n="nav_exp">Hành trình</a></li> <!-- Nếu muốn link đến timeline -->
+        <li><a href="#timeline" onclick="scrollToTimeline(event)" data-i18n="nav_exp">Hành trình</a></li>
         <li><a href="#services" data-i18n="nav_services">Dịch vụ</a></li>
         <li><a href="#skills" data-i18n="nav_skills">Kỹ năng</a></li>
         <li><a href="#projects" data-i18n="nav_projects">Dự án</a></li>
@@ -78,7 +78,7 @@
       </section>
 
       <!-- [MOBILE ONLY] TIMELINE: Hiển thị ngay sau Giới thiệu trên điện thoại -->
-      <section id="timeline" class="section timeline mobile-only fade-up" style="animation-delay:200ms">
+      <section id="timeline-mobile" class="section timeline mobile-only fade-up" style="animation-delay:200ms">
         <h2 data-i18n="timeline_title">Hành trình & Kinh nghiệm</h2>
         <div class="timeline-list">
           <div class="timeline-item">
@@ -348,7 +348,7 @@
       <hr style="margin:24px 0 20px 0;border:none;border-top:1px solid rgba(255,255,255,0.05)">
 
       <!-- START: TIMELINE IN SIDEBAR -->
-      <div class="timeline-sidebar desktop-only">
+      <div id="timeline-desktop" class="timeline-sidebar desktop-only">
         <h2 data-i18n="timeline_title">Hành trình</h2>
 
         <div class="timeline-list">

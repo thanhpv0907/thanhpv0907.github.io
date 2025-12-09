@@ -340,3 +340,27 @@ function changeLanguage(lang) {
     });
     document.documentElement.lang = lang;
 }
+
+// --- HÀM XỬ LÝ CUỘN CHO TIMELINE ---
+function scrollToTimeline(e) {
+    e.preventDefault(); // Ngăn hành động mặc định
+    
+    // Kiểm tra độ rộng màn hình (980px là điểm gãy layout tablet/mobile)
+    const isMobile = window.innerWidth <= 980;
+    
+    // Chọn ID đích dựa trên thiết bị
+    const targetId = isMobile ? 'timeline-mobile' : 'timeline-desktop';
+    const targetElement = document.getElementById(targetId);
+
+    if (targetElement) {
+        // Tính toán vị trí cần cuộn tới (trừ đi chiều cao Nav bar khoảng 80px để không bị che)
+        const headerOffset = 80;
+        const elementPosition = targetElement.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+        window.scrollTo({
+            top: offsetPosition,
+            behavior: "smooth"
+        });
+    }
+}
