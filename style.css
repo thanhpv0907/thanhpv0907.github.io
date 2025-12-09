@@ -753,7 +753,7 @@ select.lang-switch option {
     font-size: 14px;
     font-weight: 500;
     transition: all 0.2s ease;
-    padding: 4px 0;
+    padding: 6px 10px;
     position: relative;
 }
 
@@ -939,4 +939,91 @@ section[id] {
 {
     color: var(--accent);
     font-size: 24px;
+}
+
+/* --- FIX: NAVBAR HOVER TRONG LIGHT MODE --- */
+@media (min-width: 981px) {
+  /* Tìm thẻ a khi hover trong Light Mode */
+  [data-theme="light"] .nav-list a:hover {
+    color: #0f1724;        /* Đổi sang màu xanh đen đậm để dễ đọc trên nền sáng */
+    text-shadow: none;     /* Tắt hiệu ứng phát sáng neon (glow) */
+    background: rgba(0,0,0,0.05); /* Thêm một chút nền xám nhẹ để nút nổi bật hơn */
+    border-radius: 6px;    /* Bo góc nhẹ cho nền */
+  }
+}
+
+/* --- PROJECT SECTION STYLING --- */
+
+/* 1. Grid Layout: Chia 3 cột đều nhau trên Desktop */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Bắt buộc 3 cột trên PC */
+  gap: 20px;
+  align-items: stretch; /* Kéo dãn để các card cao bằng nhau */
+}
+
+/* 2. Style cho Card Dự án */
+.project-card {
+  display: flex;
+  flex-direction: column;
+  padding: 24px; /* Tăng padding để nội dung thoáng hơn */
+  height: 100%;  /* Đảm bảo chiều cao full */
+}
+
+.card-icon {
+  font-size: 32px;
+  margin-bottom: 15px;
+  line-height: 1;
+}
+
+/* 3. Style cho Danh sách (ul/li) */
+.project-list {
+  margin: 10px 0 0 0;
+  padding-left: 20px; /* Thụt đầu dòng cho dấu chấm */
+  list-style-type: disc; /* Dùng dấu chấm tròn mặc định */
+}
+
+.project-list li {
+  margin-bottom: 12px; /* Khoảng cách giữa các đầu mục */
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--muted);
+  padding-left: 5px;
+}
+
+/* Làm đậm phần tiêu đề con trong li */
+.project-list li strong {
+  color: var(--accent); /* Màu xanh chủ đạo */
+  font-weight: 600;
+}
+
+/* Light mode support */
+[data-theme="light"] .project-list li strong {
+  color: #0d9488; /* Màu đậm hơn chút cho nền sáng */
+}
+
+/* --- RESPONSIVE --- */
+
+/* Tablet: Chuyển thành 2 cột hoặc 1 cột tùy ý */
+@media (max-width: 980px) {
+  .projects-grid {
+    grid-template-columns: 1fr 1fr; /* 2 cột trên máy tính bảng */
+  }
+}
+
+/* Mobile: Chuyển thành 1 cột */
+@media (max-width: 600px) {
+  .projects-grid {
+    grid-template-columns: 1fr; /* 1 cột duy nhất */
+    gap: 15px;
+  }
+  
+  .project-card {
+    padding: 18px; /* Giảm padding trên mobile */
+  }
+  
+  .card-icon {
+    font-size: 28px;
+    margin-bottom: 10px;
+  }
 }
