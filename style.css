@@ -1,172 +1,184 @@
 :root {
-    --bg: #0f1724;
-    --card: #0b1220;
-    --muted: #9aa4b2;
-    --accent: #8be9c9;
-    --glass: rgba(255, 255, 255, 0.04);
-    --glass-2: rgba(255, 255, 255, 0.02);
-    --max-w: 1100px;
-    --radius: 14px;
-    --shadow: 0 6px 18px rgba(2, 6, 23, 0.6);
-    color-scheme: dark;
-    color: #e6eef6;
-    font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  --bg: #0f1724;
+  --card: #0b1220;
+  --muted: #9aa4b2;
+  --accent: #8be9c9;
+  --glass: rgba(255, 255, 255, 0.04);
+  --glass-2: rgba(255, 255, 255, 0.02);
+  --max-w: 1100px;
+  --radius: 14px;
+  --shadow: 0 6px 18px rgba(2, 6, 23, 0.6);
+  color-scheme: dark;
+  color: #e6eef6;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
 }
 
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 body {
-    margin: 0;
-    background:
-        radial-gradient(800px 400px at 10% 10%, rgba(72, 175, 141, 0.06), transparent 6%),
-        linear-gradient(180deg, #152141 0%, #041022 100%);
-    min-height: 100vh;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    line-height: 1.5;
-    padding: 32px 20px;
-    display: flex;
-    flex-direction: column;
-    /* Đảm bảo layout dọc */
-    align-items: center;
-    /* Căn giữa wrap */
+  margin: 0;
+  background:
+    radial-gradient(800px 400px at 10% 10%, rgba(72, 175, 141, 0.06), transparent 6%),
+    linear-gradient(180deg, #152141 0%, #041022 100%);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.5;
+  padding: 32px 20px;
+  display: flex;
+  flex-direction: column;
+  /* Đảm bảo layout dọc */
+  align-items: center;
+  /* Căn giữa wrap */
 }
 
 /* --- FIX: Xử lý lại thanh ngôn ngữ --- */
 .select-lang {
-    width: 100%;
-    max-width: var(--max-w);
-    display: flex;
-    justify-content: flex-end;
-    /* Căn phải */
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 20px;
-    /* Tạo khoảng cách với header */
-    position: relative;
-    /* Bỏ absolute để tránh lỗi đè nội dung trên mobile */
-    right: auto;
+  width: 100%;
+  max-width: var(--max-w);
+  display: flex;
+  justify-content: flex-end;
+  /* Căn phải */
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  /* Tạo khoảng cách với header */
+  position: relative;
+  /* Bỏ absolute để tránh lỗi đè nội dung trên mobile */
+  right: auto;
 }
 
 .wrap {
-    width: 100%;
-    max-width: var(--max-w);
-    display: grid;
-    grid-template-columns: 1fr 360px;
-    gap: 28px;
-    align-items: start;
+  width: 100%;
+  max-width: var(--max-w);
+  display: grid;
+  grid-template-columns: 1fr 360px;
+  gap: 28px;
+  align-items: start;
 }
 
 header.site-card {
-    grid-column: 1/3;
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
-    border-radius: var(--radius);
-    padding: 28px;
-    box-shadow: var(--shadow);
-    display: flex;
-    gap: 20px;
-    align-items: center;
+  grid-column: 1/3;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+  border-radius: var(--radius);
+  padding: 28px;
+  box-shadow: var(--shadow);
+  display: flex;
+  gap: 20px;
+  align-items: center;
 }
 
 .header {
-    display: flex;
-    gap: 28px;
-    width: 100%;
-    align-items: flex-start;
+  display: flex;
+  gap: 28px;
+  width: 100%;
+  align-items: flex-start;
 }
 
 /* --- FIX: Avatar responsive --- */
 .avatar {
-    height: 250px;
-    /* Nếu là thẻ img, dùng width: auto để giữ tỉ lệ, hoặc fix cứng width */
-    width: 200px;
-    border-radius: 14px;
-    flex-shrink: 0;
-    /* Không bị co lại */
-    background: linear-gradient(135deg, #0ea5a3, #2f135f);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 36px;
-    color: white;
-    font-weight: 700;
-    box-shadow: 0 6px 20px rgba(12, 22, 40, 0.6);
-    object-fit: cover;
-    /* Đảm bảo ảnh không bị méo */
+  height: 250px;
+  /* Nếu là thẻ img, dùng width: auto để giữ tỉ lệ, hoặc fix cứng width */
+  width: 200px;
+  border-radius: 14px;
+  flex-shrink: 0;
+  /* Không bị co lại */
+  background: linear-gradient(135deg, #0ea5a3, #2f135f);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 36px;
+  color: white;
+  font-weight: 700;
+  box-shadow: 0 6px 20px rgba(12, 22, 40, 0.6);
+  object-fit: cover;
+  /* Đảm bảo ảnh không bị méo */
 }
 
 .hero h1 {
-    margin: 0;
-    font-size: 22px;
-    letter-spacing: 0.2px;
+  margin: 0;
+  font-size: 22px;
+  letter-spacing: 0.2px;
 }
 
 .hero p {
-    margin: 6px 0 0;
-    color: var(--muted);
-    font-size: 14px;
+  margin: 6px 0 0;
+  color: var(--muted);
+  font-size: 14px;
 }
 
 .hero-meta {
-    display: flex;
-    gap: 12px;
-    margin-top: 12px;
-    flex-wrap: wrap;
+  display: flex;
+  gap: 12px;
+  margin-top: 12px;
+  flex-wrap: wrap;
 }
 
 .chip {
-    background: var(--glass);
-    padding: 6px 10px;
-    border-radius: 999px;
-    font-size: 13px;
-    color: var(--muted);
+  background: var(--glass);
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 13px;
+  color: var(--muted);
 }
 
 main {
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent);
-    border-radius: var(--radius);
-    padding: 22px;
-    box-shadow: var(--shadow);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent);
+  border-radius: var(--radius);
+  padding: 22px;
+  box-shadow: var(--shadow);
 }
 
 .section {
-    margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 
 /* --- TYPOGRAPHY UPDATE (Tìm và thay thế phần h2, h3 cũ) --- */
 
 /* 1. Tiêu đề mục lớn (VD: Dịch vụ chính, Kỹ năng...) */
 h2 {
-  font-size: 24px;        /* Tăng từ 16px lên 24px */
-  font-weight: 700;       /* In đậm hơn */
-  margin: 0 0 16px;       /* Tăng khoảng cách dưới để thoáng */
-  color: var(--accent);   /* Đổi sang màu xanh điểm nhấn cho nổi bật */
-  letter-spacing: -0.5px; /* Thu hẹp khoảng cách chữ xíu cho hiện đại */
+  font-size: 24px;
+  /* Tăng từ 16px lên 24px */
+  font-weight: 700;
+  /* In đậm hơn */
+  margin: 0 0 16px;
+  /* Tăng khoảng cách dưới để thoáng */
+  color: var(--accent);
+  /* Đổi sang màu xanh điểm nhấn cho nổi bật */
+  letter-spacing: -0.5px;
+  /* Thu hẹp khoảng cách chữ xíu cho hiện đại */
   line-height: 1.3;
 }
 
 /* 2. Tiêu đề con trong các Card (VD: Tên dự án, tên dịch vụ...) */
 .card h3,
 .timeline-item h3 {
-  font-size: 17px;        /* Tăng từ 14px lên 17px */
+  font-size: 17px;
+  /* Tăng từ 14px lên 17px */
   font-weight: 600;
   margin-bottom: 6px;
-  color: #e6eef6;         /* Màu trắng sáng */
+  color: #e6eef6;
+  /* Màu trắng sáng */
 }
 
 /* 3. Văn bản thường (Giữ nguyên hoặc tinh chỉnh cho dễ đọc) */
-p, .lead, .mini {
-  font-size: 15px;        /* Đảm bảo chữ thường đủ to */
+p,
+.lead,
+.mini {
+  font-size: 15px;
+  /* Đảm bảo chữ thường đủ to */
   line-height: 1.6;
 }
 
 /* --- LIGHT MODE SUPPORT --- */
 /* Khi chuyển sang giao diện sáng, tiêu đề h2 vẫn giữ màu xanh nhấn hoặc đổi màu tối */
 [data-theme="light"] h2 {
-  color: var(--accent); /* Hoặc đổi thành #0f1724 nếu muốn màu đen đậm */
+  color: var(--accent);
+  /* Hoặc đổi thành #0f1724 nếu muốn màu đen đậm */
 }
+
 [data-theme="light"] .card h3 {
   color: #0f1724;
 }
@@ -175,10 +187,11 @@ p, .lead, .mini {
 /* Trên điện thoại thì cho nhỏ lại xíu để không bị tốn diện tích */
 @media (max-width: 600px) {
   h2 {
-    font-size: 20px; /* Mobile: 20px là vừa đẹp */
+    font-size: 20px;
+    /* Mobile: 20px là vừa đẹp */
     margin-bottom: 12px;
   }
-  
+
   .card h3,
   .timeline-item h3 {
     font-size: 16px;
@@ -186,149 +199,148 @@ p, .lead, .mini {
 }
 
 .projects-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 12px;
+  display: grid;
+  gap: 12px;
 }
 
 .card {
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.015), rgba(255, 255, 255, 0.01));
-    padding: 12px;
-    border-radius: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.02);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.015), rgba(255, 255, 255, 0.01));
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.02);
 }
 
 .card p {
-    margin: 8px 0 0;
-    color: var(--muted);
-    font-size: 13px;
+  margin: 8px 0 0;
+  color: var(--muted);
+  font-size: 13px;
 }
 
 aside.side {
-    position: relative;
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
-    border-radius: var(--radius);
-    padding: 18px;
-    height: fit-content;
-    box-shadow: var(--shadow);
+  position: relative;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+  border-radius: var(--radius);
+  padding: 18px;
+  height: fit-content;
+  box-shadow: var(--shadow);
 }
 
 .contact-row {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
 }
 
 .contact-row button {
-    background: transparent;
-    border: 1px solid rgba(255, 255, 255, 0.04);
-    padding: 8px;
-    border-radius: 10px;
-    color: var(--muted);
-    cursor: pointer;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  padding: 8px;
+  border-radius: 10px;
+  color: var(--muted);
+  cursor: pointer;
 }
 
 .fb {
-    display: block;
-    padding: 10px;
-    border-radius: 10px;
-    background: linear-gradient(90deg, #4267B2, #3751A3);
-    color: white;
-    text-decoration: none;
-    text-align: center;
-    margin-top: 8px;
+  display: block;
+  padding: 10px;
+  border-radius: 10px;
+  background: linear-gradient(90deg, #4267B2, #3751A3);
+  color: white;
+  text-decoration: none;
+  text-align: center;
+  margin-top: 8px;
 }
 
 footer {
-    grid-column: 1/3;
-    text-align: center;
-    margin-top: 14px;
-    color: var(--muted);
-    font-size: 13px;
+  grid-column: 1/3;
+  text-align: center;
+  margin-top: 14px;
+  color: var(--muted);
+  font-size: 13px;
 }
 
 /* Form inputs */
 form input,
 form textarea {
-    width: 100%;
-    padding: 10px;
-    border-radius: 8px;
-    border: 1px solid rgba(255, 255, 255, 0.03);
-    background: transparent;
-    color: inherit;
-    font-size: 14px;
-    margin-bottom: 8px;
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  background: transparent;
+  color: inherit;
+  font-size: 14px;
+  margin-bottom: 8px;
 }
 
 form button.send {
-    background: linear-gradient(90deg, var(--accent), #5eead4);
-    color: #022;
-    border: none;
-    padding: 10px 14px;
-    font-weight: 600;
-    border-radius: 10px;
-    cursor: pointer;
+  background: linear-gradient(90deg, var(--accent), #5eead4);
+  color: #022;
+  border: none;
+  padding: 10px 14px;
+  font-weight: 600;
+  border-radius: 10px;
+  cursor: pointer;
 }
 
 .mini {
-    font-size: 13px;
-    color: var(--muted);
+  font-size: 13px;
+  color: var(--muted);
 }
 
 /* Lang switch buttons */
 select.lang-switch {
-    background: var(--glass);
-    color: var(--muted);
-    border: 1px solid rgba(255, 255, 255, 0.03);
-    padding: 8px 12px;
-    border-radius: 10px;
-    cursor: pointer;
-    outline: none;
-    font-family: inherit;
+  background: var(--glass);
+  color: var(--muted);
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  padding: 8px 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  outline: none;
+  font-family: inherit;
 }
 
 select.lang-switch option {
-    background: #0f1724;
-    color: #e6eef6;
+  background: #0f1724;
+  color: #e6eef6;
 }
 
 .top-right {
-    display: flex;
-    gap: 8px;
-    align-items: center;
+  display: flex;
+  gap: 8px;
+  align-items: center;
 }
 
 .icon-btn {
-    background: transparent;
-    width: auto;
-    min-width: 40px;
-    border: 1px solid rgba(255, 255, 255, 0.03);
-    padding: 8px;
-    border-radius: 10px;
-    color: var(--muted);
-    cursor: pointer;
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
+  background: transparent;
+  width: auto;
+  min-width: 40px;
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  padding: 8px;
+  border-radius: 10px;
+  color: var(--muted);
+  cursor: pointer;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .tagline {
-    font-size: 13px;
-    color: var(--muted);
+  font-size: 13px;
+  color: var(--muted);
 }
 
 .fade-up {
-    transform: translateY(6px);
-    opacity: 0;
-    animation: fadeUp 600ms ease forwards;
+  transform: translateY(6px);
+  opacity: 0;
+  animation: fadeUp 600ms ease forwards;
 }
 
 @keyframes fadeUp {
-    to {
-        transform: none;
-        opacity: 1;
-    }
+  to {
+    transform: none;
+    opacity: 1;
+  }
 }
 
 /* --- RESPONSIVE FIXES (Thay thế toàn bộ phần media query cũ) --- */
@@ -336,29 +348,36 @@ select.lang-switch option {
 /* 1. TABLET (Dưới 980px) */
 @media (max-width: 980px) {
   .wrap {
-    grid-template-columns: 1fr; /* Chuyển về 1 cột */
+    grid-template-columns: 1fr;
+    /* Chuyển về 1 cột */
     gap: 20px;
   }
-  
+
   /* Reset lại grid-column để không bị lỗi layout */
   header.site-card,
   .site-nav,
   footer {
-    grid-column: auto; /* Để nó tự động theo dòng chảy 1 cột */
+    grid-column: auto;
+    /* Để nó tự động theo dòng chảy 1 cột */
   }
 
   aside.side {
-    order: 3; /* Đẩy sidebar xuống dưới cùng */
+    order: 3;
+    /* Đẩy sidebar xuống dưới cùng */
   }
 }
 
 /* 2. MOBILE (Dưới 600px) */
 @media (max-width: 600px) {
+
   /* 1. Thiết lập lại khung bao ngoài */
   .wrap {
-    display: flex;          /* Chuyển sang Flexbox để xếp dọc dễ kiểm soát hơn Grid */
-    flex-direction: column; /* Xếp theo chiều dọc */
-    gap: 20px;              /* Khoảng cách giữa các khối */
+    display: flex;
+    /* Chuyển sang Flexbox để xếp dọc dễ kiểm soát hơn Grid */
+    flex-direction: column;
+    /* Xếp theo chiều dọc */
+    gap: 20px;
+    /* Khoảng cách giữa các khối */
     width: 100%;
   }
 
@@ -366,19 +385,21 @@ select.lang-switch option {
   /* Nav Bar lên đầu */
   .site-nav {
     order: 1;
-    margin-bottom: 0; /* Bỏ margin thừa */
+    margin-bottom: 0;
+    /* Bỏ margin thừa */
     /* Cấu hình thanh cuộn ngang cho Menu */
     justify-content: flex-start;
     overflow-x: auto;
     white-space: nowrap;
     padding: 10px 5px;
   }
-  
+
   /* Header Profile (Avatar + Tên) nằm ngay dưới Nav */
   header.site-card {
     order: 2;
     padding: 24px 20px;
-    flex-direction: column; /* Xếp dọc nội dung bên trong */
+    flex-direction: column;
+    /* Xếp dọc nội dung bên trong */
     text-align: center;
   }
 
@@ -399,7 +420,7 @@ select.lang-switch option {
   }
 
   /* 3. Tinh chỉnh giao diện chi tiết */
-  
+
   /* Body: Giảm lề để rộng chỗ hơn */
   body {
     padding: 15px 12px;
@@ -417,11 +438,12 @@ select.lang-switch option {
   .avatar {
     width: 120px;
     height: 120px;
-    border-radius: 50% !important; /* Bắt buộc bo tròn hình tròn */
+    border-radius: 50% !important;
+    /* Bắt buộc bo tròn hình tròn */
     margin: 0 auto;
     font-size: 28px;
     /* Đảm bảo ảnh không bị méo */
-    object-fit: cover; 
+    object-fit: cover;
     flex-shrink: 0;
   }
 
@@ -435,7 +457,7 @@ select.lang-switch option {
     justify-content: center;
     gap: 8px;
   }
-  
+
   .hero-meta .chip {
     font-size: 12px;
     padding: 4px 10px;
@@ -458,15 +480,16 @@ select.lang-switch option {
     margin-bottom: 10px;
     padding: 0 5px;
   }
-  
+
   /* Nav links: Chữ nhỏ lại xíu cho gọn */
   .nav-list a {
     font-size: 13px;
     padding: 8px 12px;
-    background: rgba(255,255,255,0.03); /* Thêm nền nhẹ cho dễ bấm */
+    background: rgba(255, 255, 255, 0.03);
+    /* Thêm nền nhẹ cho dễ bấm */
     border-radius: 20px;
   }
-  
+
   /* Timeline Mobile: Căn chỉnh lề */
   .mobile-only .timeline-list {
     margin-left: 10px;
@@ -490,12 +513,15 @@ select.lang-switch option {
 
   /* 1. Cấu hình đường kẻ dọc */
   .mobile-only .timeline-list {
-    border-left: 2px solid var(--accent); /* Đường kẻ màu xanh rõ nét */
-    padding-left: 30px; /* Tăng khoảng cách từ đường kẻ vào nội dung chữ để thoáng hơn */
-    margin-left: 15px;  /* Cách lề màn hình điện thoại một chút cho đẹp */
+    border-left: 2px solid var(--accent);
+    /* Đường kẻ màu xanh rõ nét */
+    padding-left: 30px;
+    /* Tăng khoảng cách từ đường kẻ vào nội dung chữ để thoáng hơn */
+    margin-left: 15px;
+    /* Cách lề màn hình điện thoại một chút cho đẹp */
     position: relative;
   }
-  
+
   /* 2. Cấu hình từng mục timeline */
   .mobile-only .timeline-item {
     margin-bottom: 24px;
@@ -505,26 +531,30 @@ select.lang-switch option {
   /* 3. Căn chỉnh chấm tròn cho thẳng hàng */
   .mobile-only .tl-marker {
     /* Tính toán vị trí: -(padding-left 30px + đường kẻ 2px + nửa chấm tròn 5px) = -37px */
-    left: -37px; 
-    
-    top: 2px; /* Căn chỉnh chiều dọc để khớp với dòng tiêu đề */
+    left: -37px;
+
+    top: 2px;
+    /* Căn chỉnh chiều dọc để khớp với dòng tiêu đề */
     width: 12px;
     height: 12px;
-    
+
     /* Trang trí chấm tròn kiểu "đục lỗ" */
-    background: var(--bg); 
+    background: var(--bg);
     border: 2px solid var(--accent);
-    box-shadow: 0 0 5px rgba(139, 233, 201, 0.5); /* Phát sáng nhẹ */
+    box-shadow: 0 0 5px rgba(139, 233, 201, 0.5);
+    /* Phát sáng nhẹ */
     z-index: 2;
   }
 
   /* 4. Điều chỉnh nội dung bên trong */
   .mobile-only .tl-content {
-    padding: 0; /* Bỏ padding thừa của khung nội dung */
-    background: transparent; /* Bỏ màu nền khung để nhìn sạch sẽ hơn */
+    padding: 0;
+    /* Bỏ padding thừa của khung nội dung */
+    background: transparent;
+    /* Bỏ màu nền khung để nhìn sạch sẽ hơn */
     border: none;
   }
-  
+
   /* Chỉnh màu năm tháng cho nổi bật */
   .mobile-only .tl-year {
     color: var(--accent);
@@ -536,55 +566,55 @@ select.lang-switch option {
 
 /* --- DARK MODE CONFIG (Mặc định - Giữ nguyên gốc) --- */
 :root {
-    /* Định nghĩa thêm biến border để dễ quản lý ở 2 chế độ */
-    --border-color: rgba(255, 255, 255, 0.03);
+  /* Định nghĩa thêm biến border để dễ quản lý ở 2 chế độ */
+  --border-color: rgba(255, 255, 255, 0.03);
 }
 
 /* --- LIGHT MODE CONFIG (Thêm mới) --- */
 [data-theme="light"] {
-    --bg: #f0f4f8;
-    /* Màu nền sáng xanh nhạt dễ chịu */
-    --card: #ffffff;
-    /* Card màu trắng */
-    --muted: #64748b;
-    /* Màu chữ phụ đậm hơn để dễ đọc trên nền sáng */
-    --accent: #0d9488;
-    /* Màu điểm nhấn đậm hơn (Teal) để tương phản tốt */
-    --glass: rgba(0, 0, 0, 0.04);
-    /* Hiệu ứng kính chuyển sang màu tối mờ */
-    --glass-2: rgba(0, 0, 0, 0.02);
-    --shadow: 0 4px 20px rgba(148, 163, 184, 0.25);
-    /* Bóng đổ màu xám nhẹ */
-    --border-color: rgba(0, 0, 0, 0.08);
-    /* Viền chuyển sang màu tối nhạt */
+  --bg: #f0f4f8;
+  /* Màu nền sáng xanh nhạt dễ chịu */
+  --card: #ffffff;
+  /* Card màu trắng */
+  --muted: #64748b;
+  /* Màu chữ phụ đậm hơn để dễ đọc trên nền sáng */
+  --accent: #0d9488;
+  /* Màu điểm nhấn đậm hơn (Teal) để tương phản tốt */
+  --glass: rgba(0, 0, 0, 0.04);
+  /* Hiệu ứng kính chuyển sang màu tối mờ */
+  --glass-2: rgba(0, 0, 0, 0.02);
+  --shadow: 0 4px 20px rgba(148, 163, 184, 0.25);
+  /* Bóng đổ màu xám nhẹ */
+  --border-color: rgba(0, 0, 0, 0.08);
+  /* Viền chuyển sang màu tối nhạt */
 
-    color-scheme: light;
-    /* Báo trình duyệt dùng thanh cuộn sáng */
-    color: #1e293b;
-    /* Màu chữ chính: Xám đen đậm */
+  color-scheme: light;
+  /* Báo trình duyệt dùng thanh cuộn sáng */
+  color: #1e293b;
+  /* Màu chữ chính: Xám đen đậm */
 }
 
 /* Ghi đè Background Body khi ở Light Mode */
 [data-theme="light"] body {
-    background:
-        radial-gradient(800px 400px at 10% 10%, rgba(13, 148, 136, 0.1), transparent 10%),
-        linear-gradient(180deg, #f0f4f8 0%, #e2e8f0 100%);
+  background:
+    radial-gradient(800px 400px at 10% 10%, rgba(13, 148, 136, 0.1), transparent 10%),
+    linear-gradient(180deg, #f0f4f8 0%, #e2e8f0 100%);
 }
 
 /* Ghi đè Background các thẻ Header/Aside/Card khi ở Light Mode */
 [data-theme="light"] header.site-card,
 [data-theme="light"] aside.side,
 [data-theme="light"] main {
-    background: rgba(255, 255, 255, 0.6);
-    /* Trắng mờ */
-    backdrop-filter: blur(10px);
-    /* Hiệu ứng mờ nền hiện đại */
-    border: 1px solid rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.6);
+  /* Trắng mờ */
+  backdrop-filter: blur(10px);
+  /* Hiệu ứng mờ nền hiện đại */
+  border: 1px solid rgba(255, 255, 255, 0.4);
 }
 
 [data-theme="light"] .card {
-    background: rgba(255, 255, 255, 0.5);
-    border: 1px solid rgba(0, 0, 0, 0.05);
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 /* Cập nhật màu viền input và nút bấm cho Light Mode */
@@ -592,205 +622,206 @@ select.lang-switch option {
 [data-theme="light"] select.lang-switch,
 [data-theme="light"] form input,
 [data-theme="light"] form textarea {
-    border-color: var(--border-color);
-    background: rgba(255, 255, 255, 0.5);
-    color: #1e293b;
+  border-color: var(--border-color);
+  background: rgba(255, 255, 255, 0.5);
+  color: #1e293b;
 }
 
 [data-theme="light"] select.lang-switch option {
-    background: #ffffff;
-    color: #1e293b;
+  background: #ffffff;
+  color: #1e293b;
 }
 
 /* Đảm bảo Avatar vẫn giữ màu gốc đẹp, không bị ảnh hưởng */
 [data-theme="light"] .avatar {
-    box-shadow: 0 8px 24px rgba(13, 148, 136, 0.3);
+  box-shadow: 0 8px 24px rgba(13, 148, 136, 0.3);
 }
 
 /* --- TIMELINE STYLES --- */
 .timeline-list {
-    position: relative;
-    padding-left: 20px;
-    border-left: 2px solid var(--glass);
-    margin-left: 8px;
-    /* Căn sát lề trái hơn chút */
+  position: relative;
+  padding-left: 20px;
+  border-left: 2px solid var(--glass);
+  margin-left: 8px;
+  /* Căn sát lề trái hơn chút */
 }
 
 .timeline-item {
-    position: relative;
-    margin-bottom: 24px;
+  position: relative;
+  margin-bottom: 24px;
 }
 
 .timeline-item:last-child {
-    margin-bottom: 0;
+  margin-bottom: 0;
 }
 
 .tl-marker {
-    position: absolute;
-    left: -26px;
-    /* Căn chỉnh chấm tròn */
-    top: 6px;
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background: var(--accent);
-    box-shadow: 0 0 10px var(--accent);
-    z-index: 1;
+  position: absolute;
+  left: -26px;
+  /* Căn chỉnh chấm tròn */
+  top: 6px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 10px var(--accent);
+  z-index: 1;
 }
 
 /* Style cho thẻ chứa nội dung timeline trong sidebar */
 .tl-content {
-    /* Bỏ background box đi để nhìn thoáng hơn trong cột hẹp, hoặc giữ lại tùy ý */
-    /* background: var(--glass-2); */
-    padding: 0 0 0 4px;
-    /* Không padding, chỉ đẩy chữ sang phải xíu */
-    border: none;
-    /* Bỏ viền */
+  /* Bỏ background box đi để nhìn thoáng hơn trong cột hẹp, hoặc giữ lại tùy ý */
+  /* background: var(--glass-2); */
+  padding: 0 0 0 4px;
+  /* Không padding, chỉ đẩy chữ sang phải xíu */
+  border: none;
+  /* Bỏ viền */
 }
 
 .tl-year {
-    display: block;
-    /* Xuống dòng để tiết kiệm diện tích ngang */
-    font-size: 11px;
-    font-weight: 700;
-    color: var(--accent);
-    margin-bottom: 2px;
-    opacity: 0.9;
+  display: block;
+  /* Xuống dòng để tiết kiệm diện tích ngang */
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--accent);
+  margin-bottom: 2px;
+  opacity: 0.9;
 }
 
 .timeline-item h3 {
-    margin: 0 0 4px 0;
-    font-size: 14px;
-    /* Giảm size tiêu đề */
-    font-weight: 600;
-    color: inherit;
-    line-height: 1.3;
+  margin: 0 0 4px 0;
+  font-size: 14px;
+  /* Giảm size tiêu đề */
+  font-weight: 600;
+  color: inherit;
+  line-height: 1.3;
 }
 
 .timeline-item p {
-    margin: 0;
-    font-size: 13px;
-    color: var(--muted);
-    line-height: 1.4;
+  margin: 0;
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.4;
 }
 
 /* Điều chỉnh lại màu đường kẻ khi ở Light Mode */
 [data-theme="light"] .timeline-list {
-    border-left-color: var(--border-color);
+  border-left-color: var(--border-color);
 }
 
 /* --- RESPONSIVE UTILS --- */
 .desktop-only {
-    display: block;
+  display: block;
 }
 
 .mobile-only {
-    display: none;
+  display: none;
 }
 
 @media (max-width: 980px) {
-    .desktop-only {
-        display: none;
-    }
+  .desktop-only {
+    display: none;
+  }
 
-    .mobile-only {
-        display: block;
-    }
+  .mobile-only {
+    display: block;
+  }
 
-    /* Tùy chỉnh Timeline bản mobile cho đẹp hơn */
-    .mobile-only .timeline-list {
-        margin-left: 10px;
-        border-left: 2px solid var(--accent);
-        /* Làm nổi bật đường kẻ trên mobile */
-    }
+  /* Tùy chỉnh Timeline bản mobile cho đẹp hơn */
+  .mobile-only .timeline-list {
+    margin-left: 10px;
+    border-left: 2px solid var(--accent);
+    /* Làm nổi bật đường kẻ trên mobile */
+  }
 
-    .mobile-only .tl-content {
-        background: var(--glass);
-        border: 1px solid rgba(255, 255, 255, 0.05);
-        padding: 15px;
-    }
+  .mobile-only .tl-content {
+    background: var(--glass);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 15px;
+  }
 
-    .mobile-only .tl-marker {
-        background: var(--bg);
-        /* Tạo hiệu ứng lỗ tròn */
-        border: 2px solid var(--accent);
-    }
+  .mobile-only .tl-marker {
+    background: var(--bg);
+    /* Tạo hiệu ứng lỗ tròn */
+    border: 2px solid var(--accent);
+  }
 }
 
 /* --- NAVIGATION BAR --- */
 .site-nav {
-    grid-column: 1 / 3;
-    /* Chiếm toàn bộ chiều ngang */
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
-    border-radius: var(--radius);
-    padding: 14px 20px;
-    margin-bottom: 20px;
-    /* Cách Header một chút */
-    box-shadow: var(--shadow);
-    border: 1px solid rgba(255, 255, 255, 0.02);
-    display: flex;
-    justify-content: center;
+  grid-column: 1 / 3;
+  /* Chiếm toàn bộ chiều ngang */
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+  border-radius: var(--radius);
+  padding: 14px 20px;
+  margin-bottom: 20px;
+  /* Cách Header một chút */
+  box-shadow: var(--shadow);
+  border: 1px solid rgba(255, 255, 255, 0.02);
+  display: flex;
+  justify-content: center;
 }
 
 .nav-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    gap: 24px;
-    flex-wrap: wrap;
-    /* Tự xuống dòng trên mobile */
-    justify-content: center;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+  /* Tự xuống dòng trên mobile */
+  justify-content: center;
 }
 
 .nav-list li {
-    display: inline-block;
+  display: inline-block;
 }
 
 .nav-list a {
-    text-decoration: none;
-    color: var(--muted);
-    font-size: 14px;
-    font-weight: 500;
-    transition: all 0.2s ease;
-    padding: 6px 10px;
-    position: relative;
+  text-decoration: none;
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  padding: 6px 10px;
+  position: relative;
 }
 
 .nav-list a:hover {
-    color: var(--accent);
+  color: var(--accent);
 }
+
 /* Hiệu ứng gạch chân khi hover */
 .nav-list a::after {
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 2px;
-    bottom: 0;
-    left: 0;
-    background-color: var(--accent);
-    transition: width 0.3s;
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: var(--accent);
+  transition: width 0.3s;
 }
 
 .nav-list a:hover::after {
-    width: 100%;
+  width: 100%;
 }
 
 /* Kích hoạt cuộn mượt cho toàn trang */
 html {
-    scroll-behavior: smooth;
+  scroll-behavior: smooth;
 }
 
 /* Tạo khoảng cách an toàn khi cuộn tới section (để không bị sát mép trên quá) */
 section[id] {
-    scroll-margin-top: 20px;
+  scroll-margin-top: 20px;
 }
 
 /* Light mode support */
 [data-theme="light"] .site-nav {
-    background: rgba(255, 255, 255, 0.6);
-    border-color: var(--border-color);
-    backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.6);
+  border-color: var(--border-color);
+  backdrop-filter: blur(10px);
 }
 
 /* --- PC HOVER EFFECTS (Chỉ áp dụng cho màn hình máy tính > 980px) --- */
@@ -798,16 +829,62 @@ section[id] {
 
   /* 1. Hiệu ứng cho các thẻ Card (Dịch vụ, Dự án, Bảng giá) */
   .card {
-    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); /* Chuyển động mượt */
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    /* Chuyển động mượt */
     position: relative;
     top: 0;
   }
 
   .card:hover {
-    transform: translateY(-6px); /* Nhấc nhẹ thẻ lên 6px */
-    border-color: var(--accent); /* Viền chuyển màu xanh ngọc */
-    background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02)); /* Nền sáng hơn chút */
-    box-shadow: 0 15px 30px -10px rgba(139, 233, 201, 0.15); /* Đổ bóng màu xanh nhẹ */
+    transform: translateY(-6px);
+    /* Nhấc nhẹ thẻ lên 6px */
+    border-color: var(--accent);
+    /* Viền chuyển màu xanh ngọc */
+
+/* --- SWIPER CUSTOM STYLES --- */
+
+/* Đảm bảo container không bị tràn */
+.swiper {
+  width: 100%;
+  padding-bottom: 50px !important; /* Chừa chỗ cho dấu chấm tròn ở dưới */
+}
+
+/* Cấu hình chiều cao các slide bằng nhau */
+.swiper-slide {
+  height: auto;
+  display: flex; /* Để card bên trong dãn full chiều cao */
+}
+
+/* Card bên trong slide */
+.swiper-slide .project-card {
+  width: 100%;
+  height: 100%; /* Card luôn cao bằng slide */
+  margin: 0;    /* Reset margin vì swiper tự xử lý khoảng cách */
+}
+
+/* Tùy chỉnh màu dấu chấm tròn (Pagination) */
+.swiper-pagination-bullet {
+  background: var(--muted);
+  opacity: 0.5;
+  width: 10px;
+  height: 10px;
+}
+
+.swiper-pagination-bullet-active {
+  background: var(--accent) !important; /* Màu xanh chủ đạo */
+  opacity: 1;
+  width: 12px;
+  height: 12px;
+}
+
+/* Tắt grid cũ nếu còn thừa */
+.projects-grid {
+  display: block; /* Hoặc bỏ class này đi trong HTML cũng được */
+}
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02));
+    /* Nền sáng hơn chút */
+    box-shadow: 0 15px 30px -10px rgba(139, 233, 201, 0.15);
+    /* Đổ bóng màu xanh nhẹ */
     z-index: 2;
   }
 
@@ -818,11 +895,14 @@ section[id] {
     border-radius: 8px;
     font-size: 13px;
     color: var(--muted);
-    
+
     /* THÊM CÁC DÒNG SAU ĐỂ ĐỒNG BỘ: */
-    border: 1px solid transparent; /* Tạo viền ẩn trước để khi hover không bị nhảy size */
-    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); /* Tốc độ và độ mượt giống hệt Card */
-    position: relative; /* Để dùng z-index khi nổi lên */
+    border: 1px solid transparent;
+    /* Tạo viền ẩn trước để khi hover không bị nhảy size */
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    /* Tốc độ và độ mượt giống hệt Card */
+    position: relative;
+    /* Để dùng z-index khi nổi lên */
     cursor: default;
   }
 
@@ -843,7 +923,7 @@ section[id] {
   .timeline-item .tl-content {
     transition: all 0.3s ease;
   }
-  
+
   .timeline-item .tl-marker {
     transition: all 0.3s ease;
   }
@@ -851,12 +931,15 @@ section[id] {
   .timeline-item:hover .tl-content {
     /* Khi hover vào dòng thời gian, chữ dịch sang phải */
     transform: translateX(5px);
-    color: var(--accent); /* Tiêu đề đổi màu */
+    color: var(--accent);
+    /* Tiêu đề đổi màu */
   }
 
   .timeline-item:hover .tl-marker {
-    transform: scale(1.4); /* Chấm tròn to lên */
-    background: #fff;      /* Chấm tròn đổi màu trắng */
+    transform: scale(1.4);
+    /* Chấm tròn to lên */
+    background: #fff;
+    /* Chấm tròn đổi màu trắng */
     box-shadow: 0 0 15px var(--accent);
   }
 
@@ -867,19 +950,22 @@ section[id] {
   }
 
   .nav-list a:hover {
-    color: #fff; /* Chữ sáng lên màu trắng tinh */
-    text-shadow: 0 0 8px rgba(139, 233, 201, 0.6); /* Chữ phát sáng neon */
+    color: #fff;
+    /* Chữ sáng lên màu trắng tinh */
+    text-shadow: 0 0 8px rgba(139, 233, 201, 0.6);
+    /* Chữ phát sáng neon */
   }
 
   /* 5. Hiệu ứng nút bấm (Button) */
-  button.icon-btn, 
+  button.icon-btn,
   button.send {
     transition: transform 0.2s, box-shadow 0.2s;
   }
 
   button.icon-btn:hover {
-    background: rgba(255,255,255,0.1);
-    transform: rotate(15deg); /* Xoay nhẹ icon */
+    background: rgba(255, 255, 255, 0.1);
+    transform: rotate(15deg);
+    /* Xoay nhẹ icon */
   }
 
   button.send:hover {
@@ -891,8 +977,10 @@ section[id] {
 /* --- LANGUAGE LIST STYLES --- */
 .lang-list {
   display: flex;
-  flex-direction: column; /* Xếp dọc từng ngôn ngữ */
-  gap: 10px;              /* Khoảng cách giữa các ô */
+  flex-direction: column;
+  /* Xếp dọc từng ngôn ngữ */
+  gap: 10px;
+  /* Khoảng cách giữa các ô */
   margin-top: 12px;
 }
 
@@ -900,7 +988,8 @@ section[id] {
   display: flex;
   align-items: center;
   gap: 12px;
-  background: var(--glass-2); /* Nền mờ nhẹ */
+  background: var(--glass-2);
+  /* Nền mờ nhẹ */
   padding: 10px 12px;
   border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.03);
@@ -910,14 +999,18 @@ section[id] {
 /* Hiệu ứng khi di chuột vào ngôn ngữ */
 .lang-item:hover {
   background: var(--glass);
-  border-color: var(--accent); /* Viền sáng màu xanh */
-  transform: translateX(4px);  /* Dịch nhẹ sang phải */
+  border-color: var(--accent);
+  /* Viền sáng màu xanh */
+  transform: translateX(4px);
+  /* Dịch nhẹ sang phải */
 }
 
 .lang-flag {
-  font-size: 20px; /* Kích thước cờ */
+  font-size: 20px;
+  /* Kích thước cờ */
   line-height: 1;
-  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3)); /* Đổ bóng cho cờ nổi lên */
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+  /* Đổ bóng cho cờ nổi lên */
 }
 
 .lang-text {
@@ -930,25 +1023,31 @@ section[id] {
 [data-theme="light"] .lang-item {
   background: rgba(255, 255, 255, 0.5);
   border-color: var(--border-color);
-  box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.02);
 }
+
 [data-theme="light"] .lang-text {
   color: #1e293b;
 }
-.language-color
-{
-    color: var(--accent);
-    font-size: 24px;
+
+.language-color {
+  color: var(--accent);
+  font-size: 24px;
 }
 
 /* --- FIX: NAVBAR HOVER TRONG LIGHT MODE --- */
 @media (min-width: 981px) {
+
   /* Tìm thẻ a khi hover trong Light Mode */
   [data-theme="light"] .nav-list a:hover {
-    color: #0f1724;        /* Đổi sang màu xanh đen đậm để dễ đọc trên nền sáng */
-    text-shadow: none;     /* Tắt hiệu ứng phát sáng neon (glow) */
-    background: rgba(0,0,0,0.05); /* Thêm một chút nền xám nhẹ để nút nổi bật hơn */
-    border-radius: 6px;    /* Bo góc nhẹ cho nền */
+    color: #0f1724;
+    /* Đổi sang màu xanh đen đậm để dễ đọc trên nền sáng */
+    text-shadow: none;
+    /* Tắt hiệu ứng phát sáng neon (glow) */
+    background: rgba(0, 0, 0, 0.05);
+    /* Thêm một chút nền xám nhẹ để nút nổi bật hơn */
+    border-radius: 6px;
+    /* Bo góc nhẹ cho nền */
   }
 }
 
@@ -957,17 +1056,19 @@ section[id] {
 /* 1. Grid Layout: Chia 3 cột đều nhau trên Desktop */
 .projects-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* Bắt buộc 3 cột trên PC */
   gap: 20px;
-  align-items: stretch; /* Kéo dãn để các card cao bằng nhau */
+  align-items: stretch;
+  /* Kéo dãn để các card cao bằng nhau */
 }
 
 /* 2. Style cho Card Dự án */
 .project-card {
   display: flex;
   flex-direction: column;
-  padding: 24px; /* Tăng padding để nội dung thoáng hơn */
-  height: 100%;  /* Đảm bảo chiều cao full */
+  padding: 24px;
+  /* Tăng padding để nội dung thoáng hơn */
+  height: 100%;
+  /* Đảm bảo chiều cao full */
 }
 
 .card-icon {
@@ -979,12 +1080,15 @@ section[id] {
 /* 3. Style cho Danh sách (ul/li) */
 .project-list {
   margin: 10px 0 0 0;
-  padding-left: 20px; /* Thụt đầu dòng cho dấu chấm */
-  list-style-type: disc; /* Dùng dấu chấm tròn mặc định */
+  padding-left: 20px;
+  /* Thụt đầu dòng cho dấu chấm */
+  list-style-type: disc;
+  /* Dùng dấu chấm tròn mặc định */
 }
 
 .project-list li {
-  margin-bottom: 12px; /* Khoảng cách giữa các đầu mục */
+  margin-bottom: 12px;
+  /* Khoảng cách giữa các đầu mục */
   font-size: 14px;
   line-height: 1.6;
   color: var(--muted);
@@ -1006,37 +1110,122 @@ section[id] {
 
 /* Làm đậm phần tiêu đề con trong li */
 .project-list li strong {
-  color: var(--accent); /* Màu xanh chủ đạo */
+  color: var(--accent);
+  /* Màu xanh chủ đạo */
   font-weight: 600;
 }
 
 /* Light mode support */
 [data-theme="light"] .project-list li strong {
-  color: #0d9488; /* Màu đậm hơn chút cho nền sáng */
+  color: #0d9488;
+  /* Màu đậm hơn chút cho nền sáng */
 }
 
 /* --- RESPONSIVE --- */
 
 /* Tablet: Chuyển thành 2 cột hoặc 1 cột tùy ý */
 @media (max-width: 980px) {
-  .projects-grid {
-    grid-template-columns: 1fr 1fr; /* 2 cột trên máy tính bảng */
-  }
+  .projects-grid {}
 }
 
 /* Mobile: Chuyển thành 1 cột */
 @media (max-width: 600px) {
   .projects-grid {
-    grid-template-columns: 1fr; /* 1 cột duy nhất */
     gap: 15px;
   }
-  
+
   .project-card {
-    padding: 18px; /* Giảm padding trên mobile */
+    padding: 18px;
+    /* Giảm padding trên mobile */
   }
-  
+
   .card-icon {
     font-size: 28px;
     margin-bottom: 10px;
   }
 }
+
+/* --- SWIPER FIX --- */
+
+/* 1. Ngăn chặn tràn màn hình vô tận */
+.swiper {
+  width: 100%;
+  height: auto;
+  overflow: hidden !important; /* QUAN TRỌNG: Cắt bỏ phần thừa */
+  padding-bottom: 50px !important; /* Chừa chỗ cho dấu chấm */
+  position: relative; /* Để định vị các thành phần con */
+}
+
+/* 2. Đảm bảo Wrapper nằm ngang */
+.swiper-wrapper {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  box-sizing: content-box; /* Cần thiết cho Swiper */
+}
+
+/* 3. Đảm bảo Slide không bị co rúm */
+.swiper-slide {
+  flex-shrink: 0; /* Không cho phép slide bị co lại */
+  width: 100%;    /* Mặc định full width, JS sẽ tự tính lại sau */
+  height: auto;
+  display: flex;
+}
+
+/* 4. Reset style cũ của project-card để nó vừa khít slide */
+.swiper-slide .project-card {
+  width: 100%;
+  margin: 0;
+  height: 100%;
+}
+
+/* 5. Vô hiệu hóa Grid cũ nếu bạn lỡ để sót class này */
+.projects-grid {
+  display: block !important;
+  grid-template-columns: none !important;
+}
+
+/* Extra defensive rules: ensure the swiper container definitely clips overflow and slides cannot push out */
+.mySwiper,
+.swiper {
+  overflow-x: hidden !important;
+  overflow-y: visible !important;
+  max-width: 100% !important;
+}
+
+.swiper-slide {
+  min-width: 0; /* allow flex items to shrink to container, prevents long widths */
+}
+
+.swiper img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* --- FINAL DEFENSIVE LAYER (Global fixes) --- */
+
+/* 1. Khóa chiều ngang của toàn trang (Global fix) */
+html, body {
+  overflow-x: hidden; /* Ngăn chặn tuyệt đối việc cuộn ngang */
+  width: 100%;
+  position: relative;
+}
+
+/* 2. Sửa lỗi Swiper trong Grid (QUAN TRỌNG NHẤT) */
+.swiper {
+  width: 100%;
+  height: auto;
+  /* --- DÒNG QUAN TRỌNG NHẤT ĐỂ FIX LỖI VỠ LAYOUT --- */
+  min-width: 0;
+  /* ------------------------------------------------- */
+  overflow: hidden;
+  padding-bottom: 50px !important;
+}
+
+/* 3. Đảm bảo thẻ chứa nó (main) cũng không bị đẩy */
+main {
+  min-width: 0;
+  width: 100%; /* Đảm bảo nó không vượt quá cha */
+}
+

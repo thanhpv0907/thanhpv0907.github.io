@@ -8,6 +8,8 @@
   <meta name="description" content="Thành Phạm's Portfolio" />
   <link rel="icon"
     href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='85' font-size='90'>✒️</text></svg>">
+  <!-- Swiper CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
   <link rel="stylesheet" href="./style.css">
 
 </head>
@@ -181,41 +183,58 @@
       <section id="projects" class="section projects">
         <h2 data-i18n="project_title">Dự án tiêu biểu</h2>
         
-        <div class="projects-grid">
+        <!-- Swiper Container -->
+        <div class="swiper mySwiper">
+          <div class="swiper-wrapper">
+            
+            <!-- Slide 1 -->
+            <div class="swiper-slide">
+              <div class="card project-card">
+                <div class="card-icon">⚖️</div>
+                <h3 data-i18n="pj_1_title">Kinh doanh, Thương mại & Pháp luật</h3>
+                <ul class="project-list">
+                  <li><strong>Đàm phán dược phẩm:</strong> Dịch đuổi đàm phán thương mại và giới thiệu sản phẩm cho API Co., Ltd.</li>
+                  <li><strong>Kinh doanh thời trang:</strong> Dịch kế hoạch ra mắt BST Golf cao cấp (UTAA Việt Nam x Đối tác Nhật).</li>
+                  <li><strong>Công nghệ thông tin (IT):</strong> Đàm phán thương mại dự án IT (Dịch online).</li>
+                  <li><strong>Pháp luật/Tài chính:</strong> Dịch online với luật sư về vay vốn kinh doanh tại Nhật.</li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Slide 2 -->
+            <div class="swiper-slide">
+              <div class="card project-card">
+                <div class="card-icon">🎨</div>
+                <h3 data-i18n="pj_2_title">Văn hóa, Giáo dục & Truyền thông</h3>
+                <ul class="project-list">
+                  <li><strong>NXB Kim Đồng x Kadokawa:</strong> Dịch đuổi họp báo kỷ niệm 50 năm Việt-Nhật & giới thiệu truyện Công nữ Anio.</li>
+                  <li><strong>Cuộc thi vẽ minh hoạ:</strong> Dịch đuổi tại sự kiện của Kadokawa.</li>
+                  <li><strong>Hợp tác giáo dục:</strong> Dịch trao đổi giữa Chủ tịch Trường Quốc tế Nhật Bản và đại diện các trường Nhật ngữ.</li>
+                  <li><strong>Dự án Mầm non:</strong> Dịch Nhật-Anh (đuổi) cho Academy Sharing và đối tác Singapore.</li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Slide 3 -->
+            <div class="swiper-slide">
+              <div class="card project-card">
+                <div class="card-icon">🌟</div>
+                <h3 data-i18n="pj_3_title">Dự án Khác & Kinh nghiệm</h3>
+                <ul class="project-list">
+                  <li><strong>Linh kiện điện tử:</strong> Kinh nghiệm làm việc toàn thời gian (full-time) suốt 4 năm.</li>
+                  <li><strong>Sự kiện & Du lịch:</strong> Dịch lễ đính hôn, lễ cưới; hướng dẫn khách Nhật tham quan Hà Nội và các tỉnh lân cận.</li>
+                </ul>
+              </div>
+            </div>
+
+          </div>
           
-          <!-- Card 1 -->
-          <div class="card project-card">
-            <div class="card-icon">⚖️</div> <!-- Icon minh họa -->
-            <h3 data-i18n="pj_1_title">Kinh doanh, Thương mại & Pháp luật</h3>
-            <ul class="project-list">
-              <li><strong>Đàm phán dược phẩm:</strong> Dịch đuổi đàm phán thương mại và giới thiệu sản phẩm cho API Co., Ltd.</li>
-              <li><strong>Kinh doanh thời trang:</strong> Dịch kế hoạch ra mắt BST Golf cao cấp (UTAA Việt Nam x Đối tác Nhật).</li>
-              <li><strong>Công nghệ thông tin (IT):</strong> Đàm phán thương mại dự án IT (Dịch online).</li>
-              <li><strong>Pháp luật/Tài chính:</strong> Dịch online với luật sư về vay vốn kinh doanh tại Nhật.</li>
-            </ul>
-          </div>
+          <!-- Dấu chấm tròn phân trang (Pagination) -->
+          <div class="swiper-pagination" aria-hidden="false"></div>
 
-          <!-- Card 2 -->
-          <div class="card project-card">
-            <div class="card-icon">🎨</div>
-            <h3 data-i18n="pj_2_title">Văn hóa, Giáo dục & Truyền thông</h3>
-            <ul class="project-list">
-              <li><strong>NXB Kim Đồng x Kadokawa:</strong> Dịch đuổi họp báo kỷ niệm 50 năm Việt-Nhật & giới thiệu truyện Công nữ Anio.</li>
-              <li><strong>Cuộc thi vẽ minh hoạ:</strong> Dịch đuổi tại sự kiện của Kadokawa.</li>
-              <li><strong>Hợp tác giáo dục:</strong> Dịch trao đổi giữa Chủ tịch Trường Quốc tế Nhật Bản và đại diện các trường Nhật ngữ.</li>
-              <li><strong>Dự án Mầm non:</strong> Dịch Nhật-Anh (đuổi) cho Academy Sharing và đối tác Singapore.</li>
-            </ul>
-          </div>
-
-          <!-- Card 3 -->
-          <div class="card project-card">
-            <div class="card-icon">🌟</div>
-            <h3 data-i18n="pj_3_title">Dự án Khác & Kinh nghiệm</h3>
-            <ul class="project-list">
-              <li><strong>Linh kiện điện tử:</strong> Kinh nghiệm làm việc toàn thời gian (full-time) suốt 4 năm.</li>
-              <li><strong>Sự kiện & Du lịch:</strong> Dịch lễ đính hôn, lễ cưới; hướng dẫn khách Nhật tham quan Hà Nội và các tỉnh lân cận.</li>
-            </ul>
-          </div>
+          <!-- Navigation Arrows -->
+          <div class="swiper-button-prev" aria-label="Previous slide"></div>
+          <div class="swiper-button-next" aria-label="Next slide"></div>
 
         </div>
       </section>
@@ -424,8 +443,10 @@
       Contact via email.
     </footer>
   </div>
+</script>
+  <!-- Swiper JS -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
   <script src="./javascript.js"></script>
-
 </body>
 
 </html>

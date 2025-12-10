@@ -95,6 +95,55 @@ async function handleSend(e) {
     }
 }
 
+// --- KHỞI TẠO SWIPER (PROJECT SLIDER) ---
+document.addEventListener('DOMContentLoaded', function () {
+    // Kiểm tra xem thư viện đã load chưa
+    if (typeof Swiper !== 'undefined') {
+        initSwiper();
+    } else {
+        // Nếu chưa, đợi 0.5s rồi thử lại (Phòng trường hợp mạng lag)
+        setTimeout(initSwiper, 500);
+    }
+
+    function initSwiper() {
+        if (typeof Swiper === 'undefined') {
+            console.warn('Swiper still not available.');
+            return;
+        }
+
+        try {
+            var swiper = new Swiper('.mySwiper', {
+                slidesPerView: 1,
+                spaceBetween: 20,
+                loop: true,
+                grabCursor: true,
+                autoplay: {
+                    delay: 4000,
+                    disableOnInteraction: false,
+                },
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true,
+                },
+                breakpoints: {
+                    768: {
+                        slidesPerView: 2,
+                        spaceBetween: 30,
+                    },
+                    1024: {
+                        slidesPerView: 3,
+                        spaceBetween: 30,
+                    },
+                },
+            });
+            // Expose for debugging
+            window._portfolioSwiper = swiper;
+        } catch (err) {
+            console.error('Failed to init Swiper:', err);
+        }
+    }
+});
+
 // --- XỬ LÝ DARK/LIGHT MODE ---
 
 // Hàm khởi tạo Theme khi tải trang
