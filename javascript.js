@@ -1,4 +1,4 @@
-const email = 'thanhpham0907@hatonet.com';
+const email = 'thanhpham0907@gmail.com';
 document.getElementById('mailtoLink').setAttribute('href', 'mailto:' + email);
 document.getElementById('emailSide').textContent = email;
 document.getElementById('emailText').textContent = email;
@@ -132,7 +132,7 @@ const resources = {
         info_title: "Thông tin nhanh",
         info_name: "Họ tên",
         info_loc: "Khu vực",
-        info_loc_val: "Ho Chi Minh / Toàn quốc",
+        info_loc_val: "Hà Nội / Toàn quốc",
         btn_fb: "Xem hồ sơ Facebook",
         btn_copy: "Sao chép email",
         btn_mail: "Gửi email",
@@ -212,7 +212,7 @@ const resources = {
         info_title: "Quick Info",
         info_name: "Name",
         info_loc: "Location",
-        info_loc_val: "Ho Chi Minh / Nationwide",
+        info_loc_val: "Ha Noi / Nationwide",
         btn_fb: "View Facebook Profile",
         btn_copy: "Copy Email",
         btn_mail: "Send Email",
@@ -292,7 +292,7 @@ const resources = {
         info_title: "基本情報",
         info_name: "氏名",
         info_loc: "拠点",
-        info_loc_val: "ホーチミン市 / 全国対応",
+        info_loc_val: "ハノイ市 / 全国対応",
         btn_fb: "Facebook プロフィール",
         btn_copy: "メールをコピー",
         btn_mail: "メールを送る",
