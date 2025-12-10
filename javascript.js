@@ -14,23 +14,88 @@ function copyEmail() {
     });
 }
 
-function handleSend(e) {
-    e.preventDefault();
-    const name = document.getElementById('name').value.trim();
-    const from = document.getElementById('email').value.trim();
-    const subject = document.getElementById('subject').value.trim() || 'Yêu cầu phiên dịch';
-    const message = document.getElementById('message').value.trim();
-    if (!name || !from || !message) {
-        alert('Please fill in Name, Email and Message.');
-        return;
+// Replaced old mailto-based handler with fetch-based submit handler.
+// This attaches on DOMContentLoaded to avoid relying on inline onsubmit attributes.
+document.addEventListener('DOMContentLoaded', function() {
+    const contactForm = document.getElementById('contactForm');
+
+    // Kiểm tra xem form có tồn tại không để tránh lỗi
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(event) {
+            event.preventDefault(); // Chặn hành động load lại trang mặc định
+
+            // 1. Lấy dữ liệu từ Form (IDs khớp với HTML hiện tại)
+            const nameInput = document.getElementById('name');
+            const emailInput = document.getElementById('email');
+            const subjectInput = document.getElementById('subject');
+            const messageInput = document.getElementById('message');
+            const submitBtn = document.querySelector('button[type="submit"]'); // nút hiện tại không có id
+
+            if (!nameInput || !emailInput || !messageInput) {
+                alert('Form không đúng cấu trúc. Vui lòng kiểm tra các ô nhập.');
+                return;
+            }
+
+            // 2. Hiệu ứng "Đang gửi..." (UX)
+            const originalBtnText = submitBtn ? submitBtn.innerText : '';
+            if (submitBtn) {
+                submitBtn.innerText = 'Đang gửi...';
+                submitBtn.disabled = true;
+            }
+
+            // 3. Chuẩn bị dữ liệu
+            const formData = {
+                name: nameInput.value.trim(),
+                email: emailInput.value.trim(),
+                subject: subjectInput ? subjectInput.value.trim() : '',
+                message: messageInput.value.trim()
+            };
+
+            // Basic client-side validation
+            if (!formData.name || !formData.email || !formData.message) {
+                alert('Vui lòng điền đầy đủ Họ tên, Email và Nội dung.');
+                if (submitBtn) {
+                    submitBtn.innerText = originalBtnText;
+                    submitBtn.disabled = false;
+                }
+                return;
+            }
+
+            // 4. Gửi đến Server Backend của bạn
+            // Lưu ý: endpoint có thể cần thay đổi nếu bạn dùng URL khác
+            fetch('https://api.thanhpv0907.site/send-email', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    // Thành công
+                    alert('✅ Gửi thành công! Cảm ơn bạn đã liên hệ.');
+                    contactForm.reset(); // Xóa trắng form
+                } else {
+                    // Lỗi từ server trả về (ví dụ thiếu thông tin)
+                    alert('⚠️ Lỗi: ' + (data.message || 'Server trả về lỗi')); 
+                }
+            })
+            .catch(error => {
+                // Lỗi mạng hoặc server chết
+                console.error('Error:', error);
+                alert('❌ Không thể kết nối đến máy chủ. Vui lòng thử lại sau.');
+            })
+            .finally(() => {
+                // 5. Trả lại trạng thái nút bấm
+                if (submitBtn) {
+                    submitBtn.innerText = originalBtnText;
+                    submitBtn.disabled = false;
+                }
+            });
+        });
     }
-    const body = encodeURIComponent(
-        'Tên: ' + name + '\\n' +
-        'Email: ' + from + '\\n' +
-        '---\\n' + message
-    );
-    window.location.href = 'mailto:' + encodeURIComponent(email) + '?subject=' + encodeURIComponent(subject) + '&body=' + body;
-}
+});
 
 // --- XỬ LÝ DARK/LIGHT MODE ---
 
