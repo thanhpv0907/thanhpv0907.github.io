@@ -113,28 +113,33 @@ document.addEventListener('DOMContentLoaded', function () {
 
         try {
             var swiper = new Swiper('.mySwiper', {
-                slidesPerView: 1,
-                spaceBetween: 20,
-                loop: true,
-                grabCursor: true,
+                // --------------------------------------------------
+                // THAY ĐỔI QUAN TRỌNG TẠI ĐÂY:
+                slidesPerView: 1,      // Luôn chỉ hiện 1 slide trên mọi màn hình
+                spaceBetween: 30,      // Khoảng cách giữa các slide
+                centeredSlides: true,  // Căn giữa slide đang active
+                // --------------------------------------------------
+
+                loop: true,            // Lặp lại vô tận
+                grabCursor: true,      // Hiện con trỏ bàn tay
+                speed: 800,            // Tốc độ chuyển slide (ms)
+
                 autoplay: {
-                    delay: 4000,
+                    delay: 7000,         // Tăng thời gian lên 7s cho người dùng kịp đọc
                     disableOnInteraction: false,
                 },
+
                 pagination: {
-                    el: '.swiper-pagination',
+                    el: ".swiper-pagination",
                     clickable: true,
                 },
-                breakpoints: {
-                    768: {
-                        slidesPerView: 2,
-                        spaceBetween: 30,
-                    },
-                    1024: {
-                        slidesPerView: 3,
-                        spaceBetween: 30,
-                    },
+
+                navigation: {
+                    nextEl: ".swiper-button-next",
+                    prevEl: ".swiper-button-prev",
                 },
+
+                // XÓA BỎ PHẦN breakpoints: { ... } ĐỂ KHÔNG TỰ CHIA CỘT NỮA
             });
             // Expose for debugging
             window._portfolioSwiper = swiper;
@@ -456,10 +461,10 @@ function changeLanguage(lang) {
 // --- HÀM XỬ LÝ CUỘN CHO TIMELINE ---
 function scrollToTimeline(e) {
     e.preventDefault(); // Ngăn hành động mặc định
-    
+
     // Kiểm tra độ rộng màn hình (980px là điểm gãy layout tablet/mobile)
     const isMobile = window.innerWidth <= 980;
-    
+
     // Chọn ID đích dựa trên thiết bị
     const targetId = isMobile ? 'timeline-mobile' : 'timeline-desktop';
     const targetElement = document.getElementById(targetId);

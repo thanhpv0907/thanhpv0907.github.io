@@ -25,7 +25,10 @@ body {
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  line-height: 1.5;
+  line-height: 1.6;
+  /* Tăng line-height cho dễ đọc */
+  font-size: 16px;
+  /* Base font size chuẩn SEO */
   padding: 32px 20px;
   display: flex;
   flex-direction: column;
@@ -106,7 +109,8 @@ header.site-card {
 .hero p {
   margin: 6px 0 0;
   color: var(--muted);
-  font-size: 14px;
+  font-size: 15px;
+  /* Tăng từ 14px */
 }
 
 .hero-meta {
@@ -120,7 +124,8 @@ header.site-card {
   background: var(--glass);
   padding: 6px 10px;
   border-radius: 999px;
-  font-size: 13px;
+  font-size: 14px;
+  /* Tăng từ 13px */
   color: var(--muted);
 }
 
@@ -213,7 +218,8 @@ p,
 .card p {
   margin: 8px 0 0;
   color: var(--muted);
-  font-size: 13px;
+  font-size: 15px;
+  /* Tăng từ 13px lên 15px cho dễ đọc */
 }
 
 aside.side {
@@ -257,7 +263,8 @@ footer {
   text-align: center;
   margin-top: 14px;
   color: var(--muted);
-  font-size: 13px;
+  font-size: 14px;
+  /* Tăng từ 13px */
 }
 
 /* Form inputs */
@@ -284,7 +291,8 @@ form button.send {
 }
 
 .mini {
-  font-size: 13px;
+  font-size: 14px;
+  /* Tăng từ 13px */
   color: var(--muted);
 }
 
@@ -326,7 +334,8 @@ select.lang-switch option {
 }
 
 .tagline {
-  font-size: 13px;
+  font-size: 15px;
+  /* Tăng từ 13px */
   color: var(--muted);
 }
 
@@ -576,13 +585,13 @@ select.lang-switch option {
   /* Màu nền sáng xanh nhạt dễ chịu */
   --card: #ffffff;
   /* Card màu trắng */
-  --muted: #64748b;
-  /* Màu chữ phụ đậm hơn để dễ đọc trên nền sáng */
-  --accent: #0d9488;
-  /* Màu điểm nhấn đậm hơn (Teal) để tương phản tốt */
-  --glass: rgba(0, 0, 0, 0.04);
-  /* Hiệu ứng kính chuyển sang màu tối mờ */
-  --glass-2: rgba(0, 0, 0, 0.02);
+  --muted: #475569;
+  /* Đậm hơn #64748b để tăng tương phản trên nền sáng */
+  --accent: #0f766e;
+  /* Màu điểm nhấn đậm hơn (Teal 700) để tương phản tốt trên nền trắng */
+  --glass: rgba(0, 0, 0, 0.08);
+  /* Tăng độ đậm nền kính */
+  --glass-2: rgba(0, 0, 0, 0.05);
   --shadow: 0 4px 20px rgba(148, 163, 184, 0.25);
   /* Bóng đổ màu xám nhẹ */
   --border-color: rgba(0, 0, 0, 0.08);
@@ -637,6 +646,14 @@ select.lang-switch option {
   box-shadow: 0 8px 24px rgba(13, 148, 136, 0.3);
 }
 
+/* Tăng cường hiển thị cho Chip và Skill trong Light Mode */
+[data-theme="light"] .chip,
+[data-theme="light"] .skill {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  color: #334155;
+  /* Màu chữ đậm hơn chút */
+}
+
 /* --- TIMELINE STYLES --- */
 .timeline-list {
   position: relative;
@@ -679,9 +696,9 @@ select.lang-switch option {
 }
 
 .tl-year {
-  display: block;
   /* Xuống dòng để tiết kiệm diện tích ngang */
-  font-size: 11px;
+  font-size: 13px;
+  /* Tăng từ 11px */
   font-weight: 700;
   color: var(--accent);
   margin-bottom: 2px;
@@ -699,7 +716,8 @@ select.lang-switch option {
 
 .timeline-item p {
   margin: 0;
-  font-size: 13px;
+  font-size: 14px;
+  /* Tăng từ 13px */
   color: var(--muted);
   line-height: 1.4;
 }
@@ -780,7 +798,8 @@ select.lang-switch option {
 .nav-list a {
   text-decoration: none;
   color: var(--muted);
-  font-size: 14px;
+  font-size: 15px;
+  /* Tăng từ 14px */
   font-weight: 500;
   transition: all 0.2s ease;
   padding: 6px 10px;
@@ -835,65 +854,65 @@ section[id] {
     top: 0;
   }
 
-  .card:hover {
-    transform: translateY(-6px);
-    /* Nhấc nhẹ thẻ lên 6px */
-    border-color: var(--accent);
-    /* Viền chuyển màu xanh ngọc */
+  /* .card:hover REMOVED as per request */
 
-/* --- SWIPER CUSTOM STYLES --- */
 
-/* Đảm bảo container không bị tràn */
-.swiper {
-  width: 100%;
-  padding-bottom: 50px !important; /* Chừa chỗ cho dấu chấm tròn ở dưới */
-}
+  /* --- SWIPER CUSTOM STYLES --- */
 
-/* Cấu hình chiều cao các slide bằng nhau */
-.swiper-slide {
-  height: auto;
-  display: flex; /* Để card bên trong dãn full chiều cao */
-}
-
-/* Card bên trong slide */
-.swiper-slide .project-card {
-  width: 100%;
-  height: 100%; /* Card luôn cao bằng slide */
-  margin: 0;    /* Reset margin vì swiper tự xử lý khoảng cách */
-}
-
-/* Tùy chỉnh màu dấu chấm tròn (Pagination) */
-.swiper-pagination-bullet {
-  background: var(--muted);
-  opacity: 0.5;
-  width: 10px;
-  height: 10px;
-}
-
-.swiper-pagination-bullet-active {
-  background: var(--accent) !important; /* Màu xanh chủ đạo */
-  opacity: 1;
-  width: 12px;
-  height: 12px;
-}
-
-/* Tắt grid cũ nếu còn thừa */
-.projects-grid {
-  display: block; /* Hoặc bỏ class này đi trong HTML cũng được */
-}
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02));
-    /* Nền sáng hơn chút */
-    box-shadow: 0 15px 30px -10px rgba(139, 233, 201, 0.15);
-    /* Đổ bóng màu xanh nhẹ */
-    z-index: 2;
+  /* Đảm bảo container không bị tràn */
+  .swiper {
+    width: 100%;
+    padding-bottom: 50px !important;
+    /* Chừa chỗ cho dấu chấm tròn ở dưới */
   }
+
+  /* Cấu hình chiều cao các slide bằng nhau */
+  .swiper-slide {
+    height: auto;
+    display: flex;
+    /* Để card bên trong dãn full chiều cao */
+  }
+
+  /* Card bên trong slide */
+  .swiper-slide .project-card {
+    width: 100%;
+    height: 100%;
+    /* Card luôn cao bằng slide */
+    margin: 0;
+    /* Reset margin vì swiper tự xử lý khoảng cách */
+  }
+
+  /* Tùy chỉnh màu dấu chấm tròn (Pagination) */
+  .swiper-pagination-bullet {
+    background: var(--muted);
+    opacity: 0.5;
+    width: 10px;
+    height: 10px;
+  }
+
+  .swiper-pagination-bullet-active {
+    background: var(--accent) !important;
+    /* Màu xanh chủ đạo */
+    opacity: 1;
+    width: 12px;
+    height: 12px;
+  }
+
+  /* Tắt grid cũ nếu còn thừa */
+  .projects-grid {
+    display: block;
+    /* Hoặc bỏ class này đi trong HTML cũng được */
+  }
+
+  /* Dangling properties removed */
 
   /* 2. Hiệu ứng cho các Chip kỹ năng (Skills) */
   .skill {
     background: var(--glass-2);
     padding: 8px 10px;
     border-radius: 8px;
-    font-size: 13px;
+    font-size: 14px;
+    /* Tăng từ 13px */
     color: var(--muted);
 
     /* THÊM CÁC DÒNG SAU ĐỂ ĐỒNG BỘ: */
@@ -904,6 +923,15 @@ section[id] {
     position: relative;
     /* Để dùng z-index khi nổi lên */
     cursor: default;
+    width: 100%;
+    /* Đảm bảo full width trong sidebar */
+  }
+
+  /* Container cho skills trong sidebar */
+  .skills {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
   }
 
   .skill:hover {
@@ -1065,8 +1093,8 @@ section[id] {
 .project-card {
   display: flex;
   flex-direction: column;
-  padding: 24px;
-  /* Tăng padding để nội dung thoáng hơn */
+  padding: 24px 60px;
+  /* Tăng padding 2 bên để tránh bị mũi tên che chữ */
   height: 100%;
   /* Đảm bảo chiều cao full */
 }
@@ -1125,7 +1153,7 @@ section[id] {
 
 /* Tablet: Chuyển thành 2 cột hoặc 1 cột tùy ý */
 @media (max-width: 980px) {
-  .projects-grid {}
+  /* .projects-grid {} removed */
 }
 
 /* Mobile: Chuyển thành 1 cột */
@@ -1151,9 +1179,12 @@ section[id] {
 .swiper {
   width: 100%;
   height: auto;
-  overflow: hidden !important; /* QUAN TRỌNG: Cắt bỏ phần thừa */
-  padding-bottom: 50px !important; /* Chừa chỗ cho dấu chấm */
-  position: relative; /* Để định vị các thành phần con */
+  overflow: hidden !important;
+  /* QUAN TRỌNG: Cắt bỏ phần thừa */
+  padding-bottom: 50px !important;
+  /* Chừa chỗ cho dấu chấm */
+  position: relative;
+  /* Để định vị các thành phần con */
 }
 
 /* 2. Đảm bảo Wrapper nằm ngang */
@@ -1161,13 +1192,16 @@ section[id] {
   display: flex;
   width: 100%;
   height: 100%;
-  box-sizing: content-box; /* Cần thiết cho Swiper */
+  box-sizing: content-box;
+  /* Cần thiết cho Swiper */
 }
 
 /* 3. Đảm bảo Slide không bị co rúm */
 .swiper-slide {
-  flex-shrink: 0; /* Không cho phép slide bị co lại */
-  width: 100%;    /* Mặc định full width, JS sẽ tự tính lại sau */
+  flex-shrink: 0;
+  /* Không cho phép slide bị co lại */
+  width: 100%;
+  /* Mặc định full width, JS sẽ tự tính lại sau */
   height: auto;
   display: flex;
 }
@@ -1194,7 +1228,8 @@ section[id] {
 }
 
 .swiper-slide {
-  min-width: 0; /* allow flex items to shrink to container, prevents long widths */
+  min-width: 0;
+  /* allow flex items to shrink to container, prevents long widths */
 }
 
 .swiper img {
@@ -1206,8 +1241,10 @@ section[id] {
 /* --- FINAL DEFENSIVE LAYER (Global fixes) --- */
 
 /* 1. Khóa chiều ngang của toàn trang (Global fix) */
-html, body {
-  overflow-x: hidden; /* Ngăn chặn tuyệt đối việc cuộn ngang */
+html,
+body {
+  overflow-x: hidden;
+  /* Ngăn chặn tuyệt đối việc cuộn ngang */
   width: 100%;
   position: relative;
 }
@@ -1226,6 +1263,81 @@ html, body {
 /* 3. Đảm bảo thẻ chứa nó (main) cũng không bị đẩy */
 main {
   min-width: 0;
-  width: 100%; /* Đảm bảo nó không vượt quá cha */
+  width: 100%;
+  /* Đảm bảo nó không vượt quá cha */
 }
 
+/* --- SWIPER SINGLE SLIDE FIX --- */
+
+/* Căn giữa nội dung trong slide */
+.swiper-slide {
+  display: flex;
+  justify-content: center;
+  /* Căn giữa theo chiều ngang */
+}
+
+/* Giới hạn chiều rộng của Card để không bị bè ra quá to trên PC */
+.project-card {
+  width: 100%;
+  max-width: 800px;
+  /* Chỉ rộng tối đa 800px thôi, phần còn lại là khoảng trắng 2 bên */
+  margin: 0 auto;
+  /* Căn giữa card */
+}
+
+/* Tinh chỉnh lại nút phân trang cho cân đối */
+.swiper-pagination {
+  bottom: 0px !important;
+  /* Đẩy sát xuống đáy */
+}
+
+/* --- NAVIGATION ARROWS --- */
+.swiper-button-prev,
+.swiper-button-next {
+  width: 36px;
+  height: 36px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  color: var(--accent);
+  transition: all 0.3s ease;
+  backdrop-filter: blur(4px);
+  position: absolute;
+  /* Đảm bảo vị trí tuyệt đối */
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+}
+
+.swiper-button-prev {
+  left: 10px;
+}
+
+.swiper-button-next {
+  right: 10px;
+}
+
+.swiper-button-prev:after,
+.swiper-button-next:after {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.swiper-button-prev:hover,
+.swiper-button-next:hover {
+  background-color: var(--accent);
+  color: var(--bg);
+  transform: scale(1.1);
+}
+
+/* Light mode support for arrows */
+[data-theme="light"] .swiper-button-prev,
+[data-theme="light"] .swiper-button-next {
+  background-color: rgba(0, 0, 0, 0.05);
+  color: var(--accent);
+}
+
+[data-theme="light"] .swiper-button-prev:hover,
+[data-theme="light"] .swiper-button-next:hover {
+  background-color: var(--accent);
+  color: #fff;
+}
