@@ -60,7 +60,8 @@ async function handleSend(e) {
     try {
         // --- CẤU HÌNH API BACKEND CỦA BẠN TẠI ĐÂY ---
         // Thay thành endpoint thực tế của bạn
-        const API_URL = 'https://api.thanhpv0907.site/api/contact';
+        // Correct endpoint (server exposes /send-email)
+        const API_URL = 'https://api.thanhpv0907.site/send-email';
 
         const response = await fetch(API_URL, {
             method: 'POST',
