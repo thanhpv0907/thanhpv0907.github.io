@@ -1,0 +1,12 @@
+{
+  "name": "portfolio-mock-server",
+  "version": "1.0.0",
+  "description": "Mock Express server to test contact form",
+  "main": "mock-server.js",
+  "scripts": {
+    "start": "node mock-server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}

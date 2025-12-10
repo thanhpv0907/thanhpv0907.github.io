@@ -991,6 +991,19 @@ section[id] {
   padding-left: 5px;
 }
 
+/* Inline form message styling */
+#formMessage {
+  display: none;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+@media (min-width: 981px) {
+  #formMessage {
+    font-size: 13px;
+  }
+}
+
 /* Làm đậm phần tiêu đề con trong li */
 .project-list li strong {
   color: var(--accent); /* Màu xanh chủ đạo */

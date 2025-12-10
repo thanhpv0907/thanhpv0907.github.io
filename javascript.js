@@ -13,89 +13,86 @@ function copyEmail() {
         prompt('Copy email:', email);
     });
 }
+async function handleSend(e) {
+    e.preventDefault(); // Ngăn trình duyệt load lại trang
 
-// Replaced old mailto-based handler with fetch-based submit handler.
-// This attaches on DOMContentLoaded to avoid relying on inline onsubmit attributes.
-document.addEventListener('DOMContentLoaded', function() {
-    const contactForm = document.getElementById('contactForm');
+    // 1. Lấy các phần tử giao diện
+    const nameInput = document.getElementById('name');
+    const emailInput = document.getElementById('email');
+    const subjectInput = document.getElementById('subject');
+    const messageInput = document.getElementById('message');
+    const submitBtn = document.getElementById('btn-submit') || document.querySelector('button[type="submit"]');
+    const messageBox = document.getElementById('formMessage');
 
-    // Kiểm tra xem form có tồn tại không để tránh lỗi
-    if (contactForm) {
-        contactForm.addEventListener('submit', function(event) {
-            event.preventDefault(); // Chặn hành động load lại trang mặc định
+    // 2. Lấy giá trị
+    const payload = {
+        name: nameInput.value.trim(),
+        email: emailInput.value.trim(),
+        subject: subjectInput ? subjectInput.value.trim() : 'Liên hệ từ Website',
+        message: messageInput.value.trim()
+    };
 
-            // 1. Lấy dữ liệu từ Form (IDs khớp với HTML hiện tại)
-            const nameInput = document.getElementById('name');
-            const emailInput = document.getElementById('email');
-            const subjectInput = document.getElementById('subject');
-            const messageInput = document.getElementById('message');
-            const submitBtn = document.querySelector('button[type="submit"]'); // nút hiện tại không có id
-
-            if (!nameInput || !emailInput || !messageInput) {
-                alert('Form không đúng cấu trúc. Vui lòng kiểm tra các ô nhập.');
-                return;
-            }
-
-            // 2. Hiệu ứng "Đang gửi..." (UX)
-            const originalBtnText = submitBtn ? submitBtn.innerText : '';
-            if (submitBtn) {
-                submitBtn.innerText = 'Đang gửi...';
-                submitBtn.disabled = true;
-            }
-
-            // 3. Chuẩn bị dữ liệu
-            const formData = {
-                name: nameInput.value.trim(),
-                email: emailInput.value.trim(),
-                subject: subjectInput ? subjectInput.value.trim() : '',
-                message: messageInput.value.trim()
-            };
-
-            // Basic client-side validation
-            if (!formData.name || !formData.email || !formData.message) {
-                alert('Vui lòng điền đầy đủ Họ tên, Email và Nội dung.');
-                if (submitBtn) {
-                    submitBtn.innerText = originalBtnText;
-                    submitBtn.disabled = false;
-                }
-                return;
-            }
-
-            // 4. Gửi đến Server Backend của bạn
-            // Lưu ý: endpoint có thể cần thay đổi nếu bạn dùng URL khác
-            fetch('https://api.thanhpv0907.site/send-email', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(formData)
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.status === 'success') {
-                    // Thành công
-                    alert('✅ Gửi thành công! Cảm ơn bạn đã liên hệ.');
-                    contactForm.reset(); // Xóa trắng form
-                } else {
-                    // Lỗi từ server trả về (ví dụ thiếu thông tin)
-                    alert('⚠️ Lỗi: ' + (data.message || 'Server trả về lỗi')); 
-                }
-            })
-            .catch(error => {
-                // Lỗi mạng hoặc server chết
-                console.error('Error:', error);
-                alert('❌ Không thể kết nối đến máy chủ. Vui lòng thử lại sau.');
-            })
-            .finally(() => {
-                // 5. Trả lại trạng thái nút bấm
-                if (submitBtn) {
-                    submitBtn.innerText = originalBtnText;
-                    submitBtn.disabled = false;
-                }
-            });
-        });
+    // Validate cơ bản (dù HTML đã có required)
+    if (!payload.name || !payload.email || !payload.message) {
+        showFormMessage('Vui lòng điền đầy đủ thông tin bắt buộc.', 'error');
+        return;
     }
-});
+
+    // 3. Hiệu ứng UX: Disable nút để tránh bấm nhiều lần
+    const originalText = submitBtn ? submitBtn.textContent : '';
+    if (submitBtn) {
+        submitBtn.textContent = 'Đang gửi...';
+        submitBtn.disabled = true;
+    }
+
+    // Helper to display inline messages
+    function showFormMessage(text, type = 'success') {
+        if (!messageBox) return;
+        messageBox.style.display = 'block';
+        messageBox.textContent = text;
+        if (type === 'success') {
+            messageBox.style.color = 'var(--accent)';
+        } else {
+            messageBox.style.color = '#ef4444'; // red-ish
+        }
+    }
+
+    try {
+        // --- CẤU HÌNH API BACKEND CỦA BẠN TẠI ĐÂY ---
+        // Thay thành endpoint thực tế của bạn
+        const API_URL = 'https://api.thanhpv0907.site/api/contact';
+
+        const response = await fetch(API_URL, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(payload)
+        });
+
+        if (response.ok) {
+            // Thành công — show inline message instead of alert
+            showFormMessage('✅ Gửi liên hệ thành công! Tôi sẽ phản hồi sớm nhất có thể.', 'success');
+            // Reset form (use new id)
+            document.getElementById('contact-form').reset();
+            // Optionally hide message after a while
+            setTimeout(() => { if (messageBox) messageBox.style.display = 'none'; }, 6000);
+        } else {
+            const errorData = await response.json().catch(() => ({}));
+            console.error('Server Error:', errorData);
+            showFormMessage('Gửi thất bại: ' + (errorData.message || 'Lỗi server, vui lòng thử lại sau.'), 'error');
+        }
+
+    } catch (error) {
+        console.error('Network Error:', error);
+        showFormMessage('Không thể kết nối đến máy chủ. Vui lòng kiểm tra đường truyền.', 'error');
+    } finally {
+        if (submitBtn) {
+            submitBtn.textContent = originalText;
+            submitBtn.disabled = false;
+        }
+    }
+}
 
 // --- XỬ LÝ DARK/LIGHT MODE ---
 
