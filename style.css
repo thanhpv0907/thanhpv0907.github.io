@@ -106,6 +106,22 @@ header.site-card {
   letter-spacing: 0.2px;
 }
 
+.role-title {
+  font-size: 0.85em;
+  color: var(--muted);
+  font-weight: 400;
+  display: block;
+  /* Xuống dòng trên mobile nếu cần, hoặc inline */
+}
+
+@media (min-width: 600px) {
+  .role-title {
+    display: inline;
+    /* Trên PC thì nằm cùng dòng */
+    margin-left: 8px;
+  }
+}
+
 .hero p {
   margin: 6px 0 0;
   color: var(--muted);
@@ -175,6 +191,17 @@ p,
   font-size: 15px;
   /* Đảm bảo chữ thường đủ to */
   line-height: 1.6;
+}
+
+.highlight {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.price-val {
+  font-weight: 700;
+  color: var(--accent);
+  font-size: 1.1em;
 }
 
 /* --- LIGHT MODE SUPPORT --- */
@@ -1340,4 +1367,59 @@ main {
 [data-theme="light"] .swiper-button-next:hover {
   background-color: var(--accent);
   color: #fff;
+}
+
+/* --- SPLASH SCREEN --- */
+.splash-screen {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 36, 0.95);
+  backdrop-filter: blur(8px);
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.4s ease;
+}
+
+.splash-screen.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.splash-content {
+  text-align: center;
+  transform: scale(0.9);
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.splash-screen.show .splash-content {
+  transform: scale(1);
+}
+
+.splash-icon {
+  font-size: 48px;
+  margin-bottom: 20px;
+  animation: bounce 1s infinite;
+}
+
+#splash-msg {
+  font-size: 24px;
+  color: var(--accent);
+  font-weight: 700;
+  margin: 0;
+}
+
+@keyframes bounce {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
 }

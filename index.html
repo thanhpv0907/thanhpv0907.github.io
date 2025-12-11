@@ -43,11 +43,13 @@
         <img class="avatar" src="./images/avatar.jpeg" alt="">
         <div class="hero">
           <!-- ĐÃ SỬA: Thêm data-i18n="site_name" -->
-          <h1 data-i18n="site_name">Phạm Vi Thành</h1>
+          <!-- ĐÃ SỬA: Thêm từ khóa SEO vào H1 -->
+          <h1 data-i18n="site_name">Phạm Vi Thành <span class="role-title">- Phiên dịch viên Tiếng Nhật / Anh</span>
+          </h1>
 
-          <p class="tagline" data-i18n="tagline">Phiên dịch • Biên dịch (Việt ↔ Nhật ↔ Anh) </p>
+          <p class="tagline" data-i18n="tagline">Chuyên nghiệp • Tận tâm • Bảo mật</p>
 
-          <p> Hội nghị • Thương mại •Livestream • Hợp đồng</p>
+          <p>Hội nghị • Thương mại • Kỹ thuật • CNTT</p>
 
           <div class="hero-meta">
             <div class="chip" data-i18n="exp">Kinh nghiệm: 4+ năm</div>
@@ -69,12 +71,10 @@
 
         <!-- NỘI DUNG MỚI -->
         <p class="lead" data-i18n="about_desc">
-          Tôi là <strong>Phạm Vi Thành</strong>, phiên dịch viên chuyên nghiệp Tiếng Nhật – Anh – Việt.
-          Tôi chuyên xử lý các dự án hội nghị, đàm phán thương mại, dịch online (Zoom/Google Meet) và các chủ đề chuyên
-          môn cao như tài liệu pháp lý/kỹ thuật.
-          Với 4 năm kinh nghiệm phiên dịch toàn thời gian trong các lĩnh vực linh kiện điện tử, thiết kế đồ hoạ - mỹ
-          thuật và CNTT, cùng các chứng chỉ cao cấp (JLPT N1, BJT J2, TOEIC 825), tôi cam kết cung cấp dịch vụ chất
-          lượng vượt trội.
+          Tôi là <strong>Phạm Vi Thành</strong>, <span class="highlight">Phiên dịch viên chuyên nghiệp</span> với <span
+            class="highlight">4+ năm kinh nghiệm</span> thực chiến.
+          Chuyên sâu trong các lĩnh vực: <strong>Hội nghị, Thương mại, Kỹ thuật & CNTT</strong>.
+          Cam kết mang đến chất lượng dịch thuật chính xác, tự nhiên và bảo mật tuyệt đối cho mọi dự án.
         </p>
 
       </section>
@@ -177,54 +177,7 @@
         <!-- Swiper Container -->
         <div class="swiper mySwiper">
           <div class="swiper-wrapper">
-
-            <!-- Slide 1 -->
-            <div class="swiper-slide">
-              <div class="card project-card">
-                <div class="card-icon">⚖️</div>
-                <h3 data-i18n="pj_1_title">Kinh doanh, Thương mại & Pháp luật</h3>
-                <ul class="project-list">
-                  <li><strong>Đàm phán dược phẩm:</strong> Dịch đuổi đàm phán thương mại và giới thiệu sản phẩm cho API
-                    Co., Ltd.</li>
-                  <li><strong>Kinh doanh thời trang:</strong> Dịch kế hoạch ra mắt BST Golf cao cấp (UTAA Việt Nam x Đối
-                    tác Nhật).</li>
-                  <li><strong>Công nghệ thông tin (IT):</strong> Đàm phán thương mại dự án IT (Dịch online).</li>
-                  <li><strong>Pháp luật/Tài chính:</strong> Dịch online với luật sư về vay vốn kinh doanh tại Nhật.</li>
-                </ul>
-              </div>
-            </div>
-
-            <!-- Slide 2 -->
-            <div class="swiper-slide">
-              <div class="card project-card">
-                <div class="card-icon">🎨</div>
-                <h3 data-i18n="pj_2_title">Văn hóa, Giáo dục & Truyền thông</h3>
-                <ul class="project-list">
-                  <li><strong>NXB Kim Đồng x Kadokawa:</strong> Dịch đuổi họp báo kỷ niệm 50 năm Việt-Nhật & giới thiệu
-                    truyện Công nữ Anio.</li>
-                  <li><strong>Cuộc thi vẽ minh hoạ:</strong> Dịch đuổi tại sự kiện của Kadokawa.</li>
-                  <li><strong>Hợp tác giáo dục:</strong> Dịch trao đổi giữa Chủ tịch Trường Quốc tế Nhật Bản và đại diện
-                    các trường Nhật ngữ.</li>
-                  <li><strong>Dự án Mầm non:</strong> Dịch Nhật-Anh (đuổi) cho Academy Sharing và đối tác Singapore.
-                  </li>
-                </ul>
-              </div>
-            </div>
-
-            <!-- Slide 3 -->
-            <div class="swiper-slide">
-              <div class="card project-card">
-                <div class="card-icon">🌟</div>
-                <h3 data-i18n="pj_3_title">Dự án Khác & Kinh nghiệm</h3>
-                <ul class="project-list">
-                  <li><strong>Linh kiện điện tử:</strong> Kinh nghiệm làm việc toàn thời gian (full-time) suốt 4 năm.
-                  </li>
-                  <li><strong>Sự kiện & Du lịch:</strong> Dịch lễ đính hôn, lễ cưới; hướng dẫn khách Nhật tham quan Hà
-                    Nội và các tỉnh lân cận.</li>
-                </ul>
-              </div>
-            </div>
-
+            <!-- Slides will be rendered by JavaScript -->
           </div>
 
           <!-- Dấu chấm tròn phân trang (Pagination) -->
@@ -240,11 +193,11 @@
       <section id="pricing" class="section pricing">
         <h2 data-i18n="price_title">Bảng giá tham khảo</h2>
         <div class="card">
-          <p class="mini"><strong data-i18n="price_1_label">Phiên dịch trực tiếp:</strong> <span
+          <p class="mini"><strong data-i18n="price_1_label">Phiên dịch trực tiếp:</strong> <span class="price-val"
               data-i18n="price_1_val">500.000 - 1.500.000 VNĐ / giờ (tùy nội dung & địa điểm)</span></p>
-          <p class="mini"><strong data-i18n="price_2_label">Phiên dịch nguyên ngày:</strong> <span
+          <p class="mini"><strong data-i18n="price_2_label">Phiên dịch nguyên ngày:</strong> <span class="price-val"
               data-i18n="price_2_val">4.000.000 - 12.000.000 VNĐ / ngày</span></p>
-          <p class="mini"><strong data-i18n="price_3_label">Biên dịch tài liệu:</strong> <span
+          <p class="mini"><strong data-i18n="price_3_label">Biên dịch tài liệu:</strong> <span class="price-val"
               data-i18n="price_3_val">50.000 - 150.000 VNĐ / trang (tùy chuyên ngành)</span></p>
           <p class="mini" data-i18n="price_note">Giá có thể điều chỉnh theo mức độ chuyên môn, thời gian gấp và yêu cầu
             bảo mật.</p>
@@ -445,6 +398,14 @@
     </footer>
   </div>
   </script>
+  <!-- SPLASH SCREEN -->
+  <div id="splash-screen" class="splash-screen">
+    <div class="splash-content">
+      <div class="splash-icon">✨</div>
+      <h2 id="splash-msg">Cảm ơn quý khách đã liên hệ!</h2>
+    </div>
+  </div>
+
   <!-- Swiper JS -->
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
   <script src="./javascript.js"></script>

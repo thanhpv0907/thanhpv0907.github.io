@@ -13,10 +13,15 @@ function copyEmail() {
         prompt('Copy email:', email);
     });
 }
-async function handleSend(e) {
-    e.preventDefault(); // Ngăn trình duyệt load lại trang
+// --- EMAIL QUEUE SYSTEM ---
+const emailQueue = [];
+let isProcessing = false;
+let lastSentTime = 0;
+const RATE_LIMIT_DELAY = 10000; // 10 seconds delay between emails
 
-    // 1. Lấy các phần tử giao diện
+async function handleSend(e) {
+    e.preventDefault();
+
     const nameInput = document.getElementById('name');
     const emailInput = document.getElementById('email');
     const subjectInput = document.getElementById('subject');
@@ -24,7 +29,6 @@ async function handleSend(e) {
     const submitBtn = document.getElementById('btn-submit') || document.querySelector('button[type="submit"]');
     const messageBox = document.getElementById('formMessage');
 
-    // 2. Lấy giá trị
     const payload = {
         name: nameInput.value.trim(),
         email: emailInput.value.trim(),
@@ -32,71 +36,129 @@ async function handleSend(e) {
         message: messageInput.value.trim()
     };
 
-    // Validate cơ bản (dù HTML đã có required)
     if (!payload.name || !payload.email || !payload.message) {
         showFormMessage('Vui lòng điền đầy đủ thông tin bắt buộc.', 'error');
         return;
     }
 
-    // 3. Hiệu ứng UX: Disable nút để tránh bấm nhiều lần
-    const originalText = submitBtn ? submitBtn.textContent : '';
+    // Add to queue
+    emailQueue.push({ payload, submitBtn, messageBox });
+
+    // UI Feedback immediately
     if (submitBtn) {
-        submitBtn.textContent = 'Đang gửi...';
+        const currentLang = localStorage.getItem('selectedLang') || 'vn';
+        submitBtn.textContent = resources[currentLang].btn_processing;
         submitBtn.disabled = true;
     }
+    // showFormMessage('Đang thêm vào hàng đợi...', 'success');
 
-    // Helper to display inline messages
-    function showFormMessage(text, type = 'success') {
-        if (!messageBox) return;
-        messageBox.style.display = 'block';
-        messageBox.textContent = text;
-        if (type === 'success') {
-            messageBox.style.color = 'var(--accent)';
-        } else {
-            messageBox.style.color = '#ef4444'; // red-ish
-        }
+    processQueue();
+}
+
+async function processQueue() {
+    if (isProcessing || emailQueue.length === 0) return;
+
+    const now = Date.now();
+    const timeSinceLastSend = now - lastSentTime;
+
+    if (timeSinceLastSend < RATE_LIMIT_DELAY) {
+        const waitTime = RATE_LIMIT_DELAY - timeSinceLastSend;
+        console.log(`Rate limit active. Waiting ${waitTime}ms...`);
+        setTimeout(processQueue, waitTime);
+        return;
     }
 
-    try {
-        // --- CẤU HÌNH API BACKEND CỦA BẠN TẠI ĐÂY ---
-        // Thay thành endpoint thực tế của bạn
-        // Correct endpoint (server exposes /send-email)
-        const API_URL = 'https://api.thanhpv0907.site/send-email';
+    isProcessing = true;
+    const { payload, submitBtn, messageBox } = emailQueue.shift();
 
+    try {
+        // Update UI to "Sending"
+        // if (messageBox) {
+        //     messageBox.textContent = 'Đang gửi...';
+        //     messageBox.style.color = 'var(--accent)';
+        // }
+
+        const API_URL = 'https://api.thanhpv0907.site/send-email';
         const response = await fetch(API_URL, {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
+            headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(payload)
         });
 
         if (response.ok) {
-            // Thành công — show inline message instead of alert
-            showFormMessage('✅ Gửi liên hệ thành công! Tôi sẽ phản hồi sớm nhất có thể.', 'success');
-            // Reset form (use new id)
+            // showFormMessage('✅ Gửi liên hệ thành công! Tôi sẽ phản hồi sớm nhất có thể.', 'success'); // Removed inline message
             document.getElementById('contact-form').reset();
-            // Optionally hide message after a while
+            lastSentTime = Date.now(); // Update timestamp on success
+
+            // Show Splash Screen
+            showSplashScreen();
+
             setTimeout(() => { if (messageBox) messageBox.style.display = 'none'; }, 6000);
         } else {
             const errorData = await response.json().catch(() => ({}));
-            console.error('Server Error:', errorData);
-            showFormMessage('Gửi thất bại: ' + (errorData.message || 'Lỗi server, vui lòng thử lại sau.'), 'error');
+            showFormMessage('Gửi thất bại: ' + (errorData.message || 'Lỗi server.'), 'error');
         }
 
     } catch (error) {
         console.error('Network Error:', error);
-        showFormMessage('Không thể kết nối đến máy chủ. Vui lòng kiểm tra đường truyền.', 'error');
+        showFormMessage('Không thể kết nối đến máy chủ.', 'error');
     } finally {
         if (submitBtn) {
-            submitBtn.textContent = originalText;
+            const currentLang = localStorage.getItem('selectedLang') || 'vn';
+            submitBtn.textContent = resources[currentLang].btn_send; // Reset button text from resources
             submitBtn.disabled = false;
+        }
+        isProcessing = false;
+
+        // Process next item if any
+        if (emailQueue.length > 0) {
+            processQueue();
         }
     }
 }
 
+function showFormMessage(text, type = 'success') {
+    const messageBox = document.getElementById('formMessage');
+    if (!messageBox) return;
+    messageBox.style.display = 'block';
+    messageBox.textContent = text;
+    if (type === 'success') {
+        messageBox.style.color = 'var(--accent)';
+    } else {
+        messageBox.style.color = '#ef4444';
+    }
+}
+
+function showSplashScreen() {
+    const splash = document.getElementById('splash-screen');
+    const msg = document.getElementById('splash-msg');
+
+    // Get current language
+    const currentLang = localStorage.getItem('selectedLang') || 'vn';
+
+    // Set message
+    if (resources[currentLang] && resources[currentLang].thank_you_msg) {
+        msg.textContent = resources[currentLang].thank_you_msg;
+    }
+
+    // Show
+    splash.classList.add('show');
+
+    // Auto hide after 3 seconds
+    setTimeout(() => {
+        splash.classList.remove('show');
+    }, 3000);
+
+    // Allow click to close
+    splash.onclick = () => splash.classList.remove('show');
+}
+
 // --- KHỞI TẠO SWIPER (PROJECT SLIDER) ---
 document.addEventListener('DOMContentLoaded', function () {
+    // Render projects first
+    const savedLang = localStorage.getItem('selectedLang') || 'vn';
+    renderProjects(savedLang);
+
     // Kiểm tra xem thư viện đã load chưa
     if (typeof Swiper !== 'undefined') {
         initSwiper();
@@ -104,50 +166,50 @@ document.addEventListener('DOMContentLoaded', function () {
         // Nếu chưa, đợi 0.5s rồi thử lại (Phòng trường hợp mạng lag)
         setTimeout(initSwiper, 500);
     }
-
-    function initSwiper() {
-        if (typeof Swiper === 'undefined') {
-            console.warn('Swiper still not available.');
-            return;
-        }
-
-        try {
-            var swiper = new Swiper('.mySwiper', {
-                // --------------------------------------------------
-                // THAY ĐỔI QUAN TRỌNG TẠI ĐÂY:
-                slidesPerView: 1,      // Luôn chỉ hiện 1 slide trên mọi màn hình
-                spaceBetween: 30,      // Khoảng cách giữa các slide
-                centeredSlides: true,  // Căn giữa slide đang active
-                // --------------------------------------------------
-
-                loop: true,            // Lặp lại vô tận
-                grabCursor: true,      // Hiện con trỏ bàn tay
-                speed: 800,            // Tốc độ chuyển slide (ms)
-
-                autoplay: {
-                    delay: 7000,         // Tăng thời gian lên 7s cho người dùng kịp đọc
-                    disableOnInteraction: false,
-                },
-
-                pagination: {
-                    el: ".swiper-pagination",
-                    clickable: true,
-                },
-
-                navigation: {
-                    nextEl: ".swiper-button-next",
-                    prevEl: ".swiper-button-prev",
-                },
-
-                // XÓA BỎ PHẦN breakpoints: { ... } ĐỂ KHÔNG TỰ CHIA CỘT NỮA
-            });
-            // Expose for debugging
-            window._portfolioSwiper = swiper;
-        } catch (err) {
-            console.error('Failed to init Swiper:', err);
-        }
-    }
 });
+
+function initSwiper() {
+    if (typeof Swiper === 'undefined') {
+        console.warn('Swiper still not available.');
+        return;
+    }
+
+    try {
+        var swiper = new Swiper('.mySwiper', {
+            // --------------------------------------------------
+            // THAY ĐỔI QUAN TRỌNG TẠI ĐÂY:
+            slidesPerView: 1,      // Luôn chỉ hiện 1 slide trên mọi màn hình
+            spaceBetween: 30,      // Khoảng cách giữa các slide
+            centeredSlides: true,  // Căn giữa slide đang active
+            // --------------------------------------------------
+
+            loop: true,            // Lặp lại vô tận
+            grabCursor: true,      // Hiện con trỏ bàn tay
+            speed: 800,            // Tốc độ chuyển slide (ms)
+
+            autoplay: {
+                delay: 7000,         // Tăng thời gian lên 7s cho người dùng kịp đọc
+                disableOnInteraction: false,
+            },
+
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+
+            // XÓA BỎ PHẦN breakpoints: { ... } ĐỂ KHÔNG TỰ CHIA CỘT NỮA
+        });
+        // Expose for debugging
+        window._portfolioSwiper = swiper;
+    } catch (err) {
+        console.error('Failed to init Swiper:', err);
+    }
+}
 
 // --- XỬ LÝ DARK/LIGHT MODE ---
 
@@ -277,6 +339,8 @@ const resources = {
         nav_projects: "Dự án",
         nav_price: "Bảng giá",
         nav_contact: "Liên hệ",
+        thank_you_msg: "Cảm ơn quý khách đã liên hệ!",
+        btn_processing: "Đang xử lý...",
     },
     en: {
         site_name: "Pham Vi Thanh",
@@ -312,11 +376,11 @@ const resources = {
         testi_content: "“Very accurate translation, professional support throughout the negotiation.” — <strong>Client X</strong>",
         price_title: "Reference Pricing",
         price_1_label: "Interpreting:",
-        price_1_val: "500k - 1.5M VND / hour (depends on content/location)",
+        price_1_val: "$20 - $60 / hour (depends on content/location)",
         price_2_label: "Daily Rate:",
-        price_2_val: "4M - 12M VND / day",
+        price_2_val: "$160 - $480 / day",
         price_3_label: "Document Translation:",
-        price_3_val: "50k - 150k VND / page (depends on topic)",
+        price_3_val: "$2 - $6 / page (depends on topic)",
         price_note: "Rates may vary based on complexity, urgency, and confidentiality requirements.",
         contact_title: "Contact",
         contact_desc: "Send a project request or booking — I will respond promptly.",
@@ -357,6 +421,8 @@ const resources = {
         nav_projects: "Projects",
         nav_price: "Pricing",
         nav_contact: "Contact",
+        thank_you_msg: "Thank you for contacting me!",
+        btn_processing: "Processing...",
     },
     ja: {
         site_name: "ファム・ヴィ・タイン",
@@ -392,11 +458,11 @@ const resources = {
         testi_content: "「非常に的確な翻訳で、交渉中も専門的なサポートをしてくれました。」 — <strong>クライアント X</strong>",
         price_title: "参考価格",
         price_1_label: "通訳:",
-        price_1_val: "500,000 - 1,500,000 VND / 時間 (内容・場所による)",
+        price_1_val: "3,000 - 9,000円 / 時間 (内容・場所による)",
         price_2_label: "終日対応:",
-        price_2_val: "4,000,000 - 12,000,000 VND / 日",
+        price_2_val: "24,000 - 72,000円 / 日",
         price_3_label: "文書翻訳:",
-        price_3_val: "50,000 - 150,000 VND / ページ (分野による)",
+        price_3_val: "300 - 900円 / ページ (分野による)",
         price_note: "専門性、緊急度、機密保持の要件により価格は調整可能です。",
         contact_title: "お問い合わせ",
         contact_desc: "プロジェクトのご依頼や予約はこちらから。迅速に返信いたします。",
@@ -431,14 +497,142 @@ const resources = {
         tl_3_title: "中国語学士号 - 大学",
         tl_3_desc: "優秀な成績で卒業。上海での1年間の交換留学プログラムに参加。",
         nav_about: "自己紹介",
+
         nav_exp: "経歴",
         nav_services: "サービス",
         nav_skills: "スキル",
         nav_projects: "実績",
         nav_price: "料金",
-        nav_contact: "連絡先",
-    }
+        nav_contact: "お問い合わせ",
+        thank_you_msg: "お問い合わせありがとうございます！",
+        btn_processing: "処理中...",
+    },
 };
+
+const projectData = {
+    vi: [
+        {
+            icon: "⚖️",
+            title: "Kinh doanh, Thương mại & Pháp luật",
+            items: [
+                "<strong>Đàm phán dược phẩm:</strong> Dịch đuổi đàm phán thương mại và giới thiệu sản phẩm cho API Co., Ltd.",
+                "<strong>Kinh doanh thời trang:</strong> Dịch kế hoạch ra mắt BST Golf cao cấp (UTAA Việt Nam x Đối tác Nhật).",
+                "<strong>Công nghệ thông tin (IT):</strong> Đàm phán thương mại dự án IT (Dịch online).",
+                "<strong>Pháp luật/Tài chính:</strong> Dịch online với luật sư về vay vốn kinh doanh tại Nhật."
+            ]
+        },
+        {
+            icon: "🎨",
+            title: "Văn hóa, Giáo dục & Truyền thông",
+            items: [
+                "<strong>NXB Kim Đồng x Kadokawa:</strong> Dịch đuổi họp báo kỷ niệm 50 năm Việt-Nhật & giới thiệu truyện Công nữ Anio.",
+                "<strong>Cuộc thi vẽ minh hoạ:</strong> Dịch đuổi tại sự kiện của Kadokawa.",
+                "<strong>Hợp tác giáo dục:</strong> Dịch trao đổi giữa Chủ tịch Trường Quốc tế Nhật Bản và đại diện các trường Nhật ngữ.",
+                "<strong>Dự án Mầm non:</strong> Dịch Nhật-Anh (đuổi) cho Academy Sharing và đối tác Singapore."
+            ]
+        },
+        {
+            icon: "🌟",
+            title: "Dự án Khác & Kinh nghiệm",
+            items: [
+                "<strong>Linh kiện điện tử:</strong> Kinh nghiệm làm việc toàn thời gian (full-time) suốt 4 năm.",
+                "<strong>Sự kiện & Du lịch:</strong> Dịch lễ đính hôn, lễ cưới; hướng dẫn khách Nhật tham quan Hà Nội và các tỉnh lân cận."
+            ]
+        }
+    ],
+    en: [
+        {
+            icon: "⚖️",
+            title: "Business, Trade & Law",
+            items: [
+                "<strong>Pharmaceutical Negotiation:</strong> Consecutive interpretation for trade negotiation and product introduction for API Co., Ltd.",
+                "<strong>Fashion Business:</strong> Interpreted launch plan for luxury Golf collection (UTAA Vietnam x Japanese Partner).",
+                "<strong>IT:</strong> Trade negotiation for IT project (Online interpretation).",
+                "<strong>Law/Finance:</strong> Online interpretation with lawyer regarding business loan in Japan."
+            ]
+        },
+        {
+            icon: "🎨",
+            title: "Culture, Education & Media",
+            items: [
+                "<strong>Kim Dong Publishing x Kadokawa:</strong> Consecutive interpretation for press conference celebrating 50 years of Vietnam-Japan relations & introducing 'Princess Anio' manga.",
+                "<strong>Illustration Contest:</strong> Consecutive interpretation at Kadokawa event.",
+                "<strong>Education Cooperation:</strong> Interpreted exchange between Chairman of Japanese International School and representatives of Japanese language schools.",
+                "<strong>Preschool Project:</strong> Japanese-English interpretation (consecutive) for Academy Sharing and Singaporean partner."
+            ]
+        },
+        {
+            icon: "🌟",
+            title: "Other Projects & Experience",
+            items: [
+                "<strong>Electronic Components:</strong> 4 years of full-time work experience.",
+                "<strong>Events & Tourism:</strong> Interpreted for engagement ceremonies, weddings; guided Japanese guests in Hanoi and neighboring provinces."
+            ]
+        }
+    ],
+    ja: [
+        {
+            icon: "⚖️",
+            title: "ビジネス・貿易・法律",
+            items: [
+                "<strong>医薬品交渉:</strong> API Co., Ltd.の商談および製品紹介の逐次通訳。",
+                "<strong>ファッションビジネス:</strong> 高級ゴルフコレクション（UTAA Vietnam x 日本パートナー）の立ち上げ計画の通訳。",
+                "<strong>IT:</strong> ITプロジェクトの商談（オンライン通訳）。",
+                "<strong>法律・金融:</strong> 日本での事業融資に関する弁護士とのオンライン通訳。"
+            ]
+        },
+        {
+            icon: "🎨",
+            title: "文化・教育・メディア",
+            items: [
+                "<strong>キムドン出版社 x KADOKAWA:</strong> 日越外交関係樹立50周年記念および漫画『アニオー姫』紹介記者会見の逐次通訳。",
+                "<strong>イラストコンテスト:</strong> KADOKAWAイベントでの逐次通訳。",
+                "<strong>教育協力:</strong> 日本国際学校理事長と日本語学校代表者との意見交換の通訳。",
+                "<strong>幼児教育プロジェクト:</strong> Academy Sharingおよびシンガポールパートナー向けの和英逐次通訳。"
+            ]
+        },
+        {
+            icon: "🌟",
+            title: "その他・経験",
+            items: [
+                "<strong>電子部品:</strong> 4年間の正社員勤務経験。",
+                "<strong>イベント・観光:</strong> 婚約式・結婚式の通訳、ハノイおよび近郊への日本人ゲスト案内。"
+            ]
+        }
+    ]
+};
+
+function renderProjects(lang) {
+    const data = projectData[lang] || projectData['vi'];
+    const slides = data.map(project => {
+        const listItems = project.items.map(item => `<li>${item}</li>`).join('');
+        return `
+            <div class="swiper-slide">
+                <div class="card project-card">
+                    <div class="card-icon">${project.icon}</div>
+                    <h3>${project.title}</h3>
+                    <ul class="project-list">
+                        ${listItems}
+                    </ul>
+                </div>
+            </div>
+        `;
+    });
+
+    const wrapper = document.querySelector('.swiper-wrapper');
+    if (wrapper) {
+        // Destroy existing instance if present
+        if (window._portfolioSwiper && window._portfolioSwiper.destroy) {
+            window._portfolioSwiper.destroy(true, true);
+        }
+
+        // Update HTML
+        wrapper.innerHTML = slides.join('');
+
+        // Re-initialize Swiper
+        initSwiper();
+    }
+}
 
 function changeLanguage(lang) {
     const elements = document.querySelectorAll('[data-i18n]');
@@ -456,6 +650,9 @@ function changeLanguage(lang) {
         }
     });
     document.documentElement.lang = lang;
+    document.documentElement.lang = lang;
+    localStorage.setItem('selectedLang', lang);
+    renderProjects(lang);
 }
 
 // --- HÀM XỬ LÝ CUỘN CHO TIMELINE ---
