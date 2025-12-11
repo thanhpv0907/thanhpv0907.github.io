@@ -6,9 +6,39 @@ const emailMobile = document.getElementById('emailMobile');
 if (emailMobile) emailMobile.textContent = email;
 document.getElementById('year').textContent = new Date().getFullYear();
 
-function copyEmail() {
+function copyEmail(btnElement) {
     navigator.clipboard?.writeText(email).then(() => {
-        alert('Copied: ' + email);
+        // alert('Copied: ' + email); // Removed alert
+
+        // Visual feedback on button
+        if (btnElement) {
+            const originalText = btnElement.textContent;
+            const currentLang = localStorage.getItem('selectedLang') || 'vn';
+
+            // Change text to "Copied"
+            if (resources[currentLang] && resources[currentLang].copied) {
+                btnElement.textContent = resources[currentLang].copied;
+            } else {
+                btnElement.textContent = "Copied";
+            }
+
+            // Revert after 2 seconds
+            setTimeout(() => {
+                // Restore original text based on current language to be safe, 
+                // or just use the originalText variable if language hasn't changed.
+                // Better to re-fetch from resources in case lang changed (unlikely in 2s but good practice)
+                // actually originalText is fine for simple revert
+                // But let's use data-i18n logic if possible, or just revert to what it was.
+                // The safest is to re-apply the translation for the 'copy' key.
+                const lang = localStorage.getItem('selectedLang') || 'vn';
+                if (resources[lang] && resources[lang].copy) {
+                    btnElement.textContent = resources[lang].copy;
+                } else {
+                    btnElement.textContent = "Copy";
+                }
+            }, 2000);
+        }
+
     }).catch(() => {
         prompt('Copy email:', email);
     });
@@ -267,6 +297,7 @@ const resources = {
         avail: "Sẵn sàng: Di chuyển / Làm gấp",
         style: "Phong cách: Chính xác — Tự nhiên — Bảo mật",
         copy: "Copy",
+        copied: "Đã sao chép",
         about_title: "Giới thiệu",
         about_desc: "Tôi là <strong>Phạm Vi Thành</strong>, phiên dịch viên chuyên nghiệp Tiếng Nhật ・ Anh ・ Việt. Tôi chuyên xử lý các dự án hội nghị, đàm phán thương mại, dịch online (Zoom/Google Meet) và các chủ đề chuyên môn cao như tài liệu pháp lý/kỹ thuật. Với 4 năm kinh nghiệm phiên dịch toàn thời gian trong các lĩnh vực linh kiện điện tử, thiết kế đồ hoạ - mỹ thuật và CNTT, cùng các chứng chỉ cao cấp (JLPT N1, BJT J2, TOEIC 825), tôi cam kết cung cấp dịch vụ chất lượng vượt trội.",
         service_title: "Dịch vụ chính",
@@ -349,6 +380,7 @@ const resources = {
         avail: "Avail: Travel / Urgent Requests",
         style: "Style: Precise — Natural — Confidential",
         copy: "Copy",
+        copied: "Copied",
         about_title: "About Me",
         about_desc: "I am <strong>Pham Vi Thanh</strong>, a professional Japanese ・ English ・ Vietnamese interpreter. I specialize in conferences, trade negotiations, online interpreting (Zoom/Google Meet), and high-level technical/legal topics. With 4 years of full-time experience in Electronic Components, Graphic Design/Fine Arts, and IT, backed by advanced certifications (JLPT N1, BJT J2, TOEIC 825), I are committed to delivering superior quality service.",
         service_title: "Services",
@@ -431,6 +463,7 @@ const resources = {
         avail: "対応: 出張可 / お急ぎ対応可",
         style: "スタイル: 正確 — 自然 — 機密保持",
         copy: "コピー",
+        copied: "コピーしました",
         about_title: "自己紹介",
         about_desc: "日本語・英語・ベトナム語のプロ通訳者、<strong>ファム・ビ・タン</strong> です。会議、商談、オンライン通訳(Zoom/Google Meet)、法務・技術資料などの高度な案件を専門としています。電子部品、グラフィックデザイン・美術、IT分野での4年間の専属通訳経験に加え、JLPT N1、BJT J2、TOEIC 825などの資格を保有しており、質の高いサービスをお約束します。",
         service_title: "主なサービス",
