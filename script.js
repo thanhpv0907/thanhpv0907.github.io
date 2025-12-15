@@ -108,7 +108,7 @@ async function processQueue() {
         //     messageBox.style.color = 'var(--accent)';
         // }
 
-        const API_URL = 'https://api.thanhpv0907.site/send-email';
+        const API_URL = 'http://localhost:3000/api/contact';
         const response = await fetch(API_URL, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
