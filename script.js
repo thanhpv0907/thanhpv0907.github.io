@@ -1,10 +1,20 @@
 const email = 'thanhpham0907@gmail.com';
-document.getElementById('mailtoLink').setAttribute('href', 'mailto:' + email);
-document.getElementById('emailSide').textContent = email;
-document.getElementById('emailText').textContent = email;
+
+// Xử lý email links nếu tồn tại
+const mailtoLink = document.getElementById('mailtoLink');
+if (mailtoLink) mailtoLink.setAttribute('href', 'mailto:' + email);
+
+const emailSide = document.getElementById('emailSide');
+if (emailSide) emailSide.textContent = email;
+
+const emailText = document.getElementById('emailText');
+if (emailText) emailText.textContent = email;
+
 const emailMobile = document.getElementById('emailMobile');
 if (emailMobile) emailMobile.textContent = email;
-document.getElementById('year').textContent = new Date().getFullYear();
+
+const yearElement = document.getElementById('year');
+if (yearElement) yearElement.textContent = new Date().getFullYear();
 
 function copyEmail(btnElement) {
     navigator.clipboard?.writeText(email).then(() => {
@@ -49,113 +59,84 @@ let isProcessing = false;
 let lastSentTime = 0;
 const RATE_LIMIT_DELAY = 10000; // 10 seconds delay between emails
 
-async function handleSend(e) {
+// Lắng nghe sự kiện Submit Form
+document.addEventListener('DOMContentLoaded', function() {
+    const contactForm = document.getElementById('contactForm');
+    if (contactForm) {
+        contactForm.addEventListener('submit', handleNewContact);
+    }
+});
+
+async function handleNewContact(e) {
     e.preventDefault();
 
-    const nameInput = document.getElementById('name');
-    const emailInput = document.getElementById('email');
-    const subjectInput = document.getElementById('subject');
-    const messageInput = document.getElementById('message');
-    const submitBtn = document.getElementById('btn-submit') || document.querySelector('button[type="submit"]');
-    const messageBox = document.getElementById('formMessage');
-
-    const payload = {
-        name: nameInput.value.trim(),
-        email: emailInput.value.trim(),
-        subject: subjectInput ? subjectInput.value.trim() : 'Liên hệ từ Website',
-        message: messageInput.value.trim()
+    // 1. Lấy các thẻ HTML cần dùng
+    const btn = document.getElementById('submitBtn');
+    const msgBox = document.getElementById('statusMsg');
+    
+    // 2. Thu thập dữ liệu từ các ô input
+    const formData = {
+        full_name: document.getElementById('full_name').value.trim(),
+        email: document.getElementById('email').value.trim(),
+        subject: document.getElementById('subject').value.trim(),
+        content: document.getElementById('content').value.trim()
     };
 
-    if (!payload.name || !payload.email || !payload.message) {
-        showFormMessage('Vui lòng điền đầy đủ thông tin bắt buộc.', 'error');
+    // Validate required fields
+    if (!formData.full_name || !formData.email || !formData.subject || !formData.content) {
+        msgBox.style.display = 'block';
+        msgBox.className = 'text-error';
+        msgBox.innerHTML = '❌ Vui lòng điền đầy đủ tất cả các trường.';
         return;
     }
 
-    // Add to queue
-    emailQueue.push({ payload, submitBtn, messageBox });
-
-    // UI Feedback immediately
-    if (submitBtn) {
-        const currentLang = localStorage.getItem('selectedLang') || 'vn';
-        submitBtn.textContent = resources[currentLang].btn_processing;
-        submitBtn.disabled = true;
-    }
-    // showFormMessage('Đang thêm vào hàng đợi...', 'success');
-
-    processQueue();
-}
-
-async function processQueue() {
-    if (isProcessing || emailQueue.length === 0) return;
-
-    const now = Date.now();
-    const timeSinceLastSend = now - lastSentTime;
-
-    if (timeSinceLastSend < RATE_LIMIT_DELAY) {
-        const waitTime = RATE_LIMIT_DELAY - timeSinceLastSend;
-        console.log(`Rate limit active. Waiting ${waitTime}ms...`);
-        setTimeout(processQueue, waitTime);
-        return;
-    }
-
-    isProcessing = true;
-    const { payload, submitBtn, messageBox } = emailQueue.shift();
+    // 3. Hiệu ứng "Đang gửi..."
+    btn.disabled = true;
+    btn.innerHTML = "⏳ Đang gửi dữ liệu...";
+    msgBox.style.display = 'none';
 
     try {
-        // Update UI to "Sending"
-        // if (messageBox) {
-        //     messageBox.textContent = 'Đang gửi...';
-        //     messageBox.style.color = 'var(--accent)';
-        // }
-
-        const API_URL = 'http://localhost:3000/api/contact';
-        const response = await fetch(API_URL, {
+        // 4. GỌI API (Fetch) đến Backend
+        const response = await fetch('https://api.thanhpv0907.site/api/contacts', {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(payload)
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData)
         });
 
-        if (response.ok) {
-            // showFormMessage('✅ Gửi liên hệ thành công! Tôi sẽ phản hồi sớm nhất có thể.', 'success'); // Removed inline message
-            document.getElementById('contact-form').reset();
-            lastSentTime = Date.now(); // Update timestamp on success
+        const result = await response.json();
 
-            // Show Splash Screen
-            showSplashScreen();
+        // 5. Xử lý kết quả trả về
+        msgBox.style.display = 'block';
 
-            setTimeout(() => { if (messageBox) messageBox.style.display = 'none'; }, 6000);
+        if (response.ok && result.success) {
+            // THÀNH CÔNG
+            msgBox.className = 'text-success';
+            msgBox.innerHTML = `✅ ${result.message || 'Gửi tin nhắn thành công!'}`;
+            // Xóa trắng form để khách nhập tiếp nếu muốn
+            document.getElementById('contactForm').reset();
+            
+            // Ẩn thông báo sau 3 giây
+            setTimeout(() => {
+                msgBox.style.display = 'none';
+            }, 3000);
         } else {
-            const errorData = await response.json().catch(() => ({}));
-            showFormMessage('Gửi thất bại: ' + (errorData.message || 'Lỗi server.'), 'error');
+            // THẤT BẠI (Lỗi từ server trả về)
+            msgBox.className = 'text-error';
+            msgBox.innerHTML = `❌ Lỗi: ${result.error || 'Không thể gửi tin nhắn.'}`;
         }
 
     } catch (error) {
-        console.error('Network Error:', error);
-        showFormMessage('Không thể kết nối đến máy chủ.', 'error');
+        // LỖI MẠNG (Server chết hoặc mất mạng)
+        console.error('Lỗi kết nối:', error);
+        msgBox.style.display = 'block';
+        msgBox.className = 'text-error';
+        msgBox.innerHTML = "❌ Không thể kết nối đến Server. Vui lòng thử lại sau!";
     } finally {
-        if (submitBtn) {
-            const currentLang = localStorage.getItem('selectedLang') || 'vn';
-            submitBtn.textContent = resources[currentLang].btn_send; // Reset button text from resources
-            submitBtn.disabled = false;
-        }
-        isProcessing = false;
-
-        // Process next item if any
-        if (emailQueue.length > 0) {
-            processQueue();
-        }
-    }
-}
-
-function showFormMessage(text, type = 'success') {
-    const messageBox = document.getElementById('formMessage');
-    if (!messageBox) return;
-    messageBox.style.display = 'block';
-    messageBox.textContent = text;
-    if (type === 'success') {
-        messageBox.style.color = 'var(--accent)';
-    } else {
-        messageBox.style.color = '#ef4444';
+        // Mở lại nút bấm
+        btn.disabled = false;
+        btn.innerHTML = "🚀 Gửi tin nhắn";
     }
 }
 
@@ -660,9 +641,28 @@ const projectData = {
     ]
 };
 
-function renderProjects(lang) {
-    const data = projectData[lang] || projectData['vi'];
-    const slides = data.map(project => {
+async function renderProjects(lang) {
+    try {
+        // Gọi API lấy danh sách projects
+        const response = await fetch('https://api.thanhpv0907.site/api/contacts');
+        if (!response.ok) throw new Error('API fetch failed');
+        
+        const data = await response.json();
+        const projects = data[lang] || data['vi'] || [];
+        
+        if (projects.length === 0) throw new Error('No projects from API');
+        
+        renderProjectSlides(projects);
+    } catch (error) {
+        console.warn('Failed to fetch projects from API, using local data:', error);
+        // Fallback: sử dụng dữ liệu cứng nếu API không khả dụng
+        const projects = projectData[lang] || projectData['vi'];
+        renderProjectSlides(projects);
+    }
+}
+
+function renderProjectSlides(projects) {
+    const slides = projects.map(project => {
         const listItems = project.items.map(item => `<li>${item}</li>`).join('');
         return `
             <div class="swiper-slide">

@@ -258,28 +258,44 @@
       </section>
       <!-- END: MOBILE QUICK INFO -->
 
+      <!-- GIAO DIỆN FORM LIÊN HỆ -->
       <section id="contact" class="section contact">
-        <h2 data-i18n="contact_title">Liên hệ</h2>
-        <p class="lead" data-i18n="contact_desc">Gửi yêu cầu dự án hoặc đặt lịch phiên dịch — tôi sẽ phản hồi nhanh
-          chóng.</p>
+        <div class="contact-wrapper">
+          <h2 data-i18n="contact_title">Liên hệ với tôi</h2>
+          <p data-i18n="contact_desc">Điền thông tin bên dưới để gửi tin nhắn trực tiếp đến tôi.</p>
+          
+          <form id="contactForm">
+            <!-- 1. Họ và Tên -->
+            <div class="form-group">
+              <label data-i18n="ph_name">Họ và tên:</label>
+              <input type="text" id="full_name" placeholder="Ví dụ: Nguyễn Văn A" required>
+            </div>
 
-        <form id="contact-form" onsubmit="handleSend(event)" novalidate>
-          <input type="text" id="name" data-i18n-ph="ph_name" placeholder="Họ và tên *" required />
-          <input type="email" id="email" data-i18n-ph="ph_email" placeholder="Email của bạn *" required />
-          <input type="text" id="subject" data-i18n-ph="ph_subject" placeholder="Tiêu đề" />
-          <textarea id="message" rows="5" data-i18n-ph="ph_message"
-            placeholder="Nội dung (mô tả ngắn dự án, ngôn ngữ, thời gian, địa điểm) *" required></textarea>
-          <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
-            <button type="submit" id="btn-submit" class="send" data-i18n="btn_send">Gửi liên hệ</button>
-            <div class="mini" id="formInfo"><span data-i18n="or_email">Hoặc email trực tiếp:</span> <a href="#"
-                id="mailtoLink">thanhpham0907@gmail.com</a></div>
-          </div>
+            <!-- 2. Email -->
+            <div class="form-group">
+              <label data-i18n="ph_email">Email của bạn:</label>
+              <input type="email" id="email" placeholder="email@example.com" required>
+            </div>
 
-          <!-- Inline message area (success / error) -->
-          <div id="formMessage" class="mini" role="status" aria-live="polite" style="display:none; margin-top:10px;">
-          </div>
-        </form>
+            <!-- 3. Tiêu đề -->
+            <div class="form-group">
+              <label data-i18n="ph_subject">Tiêu đề:</label>
+              <input type="text" id="subject" placeholder="Hợp tác dự án / Hỏi giá..." required>
+            </div>
 
+            <!-- 4. Nội dung -->
+            <div class="form-group">
+              <label data-i18n="ph_message">Nội dung:</label>
+              <textarea id="content" rows="5" placeholder="Nhập nội dung tin nhắn..." required></textarea>
+            </div>
+
+            <!-- Nút gửi -->
+            <button type="submit" id="submitBtn" class="send" data-i18n="btn_send">🚀 Gửi tin nhắn</button>
+            
+            <!-- Thông báo trạng thái -->
+            <div id="statusMsg" style="display: none; margin-top: 15px; font-weight: bold;"></div>
+          </form>
+        </div>
       </section>
 
     </main>
