@@ -215,7 +215,11 @@ function initSwiper() {
 
             loop: true,            // Lặp lại vô tận
             grabCursor: true,      // Hiện con trỏ bàn tay
-            speed: 800,            // Tốc độ chuyển slide (ms)
+            speed: 600,            // Tốc độ chuyển slide (ms) - Giảm xuống cho mượt
+
+            // Cấu hình cảm ứng (Touch)
+            threshold: 20,         // Phải vuốt ít nhất 20px mới tính là swipe (giúp scroll dọc dễ hơn)
+            touchReleaseOnEdges: true, // Cho phép scroll trang khi vuốt ở mép
 
             autoplay: {
                 delay: 7000,         // Tăng thời gian lên 7s cho người dùng kịp đọc
