@@ -15,7 +15,7 @@
 </head>
 
 <body>
-  <div class="select-lang">
+  <section class="select-lang" aria-label="Language Selection">
     <select class="lang-switch" onchange="changeLanguage(this.value)">
       <option value="vi">🇻🇳 Tiếng Việt</option>
       <option value="en">🇺🇸 English</option>
@@ -25,7 +25,7 @@
     <div class="top-right">
       <button class="icon-btn" onclick="toggleTheme()" title="Toggle theme">☀️</button>
     </div>
-  </div>
+  </section>
   <div class="wrap" role="document">
     <nav class="site-nav fade-up" style="animation-delay:50ms">
       <ul class="nav-list">
@@ -83,30 +83,31 @@
       <section id="timeline-mobile" class="section timeline mobile-only fade-up" style="animation-delay:200ms">
         <h2 data-i18n="timeline_title">Hành trình & Kinh nghiệm</h2>
         <div class="timeline-list">
-          <div class="timeline-item">
+          <article class="timeline-item">
             <div class="tl-marker"></div>
             <div class="tl-content">
-              <span class="tl-year" data-i18n="tl_1_year">2018 - Nay</span>
+              <span class="tl-year" data-i18n="tl_1_year">2025 - Nay</span>
               <h3 data-i18n="tl_1_title">Phiên dịch viên Tự do</h3>
               <p data-i18n="tl_1_desc">Hợp tác doanh nghiệp đa quốc gia, chuyên hội nghị & thương mại.</p>
             </div>
-          </div>
-          <div class="timeline-item">
+          </article>
+          <article class="timeline-item">
             <div class="tl-marker"></div>
             <div class="tl-content">
-              <span class="tl-year" data-i18n="tl_2_year">2016 - 2018</span>
+              <span class="tl-year" data-i18n="tl_2_year">2024 - 2025</span>
               <h3 data-i18n="tl_2_title">Chuyên viên Đối ngoại</h3>
               <p data-i18n="tl_2_desc">Biên phiên dịch Ban giám đốc, xử lý hợp đồng xuất nhập khẩu.</p>
             </div>
-          </div>
-          <div class="timeline-item">
+          </article>
+          <article class="timeline-item">
             <div class="tl-marker"></div>
             <div class="tl-content">
-              <span class="tl-year" data-i18n="tl_3_year">2012 - 2016</span>
-              <h3 data-i18n="tl_3_title">Cử nhân Ngôn ngữ Trung</h3>
-              <p data-i18n="tl_3_desc">Tốt nghiệp loại Giỏi. Trao đổi sinh viên 1 năm tại Thượng Hải.</p>
+              <span class="tl-year" data-i18n="tl_3_year">2022 - 2023</span>
+              <h3 data-i18n="tl_3_title">Phiên dịch viên toàn thời gian</h3>
+              <p data-i18n="tl_3_desc">Phiên dịch viên toàn thời gian (Full-time Interpreter). Lĩnh vực chuyên môn
+                chính: linh kiện điện tử, thiết đồ hoạ - mỹ thuật, và CNTT</p>
             </div>
-          </div>
+          </article>
         </div>
       </section>
       <!-- END MOBILE TIMELINE -->
@@ -216,14 +217,7 @@
         </div>
       </section>
 
-      <section id="testimonials" class="section testimonials">
-        <h2 data-i18n="testi_title">Phản hồi khách hàng</h2>
-        <div class="card">
-          <p data-i18n="testi_content">"Dịch rất sát nghĩa, hỗ trợ chuyên nghiệp trong suốt quá trình đàm phán." —
-            <strong>Khách hàng X</strong>
-          </p>
-        </div>
-      </section>
+
 
       <!-- START: MOBILE QUICK INFO (Chỉ hiện trên Mobile, nằm TRƯỚC phần Liên hệ) -->
       <section class="section mobile-only fade-up">
@@ -260,38 +254,40 @@
 
       <!-- GIAO DIỆN FORM LIÊN HỆ -->
       <section id="contact" class="section contact">
+        <h2 data-i18n="contact_title">Liên hệ với tôi</h2>
+        <p data-i18n="contact_desc">Điền thông tin bên dưới để gửi tin nhắn trực tiếp đến tôi.</p>
         <div class="contact-wrapper">
-          <h2 data-i18n="contact_title">Liên hệ với tôi</h2>
-          <p data-i18n="contact_desc">Điền thông tin bên dưới để gửi tin nhắn trực tiếp đến tôi.</p>
-          
           <form id="contactForm">
             <!-- 1. Họ và Tên -->
             <div class="form-group">
               <label data-i18n="ph_name">Họ và tên:</label>
-              <input type="text" id="full_name" placeholder="Ví dụ: Nguyễn Văn A" required>
+              <input type="text" id="full_name" placeholder="Ví dụ: Nguyễn Văn A" data-i18n-placeholder="pl_name"
+                required>
             </div>
 
             <!-- 2. Email -->
             <div class="form-group">
               <label data-i18n="ph_email">Email của bạn:</label>
-              <input type="email" id="email" placeholder="email@example.com" required>
+              <input type="email" id="email" placeholder="email@example.com" data-i18n-placeholder="pl_email" required>
             </div>
 
             <!-- 3. Tiêu đề -->
             <div class="form-group">
               <label data-i18n="ph_subject">Tiêu đề:</label>
-              <input type="text" id="subject" placeholder="Hợp tác dự án / Hỏi giá..." required>
+              <input type="text" id="subject" placeholder="Hợp tác dự án / Hỏi giá..."
+                data-i18n-placeholder="pl_subject" required>
             </div>
 
             <!-- 4. Nội dung -->
             <div class="form-group">
               <label data-i18n="ph_message">Nội dung:</label>
-              <textarea id="content" rows="5" placeholder="Nhập nội dung tin nhắn..." required></textarea>
+              <textarea id="content" rows="4" placeholder="Nhập nội dung tin nhắn..." data-i18n-placeholder="pl_message"
+                required></textarea>
             </div>
 
             <!-- Nút gửi -->
             <button type="submit" id="submitBtn" class="send" data-i18n="btn_send">🚀 Gửi tin nhắn</button>
-            
+
             <!-- Thông báo trạng thái -->
             <div id="statusMsg" style="display: none; margin-top: 15px; font-weight: bold;"></div>
           </form>
@@ -301,7 +297,7 @@
     </main>
 
     <aside class="side fade-up" style="animation-delay:240ms" aria-label="Thông tin liên hệ">
-      <div class="desktop-only">
+      <section class="desktop-only sidebar-section">
         <h2 data-i18n="info_title">Thông tin nhanh</h2>
         <div class="contact-row">
           <strong data-i18n="info_name">Họ tên</strong>
@@ -320,10 +316,10 @@
           <a class="fb" href="https://www.facebook.com/pham.thanh.454731/?viewas=100000686899395" target="_blank"
             rel="noopener" data-i18n="btn_fb">Xem hồ sơ Facebook</a>
         </div>
-      </div>
+      </section>
 
-      <div style="margin-top:14px" class="desktop-only">
-        <strong data-i18n="lang_work" class="language-color">Ngôn ngữ làm việc</strong>
+      <section class="desktop-only sidebar-section">
+        <h2 data-i18n="lang_work" class="language-color">Ngôn ngữ làm việc</h2>
 
         <div class="lang-list">
 
@@ -346,54 +342,52 @@
           </div>
 
         </div>
-      </div>
+      </section>
 
       <!-- Cập nhật style Cam kết cho Desktop -->
       <!-- Promise section moved to main content -->
 
-      <!-- Kẻ một đường ngăn cách mờ -->
-      <hr style="margin:24px 0 20px 0;border:none;border-top:1px solid rgba(255,255,255,0.05)">
-
       <!-- START: TIMELINE IN SIDEBAR -->
-      <div id="timeline-desktop" class="timeline-sidebar desktop-only">
+      <section id="timeline-desktop" class="timeline-sidebar desktop-only sidebar-section">
         <h2 data-i18n="timeline_title">Hành trình</h2>
 
         <div class="timeline-list">
           <!-- Item 1 -->
-          <div class="timeline-item">
+          <article class="timeline-item">
             <div class="tl-marker"></div>
             <div class="tl-content">
-              <span class="tl-year" data-i18n="tl_1_year">2018 - Nay</span>
+              <span class="tl-year" data-i18n="tl_1_year">2025 - Nay</span>
               <h3 data-i18n="tl_1_title">Phiên dịch viên Tự do</h3>
               <p data-i18n="tl_1_desc">Hợp tác doanh nghiệp đa quốc gia, chuyên hội nghị & thương mại.</p>
             </div>
-          </div>
+          </article>
 
           <!-- Item 2 -->
-          <div class="timeline-item">
+          <article class="timeline-item">
             <div class="tl-marker"></div>
             <div class="tl-content">
-              <span class="tl-year" data-i18n="tl_2_year">2016 - 2018</span>
+              <span class="tl-year" data-i18n="tl_2_year">2024 - 2025</span>
               <h3 data-i18n="tl_2_title">Chuyên viên Đối ngoại</h3>
               <p data-i18n="tl_2_desc">Biên phiên dịch Ban giám đốc, xử lý hợp đồng xuất nhập khẩu.</p>
             </div>
-          </div>
+          </article>
 
           <!-- Item 3 -->
-          <div class="timeline-item">
+          <article class="timeline-item">
             <div class="tl-marker"></div>
             <div class="tl-content">
-              <span class="tl-year" data-i18n="tl_3_year">2012 - 2016</span>
-              <h3 data-i18n="tl_3_title">Cử nhân Ngôn ngữ Trung</h3>
-              <p data-i18n="tl_3_desc">Tốt nghiệp loại Giỏi. Trao đổi sinh viên 1 năm tại Thượng Hải.</p>
+              <span class="tl-year" data-i18n="tl_3_year">2022 - 2023</span>
+              <h3 data-i18n="tl_3_title">Phiên dịch viên toàn thời gian</h3>
+              <p data-i18n="tl_3_desc">Phiên dịch viên toàn thời gian (Full-time Interpreter). Lĩnh vực chuyên môn
+                chính: linh kiện điện tử, thiết đồ hoạ - mỹ thuật, và CNTT</p>
             </div>
-          </div>
+          </article>
         </div>
-      </div>
+      </section>
       <!-- END DESKTOP TIMELINE -->
 
       <!-- START: SKILLS IN SIDEBAR -->
-      <div id="skills-sidebar" class="desktop-only" style="margin-top: 24px;">
+      <section id="skills-sidebar" class="desktop-only sidebar-section">
         <h2 data-i18n="skill_title">Kỹ năng nổi bật</h2>
         <div class="skills">
           <div class="skill" data-i18n="sk_1">・Phiên dịch hội nghị</div>
@@ -402,8 +396,19 @@
           <div class="skill" data-i18n="sk_5">・Nắm bắt sắc thái văn hóa</div>
           <div class="skill" data-i18n="sk_6">・Bảo mật & NDA</div>
         </div>
-      </div>
+      </section>
       <!-- END: SKILLS IN SIDEBAR -->
+
+      <!-- TESTIMONIALS IN SIDEBAR -->
+      <section id="testimonials-sidebar" class="sidebar-section">
+        <h2 data-i18n="testi_title">Phản hồi khách hàng</h2>
+        <div class="card" style="border:none; box-shadow:none; background:transparent; padding:0;">
+          <p data-i18n="testi_content" style="font-style:italic; color:var(--muted);">"Dịch rất sát nghĩa, hỗ trợ chuyên
+            nghiệp trong suốt quá trình đàm phán." —
+            <strong>Khách hàng X</strong>
+          </p>
+        </div>
+      </section>
 
       <!-- END: TIMELINE IN SIDEBAR -->
     </aside>

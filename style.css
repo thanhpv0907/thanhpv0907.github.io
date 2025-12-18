@@ -1,7 +1,8 @@
 :root {
   --bg: #0f1724;
   --card: #0b1220;
-  --muted: #9aa4b2;
+  --muted: #b0b8c4;
+  /* Lighter gray for better contrast on dark bg */
   --accent: #8be9c9;
   --glass: rgba(255, 255, 255, 0.04);
   --glass-2: rgba(255, 255, 255, 0.02);
@@ -9,7 +10,8 @@
   --radius: 14px;
   --shadow: 0 6px 18px rgba(2, 6, 23, 0.6);
   color-scheme: dark;
-  color: #e6eef6;
+  color: #ffffff;
+  /* Pure white for max contrast */
   font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
 }
 
@@ -102,31 +104,36 @@ header.site-card {
 
 .hero h1 {
   margin: 0;
-  font-size: 22px;
-  letter-spacing: 0.2px;
+  font-size: 32px;
+  letter-spacing: -0.5px;
+  line-height: 1.2;
 }
 
 .role-title {
-  font-size: 0.85em;
+  font-size: 0.6em;
+  /* Giảm tỷ lệ tương đối vì H1 đã to lên nhiều */
   color: var(--muted);
   font-weight: 400;
   display: block;
-  /* Xuống dòng trên mobile nếu cần, hoặc inline */
+  margin-top: 4px;
+  /* Tạo khoảng cách nhỏ */
 }
 
 @media (min-width: 600px) {
   .role-title {
-    display: inline;
-    /* Trên PC thì nằm cùng dòng */
-    margin-left: 8px;
+    display: inline-block;
+    margin-left: 10px;
+    font-size: 0.65em;
+    transform: translateY(-4px);
+    /* Căn chỉnh nhẹ cho đẹp */
   }
 }
 
 .hero p {
-  margin: 6px 0 0;
+  margin: 12px 0 0;
   color: var(--muted);
-  font-size: 15px;
-  /* Tăng từ 14px */
+  font-size: 18px;
+  line-height: 1.5;
 }
 
 .hero-meta {
@@ -146,15 +153,34 @@ header.site-card {
 }
 
 main {
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent);
+  background: transparent;
+  box-shadow: none;
+  padding: 0;
+  border: none;
+}
+
+main>section {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
   border-radius: var(--radius);
   padding: 22px;
   box-shadow: var(--shadow);
+  border: 1px solid rgba(255, 255, 255, 0.02);
+  margin-bottom: 24px;
 }
 
-.section {
-  margin-bottom: 20px;
+main>section:last-child {
+  margin-bottom: 0;
 }
+
+/* Light mode adjustment for main sections */
+[data-theme="light"] main>section {
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 4px 20px rgba(148, 163, 184, 0.25);
+}
+
+
 
 /* --- TYPOGRAPHY UPDATE (Tìm và thay thế phần h2, h3 cũ) --- */
 
@@ -305,6 +331,8 @@ form textarea {
   color: inherit;
   font-size: 14px;
   margin-bottom: 8px;
+  resize: none;
+  /* Disable resize handle */
 }
 
 form button.send {
@@ -612,8 +640,8 @@ select.lang-switch option {
   /* Màu nền sáng xanh nhạt dễ chịu */
   --card: #ffffff;
   /* Card màu trắng */
-  --muted: #475569;
-  /* Đậm hơn #64748b để tăng tương phản trên nền sáng */
+  --muted: #334155;
+  /* Darker gray (#334155) for higher contrast on light bg */
   --accent: #0f766e;
   /* Màu điểm nhấn đậm hơn (Teal 700) để tương phản tốt trên nền trắng */
   --glass: rgba(0, 0, 0, 0.08);
@@ -626,8 +654,8 @@ select.lang-switch option {
 
   color-scheme: light;
   /* Báo trình duyệt dùng thanh cuộn sáng */
-  color: #1e293b;
-  /* Màu chữ chính: Xám đen đậm */
+  color: #0f172a;
+  /* Darker text (#0f172a) for max contrast */
 }
 
 /* Ghi đè Background Body khi ở Light Mode */
@@ -1426,14 +1454,13 @@ main {
 
 /* === CONTACT FORM STYLES === */
 .contact-wrapper {
-  max-width: 600px;
+  max-width: 100%;
   width: 100%;
-  margin: 20px auto;
-  padding: 30px;
-  background: var(--card);
-  border: 1px solid var(--glass);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
+  margin: 0 auto 20px;
+  padding: 0 30px 30px;
+  background: transparent;
+  border: none;
+  box-shadow: none;
   font-family: inherit;
 }
 
@@ -1545,8 +1572,38 @@ button#submitBtn:disabled {
     opacity: 0;
     transform: translateY(-10px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+/* --- SIDEBAR SECTIONS (BOXED STYLE) --- */
+aside.side {
+  background: transparent !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  border: none !important;
+}
+
+.sidebar-section {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+  border-radius: var(--radius);
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: var(--shadow);
+  border: 1px solid rgba(255, 255, 255, 0.02);
+}
+
+.sidebar-section:last-child {
+  margin-bottom: 0;
+}
+
+/* Light mode adjustment for sidebar boxes */
+[data-theme="light"] .sidebar-section {
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 4px 20px rgba(148, 163, 184, 0.25);
 }

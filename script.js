@@ -60,7 +60,7 @@ let lastSentTime = 0;
 const RATE_LIMIT_DELAY = 10000; // 10 seconds delay between emails
 
 // Lắng nghe sự kiện Submit Form
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const contactForm = document.getElementById('contactForm');
     if (contactForm) {
         contactForm.addEventListener('submit', handleNewContact);
@@ -73,7 +73,7 @@ async function handleNewContact(e) {
     // 1. Lấy các thẻ HTML cần dùng
     const btn = document.getElementById('submitBtn');
     const msgBox = document.getElementById('statusMsg');
-    
+
     // 2. Thu thập dữ liệu từ các ô input
     const formData = {
         full_name: document.getElementById('full_name').value.trim(),
@@ -116,7 +116,7 @@ async function handleNewContact(e) {
             msgBox.innerHTML = `✅ ${result.message || 'Gửi tin nhắn thành công!'}`;
             // Xóa trắng form để khách nhập tiếp nếu muốn
             document.getElementById('contactForm').reset();
-            
+
             // Ẩn thông báo sau 3 giây
             setTimeout(() => {
                 msgBox.style.display = 'none';
@@ -323,6 +323,10 @@ const resources = {
         ph_email: "Email của bạn *",
         ph_subject: "Tiêu đề",
         ph_message: "Nội dung (mô tả ngắn dự án, ngôn ngữ, thời gian, địa điểm) *",
+        pl_name: "Ví dụ: Nguyễn Văn A",
+        pl_email: "email@example.com",
+        pl_subject: "Hợp tác dự án / Hỏi giá...",
+        pl_message: "Nhập nội dung tin nhắn...",
         btn_send: "Gửi liên hệ",
         or_email: "Hoặc email trực tiếp:",
         info_title: "Thông tin nhanh",
@@ -346,15 +350,15 @@ const resources = {
         promise_desc: "Bảo mật thông tin — Chuẩn xác thuật ngữ — Trách nhiệm với tiến độ",
         footer_role: "Phiên dịch viên",
         timeline_title: "Hành trình & Kinh nghiệm",
-        tl_1_year: "2018 - Nay",
-        tl_1_title: "Phiên dịch viên Tự do (Freelance)",
-        tl_1_desc: "Hợp tác với các doanh nghiệp đa quốc gia, chuyên dịch hội nghị và đàm phán thương mại.",
-        tl_2_year: "2016 - 2018",
-        tl_2_title: "Chuyên viên Đối ngoại - Công ty XYZ",
-        tl_2_desc: "Phụ trách biên phiên dịch cho Ban giám đốc, xử lý hợp đồng xuất nhập khẩu.",
-        tl_3_year: "2012 - 2016",
-        tl_3_title: "Cử nhân Ngôn ngữ Trung - ĐH Sư Phạm/ KHXH&NV",
-        tl_3_desc: "Tốt nghiệp loại Giỏi. Tham gia chương trình trao đổi sinh viên 1 năm.",
+        tl_1_year: "2025 - Nay",
+        tl_1_title: "Phiên dịch viên Tự do",
+        tl_1_desc: "Hợp tác doanh nghiệp đa quốc gia, chuyên hội nghị & thương mại.",
+        tl_2_year: "2024 - 2025",
+        tl_2_title: "Chuyên viên Đối ngoại",
+        tl_2_desc: "Biên phiên dịch Ban giám đốc, xử lý hợp đồng xuất nhập khẩu.",
+        tl_3_year: "2022 - 2023",
+        tl_3_title: "Phiên dịch viên toàn thời gian",
+        tl_3_desc: "Phiên dịch viên toàn thời gian (Full-time Interpreter). Lĩnh vực chuyên môn chính: linh kiện điện tử, thiết đồ hoạ - mỹ thuật, và CNTT",
         nav_about: "Giới thiệu",
         nav_exp: "Hành trình",
         nav_services: "Dịch vụ",
@@ -367,7 +371,7 @@ const resources = {
     },
     en: {
         site_name: "Pham Vi Thanh",
-        tagline: "Interpreter • Translator (VN ↔ CN) — Conference • Business • Livestream • Contracts",
+        tagline: "Interpreter • Translator (VN ↔ JP) — Conference • Business • Livestream • Contracts",
         hero_keywords: "Conference • Business • Technical • IT",
         exp: "Exp: 6+ Years",
         avail: "Avail: Travel / Urgent Requests",
@@ -413,6 +417,10 @@ const resources = {
         ph_email: "Your Email *",
         ph_subject: "Subject",
         ph_message: "Message (Brief project desc, language, time, location) *",
+        pl_name: "Ex: John Doe",
+        pl_email: "email@example.com",
+        pl_subject: "Project Collaboration / Quote Request...",
+        pl_message: "Enter your message...",
         btn_send: "Send Message",
         or_email: "Or email directly:",
         info_title: "Quick Info",
@@ -436,15 +444,15 @@ const resources = {
         promise_desc: "Confidentiality — Accuracy — Accountability",
         footer_role: "Interpreter",
         timeline_title: "Career Timeline",
-        tl_1_year: "2018 - Present",
+        tl_1_year: "2025 - Present",
         tl_1_title: "Freelance Interpreter",
         tl_1_desc: "Partnering with multinational corporations, specializing in conference interpreting and trade negotiations.",
-        tl_2_year: "2016 - 2018",
-        tl_2_title: "External Relations Specialist - XYZ Corp",
-        tl_2_desc: "Interpreting for BOD, handling import/export contracts and Chinese market relations.",
-        tl_3_year: "2012 - 2016",
-        tl_3_title: "BA in Chinese Language - University",
-        tl_3_desc: "Graduated with Distinction. Participated in a 1-year exchange program in Shanghai.",
+        tl_2_year: "2024 - 2025",
+        tl_2_title: "External Relations Specialist",
+        tl_2_desc: "Interpreting for BOD, handling import/export contracts.",
+        tl_3_year: "2022 - 2023",
+        tl_3_title: "Full-time Interpreter",
+        tl_3_desc: "Full-time Interpreter. Main expertise: electronic components, graphic design - fine arts, and IT.",
         nav_about: "About",
         nav_exp: "Timeline",
         nav_services: "Services",
@@ -457,7 +465,7 @@ const resources = {
     },
     ja: {
         site_name: "ファム・ビ・タン",
-        tagline: "通訳 • 翻訳 (ベトナム語 ↔ 中国語) — 会議 • 商談 • ライブ配信 • 契約書",
+        tagline: "通訳 • 翻訳 (ベトナム語 ↔ 日本語) — 会議 • 商談 • ライブ配信 • 契約書",
         hero_keywords: "会議 • ビジネス • 技術 • IT",
         exp: "経験: 6年以上",
         avail: "対応: 出張可 / お急ぎ対応可",
@@ -503,6 +511,10 @@ const resources = {
         ph_email: "メールアドレス *",
         ph_subject: "件名",
         ph_message: "内容 (プロジェクト概要、言語、日時、場所など) *",
+        pl_name: "例：山田 太郎",
+        pl_email: "email@example.com",
+        pl_subject: "プロジェクト依頼 / お見積り...",
+        pl_message: "メッセージを入力してください...",
         btn_send: "送信する",
         or_email: "または直接メール:",
         info_title: "基本情報",
@@ -526,15 +538,15 @@ const resources = {
         promise_desc: "情報保護 — 正確性 — 責任感",
         footer_role: "通訳者",
         timeline_title: "経歴・歩み",
-        tl_1_year: "2018 - 現在",
+        tl_1_year: "2025 - 現在",
         tl_1_title: "フリーランス通訳者",
         tl_1_desc: "多国籍企業と提携し、会議通訳や商談通訳を専門としています。",
-        tl_2_year: "2016 - 2018",
-        tl_2_title: "渉外担当 - XYZ社",
-        tl_2_desc: "取締役会の通訳、輸出入契約および中国市場との関係構築を担当。",
-        tl_3_year: "2012 - 2016",
-        tl_3_title: "中国語学士号 - 大学",
-        tl_3_desc: "優秀な成績で卒業。上海での1年間の交換留学プログラムに参加。",
+        tl_2_year: "2024 - 2025",
+        tl_2_title: "渉外担当",
+        tl_2_desc: "取締役会の通訳、輸出入契約を担当。",
+        tl_3_year: "2022 - 2023",
+        tl_3_title: "常勤通訳者",
+        tl_3_desc: "常勤通訳者。主な専門分野：電子部品、グラフィックデザイン・美術、IT。",
         nav_about: "自己紹介",
 
         nav_exp: "経歴",
@@ -646,12 +658,12 @@ async function renderProjects(lang) {
         // Gọi API lấy danh sách projects
         const response = await fetch('https://api.thanhpv0907.site/api/contacts');
         if (!response.ok) throw new Error('API fetch failed');
-        
+
         const data = await response.json();
         const projects = data[lang] || data['vi'] || [];
-        
+
         if (projects.length === 0) throw new Error('No projects from API');
-        
+
         renderProjectSlides(projects);
     } catch (error) {
         console.warn('Failed to fetch projects from API, using local data:', error);
@@ -700,9 +712,9 @@ function changeLanguage(lang) {
             el.innerHTML = resources[lang][key];
         }
     });
-    const inputs = document.querySelectorAll('[data-i18n-ph]');
+    const inputs = document.querySelectorAll('[data-i18n-placeholder]');
     inputs.forEach(el => {
-        const key = el.getAttribute('data-i18n-ph');
+        const key = el.getAttribute('data-i18n-placeholder');
         if (resources[lang] && resources[lang][key]) {
             el.placeholder = resources[lang][key];
         }
