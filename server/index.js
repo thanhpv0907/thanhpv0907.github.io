@@ -17,7 +17,7 @@ app.use((req, res, next) => {
 });
 
 app.use(express.json());
-app.use(express.static(__dirname)); // Serve static files
+app.use(express.static(path.join(__dirname, '../'))); // Serve static files from root
 
 // Configure Nodemailer Transporter
 const transporter = nodemailer.createTransport({
@@ -158,7 +158,7 @@ app.post('/api/contacts', async (req, res) => {
 });
 
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'index.html'));
+  res.sendFile(path.join(__dirname, '../index.html'));
 });
 
 app.listen(port, () => console.log(`Mock server listening on http://localhost:${port}`));

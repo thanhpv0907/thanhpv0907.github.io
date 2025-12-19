@@ -4,7 +4,7 @@
   "description": "Mock Express server to test contact form",
   "main": "mock-server.js",
   "scripts": {
-    "start": "node mock-server.js"
+    "start": "node server/index.js"
   },
   "dependencies": {
     "dotenv": "^17.2.3",
